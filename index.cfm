@@ -165,7 +165,7 @@
 
 <div style="text-align: center;">
   <cfoutput>
-  <img src="#Application.icons#myTeamHockeyStats.png" 
+  <img src="#Application.images#myTeamHockeyStats.png" 
        style="max-width: 300px;" 
        alt="Hockey Icon">
 </cfoutput>
@@ -193,7 +193,7 @@
 
 <video autoplay muted loop playsinline preload="auto" id="backgroundVideo">
 <cfoutput>
-  <source src="#Application.icons#BackgroundVideo.mp4" type="video/mp4">
+  <source src="#Application.images#BackgroundVideo.mp4" type="video/mp4">
 </cfoutput>
   Your browser does not support the video tag.
 </video>

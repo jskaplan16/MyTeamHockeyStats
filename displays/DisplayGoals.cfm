@@ -117,7 +117,7 @@
 		###playerNumber# - #PlayerName#
 	     </cfif>
 			<cfif qJustGoals.IsReassigned>
-				<img src="#application.icons#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">	
+				<img src="#application.images#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">	
 			</cfif>	
 			<br> 
 </cfoutput>			
@@ -133,7 +133,7 @@
 								###qStatsAssist.PlayerNumber# - #qStatsAssist.PlayerName#
 							</cfif>
 								<cfif qStatsAssist.IsReassigned>
-									<img src="assets/images/HockeyIcons/InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">								
+									<img src="#application.icons#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">								
 								   </cfif>
 									<br>
 						</cfloop>	

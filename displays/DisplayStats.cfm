@@ -33,7 +33,7 @@
 	 
 	<cfif url.ShowGoalSummary>
 	<div class="table-container">
-		<cf_DisplayGoalSummary gameId=#url.GameId# showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="Stats.cfm" DetailsPage="Stats.cfm" STARTGAMEDATE="#session.StartOfSeason#" EndGameDate="#session.EndofSeason#">
+		<cf_DisplayGoalSummary gameId=#url.GameId# showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayStats.cfm" DetailsPage="DisplayStats.cfm" STARTGAMEDATE="#session.StartOfSeason#" EndGameDate="#session.EndofSeason#">
 	</div>
 	</cfif>	
 		

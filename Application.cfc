@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease10">
+    <cfset this.name = "HockeyStatsRelease11">
 
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
@@ -36,7 +36,7 @@
                     </cfif>	
         <cflock scope="application" type="exclusive" timeout="10">               
     <cfset application.datasource = application.datasource>
-    <cfset this.base = "/HockeyStatsApp/">
+    <cfset this.base = "/MyTeamHockeyStats/">
     <cfset application.base = this.base>
     <cfset application.displays = this.base & "displays/"/>
     <cfset application.css = this.base & "assets/css/"/>

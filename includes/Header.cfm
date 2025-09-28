@@ -75,7 +75,7 @@
 <header class="header-banner">
   <div class="nav-cell logo" style="text-align: left;">
     <a href="#application.base#index.cfm" tabindex="-1">
-      <img src="#application.icons#myTeamHockeyStats.png" alt="My Team Hockey Stats" width="100" tabindex="-1">
+      <img src="#application.images#myTeamHockeyStats.png" alt="My Team Hockey Stats" width="100" tabindex="-1">
     </a>
   </div>
 

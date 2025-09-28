@@ -81,7 +81,7 @@
 		<cfoutput>
 				<div style="display: table-cell;width: 50%;text-align: left;padding-left: 25px;">
 	     <a href="#application.displays#GameSheetViewer.cfm?GameId=#attributes.gameId#">
-	     	<img src="#Application.Icons#GamesheetsIcon.png" width="100"></a>
+	     	<img src="#Application.images#GamesheetsIcon.png" width="100"></a>
 			</div>
 		<cfif qStatsSummaryBase.RecordCount is not 0>
 		<div style="display: table-cell;width: 50%;text-align:right;vertical-align: middle;color:black;">
