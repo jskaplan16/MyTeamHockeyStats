@@ -1,4 +1,4 @@
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="#application.includes#header.cfm">
 
 <cfparam name="form.TeamName" default="">
 <cfparam name="form.TeamIcon" default="">
@@ -44,7 +44,7 @@
     <div class="form-container" style="width: 60%;">
         <h2>Add Team</h2>
          <cfoutput>
-        <form name="SaveTeam" method="Post" action="SaveTeam.cfm" enctype="multipart/form-data">
+        <form name="SaveTeam" method="Post" action="#Application.actions#ActionSaveTeam.cfm" enctype="multipart/form-data">
             <cfif url.Action is "Edit">
                     <input type="hidden" name="TeamSeasonId" value="#url.TeamSeasonId#">
                     <input type="hidden" name="Action" value="#url.Action#">
@@ -112,16 +112,16 @@
             <tr class="row-odd">
         </cfif>
             <td class="tblCellleft" style="width:10%">    
-            <img src="assets/images/HockeyIcons/#qTeam.TeamIcon#" alt="Team Icon" style="width:50px;height:50px;">
+            <img src="#application.icons##qTeam.TeamIcon#" alt="Team Icon" style="width:50px;height:50px;">
             </td>
             <td class="tblCellLeft" style="width:70%">#qTeam.TeamName#</td>    
           
             
             <td class="tblCellleft" style="width:20%">
             <cfif session.TeamSeasonId is not qTeam.TeamSeasonId>
-                <a href="DisplayAddTeam.cfm?Action=Edit&TeamSeasonId=#qTeam.TeamSeasonId#" class="mainLink">Edit</a>
+                <a href="#application.displays#DisplayAddTeam.cfm?Action=Edit&TeamSeasonId=#qTeam.TeamSeasonId#" class="mainLink">Edit</a>
             </cfif>
-                 <a href="DisplayPlayerRoster.cfm?Action=Insert&TeamSeasonId=#qTeam.TeamSeasonId#" class="mainLink">Add Player</a>
+                 <a href="#application.displays#DisplayPlayerRoster.cfm?Action=Insert&TeamSeasonId=#qTeam.TeamSeasonId#" class="mainLink">Add Player</a>
           
         </tr>
                    
@@ -129,7 +129,7 @@
     </table>
     </div>
 
-<cfinclude template="includes/footers/Footer.cfm">
+<cfinclude template="#application.includes#footer.cfm">
 
 <script>
 const teamname = document.getElementById('searchOrgText');

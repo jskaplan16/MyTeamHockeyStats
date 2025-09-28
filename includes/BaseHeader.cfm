@@ -15,9 +15,10 @@
 	</head>
 
 <body>
-<header class="header-banner">
+
+	<header class="header-banner">
   <div class="nav-cell logo" style="text-align: left;">
-    <a href="index.cfm" tabindex="-1">
+    <a href="#application.base#index.cfm" tabindex="-1">
       <img src="#application.images#myTeamHockeyStats.png" alt="My Team Hockey Stats" width="100" tabindex="-1">
     </a>
   </div>

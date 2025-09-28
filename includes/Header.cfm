@@ -121,7 +121,7 @@
           <cfif isdefined("session.getUSer") and session.getUSer.recordCount gt 1>    
                 <a href="#Application.displays#DisplayMultiTeam.cfm" tabindex="-1">Change Teams</a>
           </cfif>
-          <a href="#application.pages#logout.cfm" tabindex="-1">Log Out</a>
+          <a href="#application.actions#Actionlogout.cfm" tabindex="-1">Log Out</a>
         </div>
       </cfif>
 </div>
@@ -129,7 +129,7 @@
 
 <cfif session.userID  is "0">
        <div class="nav-cell">
-              <a href="#Application.pages#LoginPage.cfm" tabindex="-1"  class="nav-link">Login</a>
+              <a href="#Application.display#DispplayLoginPage.cfm" tabindex="-1"  class="nav-link">Login</a>
         </div>
     <button class="profile-button" tabindex="-1" >
     <a href="#Application.pages#SignUpPage.cfm">Create Account</a> 

@@ -10,7 +10,8 @@
 <cfparam name="form.FullGameVideoURL" default="">
 <cfparam name="form.GameVideoId" default="">
 <cfparam name="url.action" default="Insert">
-<cfparam name="url.showHeader" default="Yes">			
+<cfparam name="url.showHeader" default="Yes">
+<cfparam name="action" default="#url.action#">			
 	
 <cfif isDefined("url.Action") and url.Action is "Edit">
 	<cfquery name="qGameInfo" datasource="#application.datasource#">
@@ -86,7 +87,7 @@
 
 </cfif>
 
-	<form action="#application.actions#SaveGame.cfm" method="post" enctype="multipart/form-data">	
+	<form action="#application.actions#ActionSaveGame.cfm" method="post" enctype="multipart/form-data">	
 		<cfoutput>
 	
 <tr>

@@ -158,9 +158,9 @@
   <a href="#application.pages#authenticate.cfm" class="login">Login</a>
 </cfoutput>
 
-
+<cfoutput>
     <div class="cta-buttons">
-      <a href="#application.pages#SignUpPage.cfm">Get Started for Free</a>  
+      <a href="#application.displays#DisplaySignUpPage.cfm">Get Started for Free</a>  
     </div>
 
 </div>
@@ -170,7 +170,7 @@
   <img src="#Application.images#myTeamHockeyStats.png" 
        style="max-width: 300px;" 
        alt="Hockey Icon">
-
+</cfoutput>
       </div>
 <section class="hero" style="width: 70%;">
   <h2>Take Control of Your Hockey Team's Performance</h2>

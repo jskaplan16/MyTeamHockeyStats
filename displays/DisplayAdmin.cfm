@@ -3,7 +3,7 @@
 <cfparam name="attributes.Message" default="">
 
 <cfif not structKeyExists(session,"ShowAdminFunctions")>
-    <cflocation url="Games.cfm" >
+    <cflocation url="#application.displays#DisplayGames.cfm" >
 </cfif> 
 	<cfif NOT structKeyExists(session, "userID")>
     			<cflocation url="#application.pages#authenticate.cfm?SessionExpired=true">
