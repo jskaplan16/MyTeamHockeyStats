@@ -1,0 +1,1351 @@
+:root {
+  --primary-blue: #185abc;
+  --accent-blue: #2492ff;
+  --white: #ffffff;
+  --gray: #f0f3f7;
+  --dark: #13223b;
+}
+.classHeaderBanner {
+	background: linear-gradient(90deg, var(--primary-blue) 10%, var(--accent-blue) 100%);
+}
+.login-container {
+  background-color: var(--gray);
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(19,34,59,0.13);
+  min-width: 320px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+.shift-container {
+  background-color: var(--gray);
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(19,34,59,0.13);
+  width: 100%;
+  text-align: center;
+}
+.error-box {
+  background: var(--white);
+  border: 1px solid var(--dark);
+  color: red;
+  font-family: inherit;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.labelFld {
+  font-weight: bold;
+  color: var(--dark);
+  margin-bottom: 8px;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+}
+.tall-input {
+  height: 60px;
+  font-size: 1.2rem;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--accent-blue);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--dark);
+  margin-bottom: 8px;
+  transition: border 0.2s;
+}
+.tall-input:focus {
+  border-color: var(--primary-blue);
+  background: var(--gray);
+}
+.tall-input::placeholder {
+  font-size: 1.2rem;
+  color: var(--dark);
+  opacity: 0.6;
+}
+.eye-icon {
+  position: absolute;
+  right: 16px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 1.4em;
+  color: var(--dark);
+  opacity: 0.85;
+  z-index: 3;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 22px;
+  text-align: left;
+}
+input[type="submit"] {
+  background-color: var(--accent-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  font-size: 1.05em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+input[type="submit"]:hover {
+  background-color: var(--dark);
+}
+.forgot-link {
+  display: block;
+  color: var(--dark);
+  margin-top: 18px;
+  text-decoration: underline;
+  font-size: 0.98em;
+  text-align: center;
+  font-weight: 500;
+}
+.forgot-link,
+.forgot-link:visited,
+.forgot-link:active,
+.forgot-link:focus,
+.forgot-link:hover {
+  color: var(--dark);
+  text-decoration: underline;
+}
+
+body {
+  background: var(--primary-blue);
+  color: var(--accent-blue);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.header-game {
+  color: var(--white);
+  text-align: center;
+  background: var(--dark);
+  height: 50px;
+}
+.header-game-row {
+  background: var(--dark);
+  color: var(--white);
+  height: 50px;
+}
+.link-style {
+  color: black; /* Default text color */
+  text-decoration: underline; /* Default underline */
+  font-weight: bold; /* Bold text */
+}
+
+.link-style:link {
+  color: black; /* Unvisited link color */
+}
+
+.link-style:visited {
+  color: black; /* Visited link color */
+}
+
+.link-style:hover, 
+.link-style:focus {
+  color: black; 
+  text-decoration: underline;
+}
+
+.link-style:active {
+  color: black; /* Active link state */
+  text-decoration: underline;
+}			
+		
+
+			.errorBox{
+				background-color: white;
+				border: 1px solid black;
+				color:red;
+				text-align: left;
+				margin-left: 33%;
+				font-family: 'Roboto', 'Arial', sans-serif;
+				width: 50%;
+				text-align: center;
+			}
+			.errorMsgHeader{
+				background-color: black;
+				color:white;
+			}
+			.navCell {
+				display: inline;
+				color:white;
+				font-family:  'Roboto', 'Arial', sans-serif;
+				font: size 12em;
+				padding-left: 40px;
+				text-align: left;
+			}	
+			.navCellFirst {
+				display: inline;
+				color:white;
+				font-family: 'Roboto', 'Arial', sans-serif;
+				font-size:12em;
+				margin-left: 40px;
+				text-align: left;
+			}
+			.tblRow {
+				border-bottom:1px solid black;
+			}
+			.tblHeader {
+				background-color: black;
+				color:white;
+				padding: 3px;	
+			}
+			.tblFormat {
+				border: 1px solid black;
+			}
+			.tblCell {
+				border-bottom: 1px solid black;
+			}
+			.PageHeader {
+				font-family: 'Roboto', 'Arial', sans-serif;
+				font-size:  3em;
+				color:var(--dark);
+				text-align: center;
+                width: 90%;
+                padding: 15px;
+			}
+
+/* Add hover effects to .highlight class inside the link */
+button.submit {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button.submit:hover {
+  background-color:var(--dark);
+}
+      .mainLink:link,
+			.mainLink:visited,
+			.mainLink:hover,
+			.mainLink:active {
+  			color: black;
+  			text-decoration: underline;
+            text-align: left;
+            display: inline-block; 
+			}      
+            .tblCellLeft {
+                text-align: left !important; /* Force left alignment */
+                color: #000; /* Set text color */
+                padding: 10px; /* Optional: Add padding for spacing */
+              }
+			.nav-link:link,
+			.nav-link:visited,
+			.nav-link:hover,
+			.nav-link:active {
+  			color: white;
+  			text-decoration: underline;
+			}
+		
+			.grid-link:link,
+			.grid-link:visited,
+			.grid-link:hover,
+			.grid-link:active {
+  			color: black;
+  			text-decoration: underline;
+			}
+			
+			a:visted, a:active a:hover a:link {
+				color:blue;
+				text-decoration: underline;
+			
+			}	
+			a:visted, a:active a:hover  a:link .rowOn{
+				color:blue;		
+				text-decoration: underline;
+			}	
+			.highlight {
+				background-color: yellow;
+				padding: 2px;
+			}
+			.MainStats {
+				background-color:white;
+				color:black;
+			}
+	 .flat-button {
+            background-color: var(--accent-blue);
+            color: white;              
+            padding: 15px 30px;        
+            font-size: 5em;           
+            font-weight: 600;          
+            text-align: center;        
+            border: none;              
+            border-radius: 5px;        
+            cursor: pointer;          
+            text-transform: uppercase; 
+             transition: all 0.3s ease; 
+        }
+.tab-container {
+      display: flex;
+      flex-direction: column;
+    }
+.player-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-label {
+    display: flex;
+    align-items: center;  
+    padding: 5px 10px;
+}
+
+.player-number {
+    font-weight: bold;
+    margin-right: 5px;
+}		
+#player {
+  width: 100%; /*  Take up the full width of its container */
+  max-width: 940px; /*  Optional:  Set a maximum width */
+  height: 540; /* Maintain aspect ratio */
+}
+
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      background-color: var(--dark);
+      transition: background-color 0.3s;
+    }
+    .tab.active {
+      background-color: white;
+      font-weight: bold;
+    }
+    .tab:hover {
+      background-color: #e0e0e0;
+    }
+    .iframe-container {
+      border: 1px solid #ddd;
+      height: 400px;
+    }
+    iframe {
+      width: 560;
+      height: 350;
+      border: none;
+    }
+	 /* Base styling for the flat button */
+        .flat-button {
+            background-color:aliceblue; /* Transparent or a flat color */
+            color: #007BFF; /* Text color */
+            border: none; /* No border */
+            font-size: 5em; /* Text size */
+            padding: 10px 20px; /* Padding for a clickable area */
+            border-radius: 4px; /* Rounded corners (optional) */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+        }
+
+        /* Hover effect */
+        .flat-button:hover {
+            background-color: #f0f0f0; /* Light background when hovered */
+        }
+
+        /* Active (pressed) state */
+        .flat-button:active {
+            background-color: #e0e0e0; /* Slightly darker background when pressed */
+        }
+
+        /* Disabled state */
+        .flat-button:disabled {
+            color: #ccc; /* Gray text */
+            cursor: not-allowed; /* No pointer cursor */
+            opacity: 0.6; /* Reduced visibility */
+        }		
+		
+			.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.form-filter-table{
+ border: 2px solid var(--dark);
+  width: 100%;
+  border-collapse: collapse;
+  
+
+}
+
+th {
+  background-color: var(--accent-blue);
+  font-weight: bold;
+  text-align: center;
+}
+			.bigCheckbox{
+				width:15px;
+				height:20px;
+				
+			}
+.row-even {
+  background-color: var(--gray);
+color: var(--dark)
+}
+.form-filter-row {
+  background-color: var(--gray);
+color: black;
+	font-size: 80%;
+}
+
+			
+.row-odd {
+  background-color: var(--white);
+color: var(--dark)
+}		
+
+
+.totals-row {
+  background-color: var(--accent-blue);
+  color: #fff;
+
+}
+
+@media screen and (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  
+  .totals-row td:before {
+    color: #fff;
+	
+  }
+}
+.table-container {
+ /* margin: 10px auto;  Centers the container horizontally and adds some vertical space */
+  max-width: 100%; /* Ensures it doesn't overflow on smaller screens */
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  border: 2px solid var(--dark);
+  background-color: var(--gray);
+  border-radius: 8px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+
+        .test-server-banner {
+            width: 100%;
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: yellow;
+            color: black;
+            padding: 10px 0;
+        }
+        .header-banner {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            align-items: center;
+            background-color: var(--dark);
+            color: var(--gray);
+            height: 120px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+        }
+        .footer-banner {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: left;
+          align-items: center;
+          background-color: var(--dark);
+          color: var(--gray);
+          height: 100%;
+          box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+      }
+        .header-cell {
+ 
+          text-align: center;
+      }
+
+        .nav-cell {
+            margin: 10px;
+            text-align: center;
+            
+        }
+        .nav-cell-large {
+            text-align: center;
+            font-size: 2em;
+            font-family: Impact, 'Oswald', 'Arial Narrow Bold', sans-serif;
+        }
+        
+		.nav-cell-small {
+
+      text-align: left;
+			font-size: 15px;
+      font-family:'Roboto', 'Arial', sans-serif;
+			
+        }
+		.nav-cell-left {
+         
+      text-align: left;
+			font-size: 12px;
+			font-weight: bold;
+        }
+
+			
+        .nav-cell a {
+            text-decoration: none;
+            color: (--dark);
+            font-weight: bold;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+   
+  
+            .nav-cell {
+                margin: 5px 0;
+				color:white;
+            }
+        
+
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-name {
+    font-size: 5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.team-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.team-score {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.score-info {
+    text-align: center;
+}
+
+.result {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+			.score { 
+			font-size:35px;
+			text-align: center;
+			}
+
+.date {
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .score-keeper {
+        flex-direction: column;
+    }
+    
+    .team {
+        margin-bottom: 20px;
+    }
+}
+a:link {
+  color: white;
+  font-weight: bold;
+}
+a:visited { 
+  color: white;
+  font-weight: bold;
+}
+
+        /* Admin Area Title */
+        .admin-title {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #8f2b2b; /* Main color for title */
+        }
+
+        /* Admin Container */
+        .admin-wrapper {
+            display: flex; /* Flexbox for side-by-side layout */
+            gap: 20px; /* Space between sections */
+            justify-content: space-between; /* Spread sections evenly */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .admin-container {
+            flex: 1; /* Make the sections flexible to fit the container */
+            min-width: 300px; /* Ensure sections don't shrink too much on small screens */
+            background-color: #fff; /* White background for sections */
+            border-radius: 8px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .admin-header {
+            background-color: var(--primary-blue); /* Main color for header background */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .admin-links {
+            padding: 20px;
+        }
+
+        .admin-links a {
+            display: block; /* Makes each link a block element for better spacing */
+            background-color: var(--primary-blue); /* Main color for button background */
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px 15px;
+            margin-bottom: 10px; /* Space between buttons */
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+        }
+
+        .admin-links a:hover {
+            background-color: var(--accent-blue); /* Darker shade of main color on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Horizontal Button Container */
+        .horizontal-links {
+            display: flex; /* Flexbox for horizontal alignment */
+            gap: 10px; /* Space between buttons */
+            justify-content: center; /* Center buttons horizontally */
+        }
+
+        .horizontal-links a {
+            width: 45%; /* Adjust width to fit both buttons */
+            min-width: 150px; /* Ensure buttons don't shrink too much */
+        }
+    .profile-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Styling for the username button */
+    .profile-button {
+      background-color: var(--accent-blue);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Dropdown menu styling */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: var(--gray);
+    }
+
+    /* Show the dropdown menu when active */
+    .dropdown-menu.active {
+      display: block;
+    }
+        .form-container {
+            min-width: 800px;
+            margin: 0 auto;
+            background-color: var(--gray);
+            border-radius: 10px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 85%;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+       
+
+        td:first-child {
+            text-align: right;
+            font-weight: bold;
+            color: var(--dark);
+        }
+ 
+
+
+        input[type="text"], select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+        }
+       
+
+        input[type="submit"] {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 150px;
+        }
+
+        input[type="submit"]:hover {
+            background-color:var(--dark);
+        }
+
+
+.logo {
+  margin-right: 100px; /* 100px gap after logo */
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px; /* Adjust spacing between nav links */
+}
+
+
+ div.signupDiv {
+      font-family:  Arial, Helvetica, sans-serif;
+      background-color: var(--primary-blue);
+      margin: 0;
+      padding: 0;
+    }
+
+    .signup_container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: var(--primary-blue);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    h1.headerSignUp {
+      text-align: center;
+      color: #333;
+    }
+
+    form.signup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .labelFld {
+      margin-top: 10px;
+      font-weight: bold;
+      color:var(--dark);
+      text-align: left;
+    }
+    .login-container {
+      max-width: 25%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    
+
+    input.inputFld, select.inputFld {
+      margin-top: 5px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.signup {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button.signup:hover {
+      background-color: #45a049;
+    }
+    
+    .error {
+      color: red;
+      font-size: small;
+    }
+    .score-label {
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .table-wrapper {
+        width: 100%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid var(--dark); /* Optional: Add a border around the table */
+        background-color: var(--primary-blue);
+        padding-bottom: 2px solid black;
+  
+      }
+      .score-wrapper {
+        width: 75%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid black; /* Optional: Add a border around the table */
+      }
+      .game-wrapper {
+        
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid var(--dark); /* Optional: Add a border around the table */
+        overflow-x: auto;
+        box-shadow: 0px 0px 10px var(--dark);
+      }
+      .statsWrapper,.shiftWrapper {
+        width: 100%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        /* Optional: Add a border around the table */
+      }
+      @media (max-width: 600px) {
+  .filterTable,.score-wrapper, .filterTable tr, .filterTable td {
+    display: block;
+    width: 100%;
+    font-size:1em;
+  
+  }
+  .filterTable tr {
+    margin-bottom: 1em;
+  }
+  .filterTable td {
+
+    padding: 8px 0;
+  }
+}
+table.filterTable  {
+  border: 2px solid var(--dark);
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px var(--dark);
+}
+   
+      .StatsTable {
+        width: 100%; /* Ensure the table takes up the full width of its container */
+        border-collapse: collapse; /* Collapse borders for cleaner appearance */
+      }
+      .GameTable {
+        width: 50%; /* Ensure the table takes up the full width of its container */
+        border-collapse: collapse; /* Collapse borders for cleaner appearance */
+      }
+      .tblCellLeft {
+        text-align: left; /* Force left alignment */
+        color: #000; /* Set text color */
+        padding: 10px; /* Optional: Add padding for spacing */
+      }
+      .tblCellCenter {
+        text-align: Center;  /* Force left alignment */
+        color: #000; /* Set text color */
+        padding: 10px; /* Optional: Add padding for spacing */
+      }
+      tr.TRTTLRow { 
+             background-color:var(--dark);
+             color:white;
+             font-weight: bold; 
+             height: 50px;
+      }
+      td.TdCellLeftTtl {
+        color: white;
+        text-align: left;
+        font-size: 1em;
+      }
+      td.TdCellLeftTtl {
+        color: var(--dark);
+        text-align: left;
+        font-size: 1em;
+      }
+
+      td.TdCellLeftWhite,span.TdCellLeftWhite {
+        color: white;
+        text-align: center;
+        font-size: 1em;
+      }
+      td.TdCellLeftBlack {
+        color: white;
+        background-color: var(--dark);
+        text-align: center;
+        font-size: 1em;
+      }
+     
+		
+span{ 
+  color:black;
+}
+      
+.module-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: var(--dark);
+  padding: 24px 32px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.disabled-look {
+  background-color: #ccc;
+  color: #666;
+  border: 1px solid #999;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  /* Restrict width */
+  max-width: 800px;
+  margin: 20px auto; /* center the block horizontally */
+}
+
+.form-cell-name {
+  width: 100px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-align: left;
+  color:#000;
+  border: 1px solid var(--dark);
+}
+.form-cell-img {
+  width: 50px;
+  color:#000;
+}
+.form-cell-left{
+  width: 150px;
+  text-align: left;
+  color:#000;
+
+}
+.form-cell-description{
+  flex: 1; /* Take up remaining space */
+  text-align: left;
+  color:#000;
+border: 1px solid var(--dark);
+
+}
+
+a.form-cell-name {
+  color: black;        /* Link text will be black */
+  text-decoration: none;
+  font-weight: bold;
+  border-style: 0px;
+}
+
+a.form-cell-name:visited,
+a.form-cell-name:hover,
+a.form-cell-name:active {
+  color: black;        /* Stays black on visit, hover, and active */
+}
+
+.icon-img {
+  width: 50px;
+  height: auto;
+}
+.TdCellCenterTtl {
+  text-align: center;
+}
+
+.content {
+           
+            padding: 10px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px; /* Set a maximum width for the content area */
+            width: 90%;
+        }
+        .content h2 {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .content p {
+            line-height: 1.6;
+            color: #333;
+        }       
+        .tab-container {
+          margin-bottom: 20px;
+      }
+      
+      .tab-button {
+          padding: 10px 20px;
+          background: #f1f1f1;
+          border: 1px solid #ccc;
+          cursor: pointer;
+      }
+      
+      .tab-button.active {
+          background: #13223b;
+          color: white;
+      }
+      
+      .table-content {
+          display: none;
+      }
+      
+      .table-content.active {
+          display: block;
+      }
+.TdCellCenterTtl {
+    color: white;
+    text-align: center;
+}
+
+.tblCellCenter {
+    text-align: center;
+}
+
+.tblCellLeft {
+    text-align: left;
+}
+
+.table-style-btn {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+.table-style-btn:hover {
+  background: var(--dark)
+
+}
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #13223b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.period-row{
+  background-color: var(--dark);
+ 
+}
+.period-header{
+  color:var(--gray);
+  text-align: left;
+  height: 50px;;
+}
+.header {
+  color: var(--dark);
+  font-size: 2em;
+}
+.score{
+  color: var(--dark);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+font-size: 3em;
+
+}
+.score-team{
+  color: var(--dark);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+font-size: 1em;
+
+}
+.scorekeeper-row {
+  font-size: 2em;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background: var(--gray);
+}
+.game-outcome{
+  color: var(--dark);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+font-size: 3em;
+
+}
+
+
+.arena-scoreboard {
+  background-color: var(--dark);
+  border-radius: 18px;
+  box-shadow: 0 0 36px 6px #000c;
+  padding: 34px 50px;
+  min-width: 420px;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid var(--accent-blue);
+  border-radius: 12px;
+}
+.score-row {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 18px;
+}
+.team-block {
+
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin: 0 28px;
+  text-align: center;
+  font-size: 2em;
+}
+.logo-box {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff3;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 8px;
+
+  justify-content: center;
+  align-items: center;
+}
+.logo-box img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.team-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 4px #232a44;
+}
+.score-num {
+  font-size: 3.6rem;
+  font-weight: bold;
+  margin: 0 34px;
+  color: #f8f8f8;
+  text-shadow: 0 0 8px #000b, 0 0 24px #d4af37;
+  text-align: center;
+  min-width: 80px;
+  letter-spacing: 2px;
+}
+.info-row {
+  margin-top: 16px;
+  width: 100%;
+
+  justify-content: space-between;
+  font-size: 1.15rem;
+  align-items: center;
+}
+.date-box {
+  background: var(--accent-blue);
+  color: var(--gray);
+  padding: 6px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px var(--primary-blue);
+}
+.outcome-box {
+  padding: 6px 20px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background: #20d07e;
+  color: #232a44;
+  margin-left: 18px;
+  letter-spacing: 2px;
+  box-shadow: 0 0 12px #1cf2c6;
+}
+.outcome-box.loss {
+  background: #e74c3c;
+  color: #fff;
+  box-shadow: 0 0 12px #fc5c88;
+}
+
+.sidebar h2 { margin-bottom:2rem; font-weight:600; letter-spacing:.1em; font-size:1.4rem; }
+.menu { width:100%; }
+.menu a {
+  display:block; padding:1rem 2rem; color:#aee1fb; text-decoration:none; transition:.2s;
+  font-size:1.08rem; border-radius:8px; margin-bottom:.5rem;
+}
+.menu a:hover { background:#1d3352; color:#fff; }
+.main { margin-left:220px; padding:2.5rem; }
+.header {
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;
+}
+.header .admin-info { display:flex;align-items:center; gap:.8rem; font-size:1rem; }
+.header .admin-info img {
+  width:38px; height:38px; border-radius:50%; box-shadow:0 0 8px #0002;
+}
+.stat-cards {
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:2.5rem;
+}
+.card {
+  background:#fff; border-radius:16px; box-shadow:0 2px 20px #0001; padding:1.5rem 1.2rem;
+  display:flex; flex-direction:column; align-items:flex-start; min-width:150px;
+  transition:.2s; border:2px solid #e4eef7;
+}
+.card {
+  background:#fff; border-radius:16px; box-shadow:0 2px 20px #0001; padding:1.5rem 1.2rem;
+  display:flex; flex-direction:column; align-items:flex-start; min-width:150px;
+  transition:.2s; border:2px solid #e4eef7;
+}
+.card.disabled {
+  opacity: 0.55;
+  filter: grayscale(85%);
+  pointer-events: none;
+  box-shadow: none;
+  border-color: #d3d3d3;
+  cursor: not-allowed;
+}
+.card .icon {
+  font-size:2rem; margin-bottom:.5rem; color:#175ea8;
+}
+.card strong { font-size:1.6rem; font-weight:700;}
+.card .desc {font-size:.98rem;margin-top:.3rem;color:#175ea8;}
+@media(max-width:900px){
+  .main{padding:1.2rem;}
+  .stat-cards{grid-template-columns:repeat(2,1fr);}
+  .sidebar{width:180px;}
+  .main{margin-left:180px;}
+}
+@media(max-width:600px){
+  .sidebar{position:relative;flex-direction:row;width:100%;height:auto;padding:.7rem;}
+  .main{margin-left:0;padding:1rem;}
+  .stat-cards{grid-template-columns:1fr;}
+}
+
+.reset-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.reset-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2em 1em;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+
+h2 .reset {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+label .reset {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+input .reset {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.note {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+button .reset {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+button:disabled .reset {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.restlink  {
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
+  color: #007BFF;
+  text-decoration: none;
+}

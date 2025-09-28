@@ -1,0 +1,899 @@
+.video-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#player {
+  margin: 0 auto;
+  display: block;
+}
+
+.classHeaderBanner {
+	background-color: black;	
+}
+
+body {
+		background-color:#8f2b2b;
+		text-align:center;
+		margin-top: 0px;
+		margin-left:0px;
+		margin-right:0px;
+		padding: 0px;
+		vertical-align: top;
+		font-family:  Arial, Helvetica, sans-serif;
+		color: white;
+		font-weight: 12em;		
+    visibility: hidden;		
+	 }
+.link-style {
+  color: black; /* Default text color */
+  text-decoration: underline; /* Default underline */
+  font-weight: bold; /* Bold text */
+}
+
+.link-style:link {
+  color: black; /* Unvisited link color */
+}
+
+.link-style:visited {
+  color: black; /* Visited link color */
+}
+
+.link-style:hover, 
+.link-style:focus {
+  color: black; 
+  text-decoration: underline;
+}
+
+.link-style:active {
+  color: black; /* Active link state */
+  text-decoration: underline;
+}			
+			ul { 
+			
+			}		
+			.headerBanner{
+				background-color: black;
+				text-align: left;
+				padding:20px;				
+			}	
+			.errorBox{
+				background-color: white;
+				border: 1px solid black;
+				color:red;
+				text-align: left;
+				margin-left: 33%;
+				font-family:  Arial, Helvetica, sans-serif;
+				width: 50%;
+				text-align: center;
+			}
+			.errorMsgHeader{
+				background-color: black;
+				color:white;
+			}
+			.navCell {
+				display: inline;
+				color:white;
+				font-family:  Arial, Helvetica, sans-serif;
+				font: size 12em;
+				padding-left: 40px;
+				text-align: left;
+			}	
+			.navCellFirst {
+				display: inline;
+				color:white;
+				font-family:  Arial, Helvetica, sans-serif;
+				font-size:12em;
+				margin-left: 40px;
+				text-align: left;
+			}
+			.tblRow {
+				border-bottom:1px solid black;
+			}
+			.tblHeader {
+				background-color: black;
+				color:white;
+				padding: 3px;	
+			}
+			.tblFormat {
+				border: 1px solid black;
+			}
+			.tblCell {
+				border-bottom: 1px solid black;
+			}
+			.PageHeader {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size:  3em;
+				color:white;
+				text-align: center;
+                width: 90%;
+                padding: 15px;
+			}
+
+/* Add hover effects to .highlight class inside the link */
+
+	
+            .mainLink:link,
+			.mainLink:visited,
+			.mainLink:hover,
+			.mainLink:active {
+  			color: black;
+  			text-decoration: underline;
+            text-align: left;
+            display: inline-block; 
+			}      
+            .tblCellLeft {
+                text-align: left !important; /* Force left alignment */
+                color: #000; /* Set text color */
+                padding: 10px; /* Optional: Add padding for spacing */
+              }
+			.nav-link:link,
+			.nav-link:visited,
+			.nav-link:hover,
+			.nav-link:active {
+  			color: white;
+  			text-decoration: underline;
+			}
+		
+			.grid-link:link,
+			.grid-link:visited,
+			.grid-link:hover,
+			.grid-link:active {
+  			color: black;
+  			text-decoration: underline;
+			}
+			
+			a:visted, a:active a:hover a:link {
+				color:blue;
+				text-decoration: underline;
+			
+			}	
+			a:visted, a:active a:hover  a:link .rowOn{
+				color:blue;		
+				text-decoration: underline;
+			}	
+			.highlight {
+				background-color: yellow;
+				padding: 2px;
+			}
+			.MainStats {
+				background-color:white;
+				color:black;
+			}
+	 .flat-button {
+            background-color: #EE8486;
+            color: white;              
+            padding: 15px 30px;        
+            font-size: 5em;           
+            font-weight: 600;          
+            text-align: center;        
+            border: none;              
+            border-radius: 5px;        
+            cursor: pointer;          
+            text-transform: uppercase; 
+             transition: all 0.3s ease; 
+        }
+.tab-container {
+      display: flex;
+      flex-direction: column;
+    }
+.player-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-label {
+    display: flex;
+    align-items: center;  
+    padding: 5px 10px;
+}
+
+.player-number {
+    font-weight: bold;
+    margin-right: 5px;
+}		
+
+
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      background-color: #f0f0f0;
+      transition: background-color 0.3s;
+    }
+    .tab.active {
+      background-color: white;
+      font-weight: bold;
+    }
+    .tab:hover {
+      background-color: #e0e0e0;
+    }
+    .iframe-container {
+      border: 1px solid #ddd;
+      height: 400px;
+    }
+    iframe {
+      width: 560;
+      height: 350;
+      border: none;
+    }
+	 /* Base styling for the flat button */
+        .flat-button {
+            background-color:aliceblue; /* Transparent or a flat color */
+            color: #007BFF; /* Text color */
+            border: none; /* No border */
+            font-size: 5em; /* Text size */
+            padding: 10px 20px; /* Padding for a clickable area */
+            border-radius: 4px; /* Rounded corners (optional) */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+        }
+
+        /* Hover effect */
+        .flat-button:hover {
+            background-color: #f0f0f0; /* Light background when hovered */
+        }
+
+        /* Active (pressed) state */
+        .flat-button:active {
+            background-color: #e0e0e0; /* Slightly darker background when pressed */
+        }
+
+        /* Disabled state */
+        .flat-button:disabled {
+            color: #ccc; /* Gray text */
+            cursor: not-allowed; /* No pointer cursor */
+            opacity: 0.6; /* Reduced visibility */
+        }		
+		
+			.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+
+}
+
+th {
+  background-color: #000000;
+  font-weight: bold;
+  text-align: center;
+}
+			.bigCheckbox{
+				width:15px;
+				height:20px;
+				
+			}
+.row-even {
+  background-color: antiquewhite;
+color: black;
+}
+.form-filter-row {
+  background-color: antiquewhite;
+color: black;
+	font-size: 80%;
+}
+
+			
+.row-odd {
+  background-color: white;
+color: black;
+}		
+
+
+.totals-row {
+  background-color: #000;
+  color: #fff;
+
+}
+
+@media screen and (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  
+  .totals-row td:before {
+    color: #fff;
+	
+  }
+}
+.table-container {
+  margin: 20px auto; /* Centers the container horizontally and adds some vertical space */
+  max-width: 100%; /* Ensures it doesn't overflow on smaller screens */
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  border: 1px solid black;
+}
+
+        .test-server-banner {
+            width: 100%;
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: yellow;
+            color: black;
+            padding: 10px 0;
+        }
+        .header-banner {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            align-items: center;
+            background-color: #000000;
+            padding: 10px 0;
+        }
+        .nav-cell {
+            margin: 10px;
+            text-align: center;
+        }
+		.nav-cell-small {
+
+            text-align: center;
+			font-size: 12px;
+			font-weight: bold;
+        }
+		.nav-cell-left {
+         
+            text-align: left;
+			font-size: 12px;
+			font-weight: bold;
+        }
+
+			
+        .nav-cell a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .content {
+            width: 98%; /* Set the container to 95% of the screen width */
+            margin: 0 auto; /* Center the table horizontally */
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+        }
+        @media (max-width: 768px) {
+            .header-banner {
+                flex-direction: column;
+				
+            }
+            .nav-cell {
+                margin: 5px 0;
+				color:white;
+            }
+        }
+
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-name {
+    font-size: 5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.team-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.team-score {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.score-info {
+    text-align: center;
+}
+
+.result {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+			.score { 
+			font-size:35px;
+			text-align: center;
+			}
+
+.date {
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .score-keeper {
+        flex-direction: column;
+    }
+    
+    .team {
+        margin-bottom: 20px;
+    }
+}
+a:link {
+  color: white;
+  font-weight: bold;
+}
+a:visited { 
+  color: white;
+  font-weight: bold;
+}
+
+        /* Admin Area Title */
+        .admin-title {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #8f2b2b; /* Main color for title */
+        }
+
+        /* Admin Container */
+        .admin-wrapper {
+            display: flex; /* Flexbox for side-by-side layout */
+            gap: 20px; /* Space between sections */
+            justify-content: space-between; /* Spread sections evenly */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .admin-container {
+            flex: 1; /* Make the sections flexible to fit the container */
+            min-width: 300px; /* Ensure sections don't shrink too much on small screens */
+            background-color: #fff; /* White background for sections */
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .admin-header {
+            background-color: #8f2b2b; /* Main color for header background */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .admin-links {
+            padding: 20px;
+        }
+
+        .admin-links a {
+            display: block; /* Makes each link a block element for better spacing */
+            background-color: #8f2b2b; /* Main color for button background */
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px 15px;
+            margin-bottom: 10px; /* Space between buttons */
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+        }
+
+        .admin-links a:hover {
+            background-color: #6e1c1c; /* Darker shade of main color on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Horizontal Button Container */
+        .horizontal-links {
+            display: flex; /* Flexbox for horizontal alignment */
+            gap: 10px; /* Space between buttons */
+            justify-content: center; /* Center buttons horizontally */
+        }
+
+        .horizontal-links a {
+            width: 45%; /* Adjust width to fit both buttons */
+            min-width: 150px; /* Ensure buttons don't shrink too much */
+        }
+    .profile-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Styling for the username button */
+    .profile-button {
+      background-color: #6e1c1c;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Dropdown menu styling */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Show the dropdown menu when active */
+    .dropdown-menu.active {
+      display: block;
+    }
+        .form-container {
+            min-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 85%;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+       
+
+        td:first-child {
+            text-align: right;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"], select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #6e1c1c;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color:rgb(160, 103, 103);
+        }
+        btn btn-primary {
+          background-color: #6e1c1c;
+          color: #ffffff;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+
+      btn btn-primary:hover {
+          background-color:rgb(160, 103, 103);
+      }
+
+.header-banner {
+  display: flex;
+  align-items: center; /* Vertically centers all items */
+}
+
+.logo {
+  margin-right: 100px; /* 100px gap after logo */
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px; /* Adjust spacing between nav links */
+}
+
+.nav-cell {
+  /* Optional: Add padding if needed */
+}
+ div.signupDiv {
+      font-family:  Arial, Helvetica, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .signup_container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1.headerSignUp {
+      text-align: center;
+      color: #333;
+    }
+
+    form.signup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .labelFld {
+      margin-top: 10px;
+      font-weight: bold;
+      color:black;
+      text-align: left;
+    }
+
+    input.inputFld, select.inputFld {
+      margin-top: 5px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    inputDate{
+      width: 25px;
+    }
+
+.signupInput {
+  width: 25px;
+}
+
+    button.signup {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #6e1c1c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button.signup:hover {
+      background-color: #45a049;
+    }
+    
+    .error {
+      color: red;
+      font-size: small;
+    }
+    .score-label {
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .table-wrapper {
+        width: 100%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid black; /* Optional: Add a border around the table */
+        background-color: antiquewhite;
+        padding-bottom: 2px solid black;
+  
+      }
+      .score-wrapper {
+        width: 75%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid black; /* Optional: Add a border around the table */
+      }
+      .game-wrapper {
+        
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid black; /* Optional: Add a border around the table */
+        overflow-x: auto;
+      }
+      .statsWrapper,.shiftWrapper {
+        width: 100%; /* Set the container to 95% of the screen width */
+        margin: 0 auto; /* Center the table horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        border: 2px solid black; /* Optional: Add a border around the table */
+      }
+      @media (max-width: 600px) {
+  .filterTable,.score-wrapper, .filterTable tr, .filterTable td {
+    display: block;
+    width: 100%;
+    font-size:1em;
+  }
+  .filterTable tr {
+    margin-bottom: 1em;
+  }
+  .filterTable td {
+    border: none;
+    padding: 8px 0;
+  }
+}
+
+   
+      .StatsTable {
+        width: 100%; /* Ensure the table takes up the full width of its container */
+        border-collapse: collapse; /* Collapse borders for cleaner appearance */
+      }
+      .GameTable {
+        width: 50%; /* Ensure the table takes up the full width of its container */
+        border-collapse: collapse; /* Collapse borders for cleaner appearance */
+      }
+      .tblCellLeft {
+        text-align: left  /* Force left alignment */
+        color: #000; /* Set text color */
+        padding: 10px; /* Optional: Add padding for spacing */
+      }
+      .tblCellCenter {
+        text-align: Center;  /* Force left alignment */
+        color: #000; /* Set text color */
+        padding: 10px; /* Optional: Add padding for spacing */
+      }
+      tr.TRTTLRow { 
+             background-color:black;
+             color:white;
+             font-weight: bold;
+             
+      }
+      td.TdCellLeftTtl {
+        color: black;
+        text-align: left;
+        font-size: 1em;
+      }
+      td.TdCellLeftTtl {
+        color: black;
+        text-align: left;
+        font-size: 1em;
+      }
+
+      td.TdCellLeftWhite,span.TdCellLeftWhite {
+        color: white;
+        text-align: center;
+        font-size: 1em;
+      }
+      td.TdCellLeftBlack {
+        color: white;
+        background-color: black;
+        text-align: center;
+        font-size: 1em;
+      }
+     
+		
+span{ 
+  color:black;
+}
+.fields-container {
+  display: flex;
+  gap: 2em; /* Adjust the space between columns as you like */
+}
+
+.field-set {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left-aligns label and select */
+}
+
+.labelFld2 {
+  margin-bottom: 0.3em; /* Space between label and select */
+}
+
+
+
+.step-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  padding: 16px;
+  width: 50%;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.step-label {
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 1.1em;
+  border-radius: 4px;
+  margin-right: 16px;
+  flex-shrink: 0;
+  color:black;
+  
+}
+
+.step-image .icon-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 0;
+  border-radius: 8px;
+  width: 300px;
+  height: 500px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+.close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+  z-index: 2;
+}
+.close:hover { color: #333; }
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  flex: 1;
+}
+
+.pre-loader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

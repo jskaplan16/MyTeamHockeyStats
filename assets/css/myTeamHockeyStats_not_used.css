@@ -1,0 +1,114 @@
+/* myteamhockeystats.com Theme CSS */
+/* Colors inspired by hockey and logo */
+:root {
+  --primary-blue: #185abc;
+  --accent-blue: #2492ff;
+  --white: #ffffff;
+  --gray: #f0f3f7;
+  --dark: #13223b;
+}
+
+/* General body settings */
+body {
+  background: var(--gray);
+  color: var(--dark);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+header {
+  background: linear-gradient(90deg, var(--primary-blue) 60%, var(--accent-blue) 100%);
+  color: var(--white);
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(24,90,188,0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Main content */
+main {
+  max-width: 1140px;
+  margin: 40px auto;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(24,90,188,0.08);
+  padding: 32px;
+}
+
+/* Buttons styling */
+.button, button {
+  background-color: var(--accent-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button:hover, button:hover {
+  background-color: var(--primary-blue);
+}
+
+/* Navigation bar */
+nav {
+  display: flex;
+  justify-content: center;
+  background: var(--primary-blue);
+  padding: 12px 0;
+}
+
+nav a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 18px;
+  border-bottom: 2px solid transparent;
+  transition: border 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  border-bottom: 2px solid var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/* Card for stats */
+.stats-card {
+  background: var(--gray);
+  border-radius: 8px;
+  padding: 18px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(24,90,188,0.07);
+}
+
+.stats-card h2 {
+  color: var(--primary-blue);
+  margin-top: 0;
+}
+
+.stats-card .stat-value {
+  font-size: 2.2rem;
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  background: var(--primary-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 2px solid var(--accent-blue);
+  letter-spacing: 1px;
+}
