@@ -5,7 +5,7 @@
 <cfset attributes.showNavBar=True>
 </cfif>
 <cfparam name="form.showNavBar" default="#attributes.showNavBar#">
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="#application.includes#header.cfm">
 
 <cfparam name="form.PlayerNumber" default="">
 <cfparam name="form.Firstname" default="">
@@ -58,7 +58,7 @@
    
         <h2>Save Roster</h2>
          <cfoutput>
-        <form name="SaveRoster" method="Post" action="SaveRoster.cfm">
+        <form name="#Application.actions#ActionSaveRoster" method="Post" action="#Application.actions#ActionSaveRoster.cfm">
        <cfif url.Action is "Edit">
         <input type="hidden" name="PlayerId" value="#url.PlayerId#">
         <input type="hidden" name="Action" value="#url.Action#">
@@ -143,16 +143,17 @@
             </table>
         </form>
     </div>
+    <cfoutput>
 <script>
     function refreshFormWithParam(teamId) {
         // Get the current URL without query parameters
-        const baseUrl = "/DisplayPlayerRoster.cfm";
+        const baseUrl = "#application.displays#DisplayPlayerRoster.cfm";
 
         // Redirect to the same page with the selected TeamId as a parameter
         window.location.href = `${baseUrl}?TeamId=${teamId}`;
     }
 </script>
-
+</cfoutput>
     <br>
     <cfquery name="qTeamRoster" datasource="#application.datasource#">
                  Select PlayerId,
@@ -199,15 +200,15 @@
             <td class="tblCellCenter">#ShootingSide#</td>
 
             <td class="tblCellCenter">
-                <a href="DisplayPlayerRoster.cfm?Action=Edit&PlayerId=#PlayerId#&TeamSeasonId=#form.TeamSeasonId#" class="mainLink">Edit</a>
-               <a href="SaveRoster.cfm?Action=Delete&PlayerId=#PlayerId#&TeamSeasonId=#form.TeamSeasonId#" class="mainLink">Delete</a>
+                <a href="#application.displays#DisplayPlayerRoster.cfm?Action=Edit&PlayerId=#PlayerId#&TeamSeasonId=#form.TeamSeasonId#" class="mainLink">Edit</a>
+               <a href="#application.actions#ActionSaveRoster.cfm?Action=Delete&PlayerId=#PlayerId#&TeamSeasonId=#form.TeamSeasonId#" class="mainLink">Delete</a>
         </tr>
                    
         </cfoutput>
     </table>
     </div>
     </cfif>
-<cfinclude template="includes/footers/Footer.cfm">
+<cfinclude template="#application.includes#footer.cfm">
 
               <!---                         <select name="TeamId" id="TeamId" <cfif url.action is "Edit">disabled</cfif> onchange="refreshFormWithParam(this.value)"> 
                         <select name="TeamId" id="TeamId" <cfif url.action is "Edit">disabled</cfif> >

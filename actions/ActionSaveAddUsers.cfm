@@ -27,4 +27,4 @@
 <cfset form.lastName = "">  
 <cfset form.email="">
 
-<cfinclude template="settings.cfm">
+<cfinclude template="#application.displays#DisplaySettings.cfm">

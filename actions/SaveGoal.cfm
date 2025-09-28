@@ -1,4 +1,4 @@
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="header.cfm">
 <cfif session.action is "Insert">
 <cftry>
 	<cfquery name="qInsertGoal" datasource="#application.datasource#">
@@ -132,5 +132,5 @@
 </cfif>
 
 
-<cfinclude template="includes/footers/Footer.cfm">
+<cfinclude template="footer.cfm">
 	

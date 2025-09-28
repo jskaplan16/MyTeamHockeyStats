@@ -62,7 +62,7 @@
   <input type="text" id="searchEmail" placeholder="Type email address..." autocomplete="off" style="width:300px;" class="inputFld" value="#form.email#">
   <ul id="dropdownList" class="dropdown-list"></ul>
   
-  <form autocomplete="on" action="#application.actions#SaveAddUsers.cfm" method="post">
+  <form autocomplete="on" action="#application.actions#ActionSaveAddUsers.cfm" method="post">
     <label for="firstName" class="labelFld">First Name:</label>
     <input type="text" class="inputFld" id="firstName" name="firstname" style="width: 25%;" value="#form.firstName#">
     <input type="hidden"  id="userid" name="userId" value="#form.userId#">

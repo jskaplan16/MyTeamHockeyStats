@@ -1,5 +1,5 @@
 <cfif structKeyExists(session,"username") and (session.username is not "Guest" and session.loggedIn)>
-<cflocation url="DisplayGames.cfm">
+<cflocation url="#application.displays#DisplayGames.cfm">
 </cfif> 
 
 <!DOCTYPE html>
