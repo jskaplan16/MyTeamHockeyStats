@@ -2,7 +2,7 @@
 <cfparam name="passwordMatch" default="false">
 <cfparam name="form.username" default="">
 <cfparam name="form.password" default="">
-<cfabort >
+
 <cfif len(form.username)>
 	<cfset form.username = trim(form.username)>
 <cfelseif isDefined("url.username") and len(url.username)>
@@ -37,6 +37,13 @@
 
 <!-- Query the database for the username -->
 <cfif isDefined("form.userName") and  len(form.username)> 
+		
+		
+			
+							
+					
+
+
 			<cfif isDefined("getUser.password") >
 				<cfset storedPassword = getUser.password>
 
@@ -52,12 +59,11 @@
 							<!-- User needs to reset password -->
 							<cfset session.loggedIn = false>
 							<cfset session.userID = getUser.userid>
-		
+
 							<cfset ErrorMsg = "You must reset your password before logging in.">
-							<cfinclude template="resetPassword.cfm">
-							<cfinclude template="includes/footers/Footer.cfm">
-							<cfabort>
-							</cfif>
+							<cfinclude template="#application.pages#resetPassword.cfm">
+							
+							<cfabort >
 						</cfif>
 
 <!-- Check if user exists and password matches -->
@@ -86,7 +92,7 @@
 
 						<cfset session.GoalDeletes=false>
 						<!-- Redirect to the protected page -->
-						<cflocation url="games.cfm">
+						<cflocation url="#application.displays#Displaygames.cfm">
 
 		
 			<cfelseif isDefined("getUser")  and getUser.RecordCount gte 1 and passwordMatch>	
@@ -97,12 +103,14 @@
 			
 				
 
-				<cfinclude template="DisplayMultiTeam.cfm">
-				<cfinclude template="includes/footers/Footer.cfm" >
+				<cfinclude template="#application.displays#DisplayMultiTeam.cfm">
 				<cfabort>
-			<cfelseif passwordMatch is false>
-				<cfset ErrorMsg = "Login Failed">
-				<cftry>
+			</cfif>
+		<cf_loginPage ErrorMsg="Login Failed" username="#form.username#">		
+<cfelseif not passwordMatch>
+	
+							<!-- Invalid password -->
+							<cftry>
 								<cfquery name="qUser" datasource="#application.datasource#">
 							exec stpLoginAttempts @UserName=<cfqueryparam value="#form.username#" cfsqltype="cf_sql_varchar">,
 												@Password=<cfqueryparam value="#form.password#" cfsqltype="cf_sql_varchar">
@@ -112,12 +120,14 @@
 									<!--- caught error ---->
 									</cfcatch>
 							</cftry>
-				<cf_loginPage ErrorMsg="Login Failed" username="#form.username#">
-				<cfinclude template="includes/footers/Footer.cfm">	
-				</cfabort>
-			<cfelse>
-				<cf_loginPage ErrorMsg="#ErrorMsg#">		
-			</cfif>
+						
+					<!-- User not found -->
+				
+		<cf_loginPage ErrorMsg="" username="#form.username#">	
+
+<cfelse>
+	<cf_loginPage ErrorMsg="#ErrorMsg#">		
+</cfif>
 
 <cfif isDefined("SessionExpired") and SessionExpired>
 

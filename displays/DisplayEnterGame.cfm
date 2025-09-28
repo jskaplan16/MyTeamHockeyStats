@@ -48,7 +48,7 @@
   FROM [dbo].[vResultType]
 </cfquery>
 <cfif attributes.navBar>
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="#application.includes#header.cfm">
 </cfif>
 <cfoutput>
 	
@@ -86,7 +86,7 @@
 
 </cfif>
 
-	<form action="SaveGame.cfm" method="post" enctype="multipart/form-data">	
+	<form action="#application.actions#SaveGame.cfm" method="post" enctype="multipart/form-data">	
 		<cfoutput>
 	
 <tr>
@@ -282,5 +282,5 @@ document.getElementById('FullGameVideoURL').addEventListener('input', function()
 
 
 <cfif attributes.navBar>
-<cfinclude template="includes/footers/Footer.cfm">
+<cfinclude template="#application.includes#footer.cfm">
 </cfif>

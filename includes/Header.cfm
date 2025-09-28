@@ -121,7 +121,7 @@
           <cfif isdefined("session.getUSer") and session.getUSer.recordCount gt 1>    
                 <a href="#Application.displays#DisplayMultiTeam.cfm" tabindex="-1">Change Teams</a>
           </cfif>
-          <a href="/logout.cfm" tabindex="-1">Log Out</a>
+          <a href="#application.pages#logout.cfm" tabindex="-1">Log Out</a>
         </div>
       </cfif>
 </div>

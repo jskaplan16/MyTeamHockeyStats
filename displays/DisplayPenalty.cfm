@@ -109,7 +109,7 @@ where GameId=#attributes.GameId#
 							<iframe width="320" height="180" style="width:320;height:180" src="#PenaltyURL#" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 							</iframe>
 					<cfelse>
-					<img src="#application.icons#NoVideo.png" width="220">
+					<img src="#application.images#NoVideo.png" width="220">
 					</cfif>
 							</div>
 					<small>*Note: Player's are not counted as part of the power play if they get on the ice with less 20 seconds remaining in the penalty. </small> 		

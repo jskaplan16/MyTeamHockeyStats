@@ -11,8 +11,10 @@
             <div style="text-align: right;">
                 <div class="module-box">
                     <div style="text-align: left;font-weight:bold;color:white;">Switch Teams:</div>
-                    <form method="post" action="ActionMultiTeamLogin.cfm">
-                            <cfoutput>
+                    <cfoutput>
+                    <form method="post" action="#application.actions#ActionMultiTeamLogin.cfm">
+                    </cfoutput>
+                        <cfoutput>
                         <select name="TeamSeasonId" onchange="this.form.submit()" style="width:400px;" size="#getUser.recordcount#">
                             </cfoutput>
                             <cfoutput query="getUser">

@@ -1,5 +1,5 @@
 <cfif structKeyExists(session,"username") and (session.username is not "Guest" and session.loggedIn)>
-<cflocation url="Games.cfm">
+<cflocation url="DisplayGames.cfm">
 </cfif> 
 
 <!DOCTYPE html>
@@ -154,21 +154,23 @@
 
 
 <div style="color: #fff; padding: 20px 10%; text-align: right;">
-  <a href="authenticate.cfm" class="login">Login</a>
+  <cfoutput>
+  <a href="#application.pages#authenticate.cfm" class="login">Login</a>
+</cfoutput>
 
 
     <div class="cta-buttons">
-      <a href="SignUpPage.cfm">Get Started for Free</a>  
+      <a href="#application.pages#SignUpPage.cfm">Get Started for Free</a>  
     </div>
 
 </div>
 
 <div style="text-align: center;">
-  <cfoutput>
+
   <img src="#Application.images#myTeamHockeyStats.png" 
        style="max-width: 300px;" 
        alt="Hockey Icon">
-</cfoutput>
+
       </div>
 <section class="hero" style="width: 70%;">
   <h2>Take Control of Your Hockey Team's Performance</h2>

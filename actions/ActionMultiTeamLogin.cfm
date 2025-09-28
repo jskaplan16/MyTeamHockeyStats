@@ -24,7 +24,7 @@
 				<cfset session.season=getUser.Season>
 				<cfset session.FullTeamName=getUser.FullTeamName>
         <!-- Redirect to the main page or dashboard -->
-        <cflocation url="Roster.cfm">
+        <cflocation url="#application.displays#DisplayRoster.cfm">
  
 
 </cfif>
