@@ -10,7 +10,7 @@
 	  <thead>
 		  <tr>
 <cfoutput query="qScoreKeeper">
-        <th>#MainTeam#</th>
+        <th class="team-name">#MainTeam#</th>
 			<th>
 			<img src="#application.icons##MainTeamIcon#" alt="#MainTeam# Logo" class="team-logo">
 			</th>
@@ -23,7 +23,7 @@
 				<div class="date">#DateFormat(GameDate,"mm/dd/yyyy")#</div>
 			</th>
 			<th class="score">#OpponentTeamScore#</th>
-			<th>#OpponentTeam#</th>
+			<th class="team-name">#OpponentTeam#</th>
         	<th> <img src="#application.icons##OpponentTeamIcon#" alt="#OpponentTeam# Logo" class="team-logo"></th>
         	
  		</tr>

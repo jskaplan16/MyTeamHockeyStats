@@ -59,7 +59,7 @@ exec stpGetPlayerStatsByGameAgg
 				
 			<tr class="#classValue#">				
 				<td class="tblCellLeft"> #DateFormat(GameDate,"mm/dd/yyyy")#</td>
-				<td class="tblCellLeft"><a href="stats.cfm?GameID=#GameID#" class="mainLink">#Game#</a></td>
+				<td class="tblCellLeft"><a href="#application.displays#DisplayStats.cfm?GameID=#GameID#" class="mainLink">#Game#</a></td>
 				<td class="tblCellCenter">#Goals# </td>
 				<td class="tblCellCenter">#Assists# </td>				
 				<td class="tblCellCenter">#Points# </td>	

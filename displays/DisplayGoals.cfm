@@ -133,7 +133,7 @@
 								###qStatsAssist.PlayerNumber# - #qStatsAssist.PlayerName#
 							</cfif>
 								<cfif qStatsAssist.IsReassigned>
-									<img src="#application.icons#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">								
+									<img src="#application.images#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">								
 								   </cfif>
 									<br>
 						</cfloop>	
@@ -169,7 +169,7 @@
 					</div>							
 			</cfif>
 				<cfelse>
-					<img src="#application.icons#NoVideo.png" width="220">
+					<img src="#application.images#NoVideo.png" width="220">
 				</cfif>		
 				</td>
 			</tr>

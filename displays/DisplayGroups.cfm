@@ -218,7 +218,7 @@ having 	Count(goalId) >= #form.MinGoalsScored#
 											 </cfquery>								 
 											   
 					<cfset GoalList=ValueList(qGoals.GoalId)>
-			<a href="ShowGoals.cfm?GoalList=#GoalList#&FWDGrp=#FWDGRP#&defaultStartDate=#defaultStartDate#&defaultEndDate=#defaultEndDate#&MinGoalsScored=#MinGoalsScored#&PlayType=#url.PlayType#" class="mainLink" style="color: black;text-decoration: underline">
+			<a href="#application.displays#DisplayShowGoals.cfm?GoalList=#GoalList#&FWDGrp=#FWDGRP#&defaultStartDate=#defaultStartDate#&defaultEndDate=#defaultEndDate#&MinGoalsScored=#MinGoalsScored#&PlayType=#url.PlayType#" class="mainLink" style="color: black;text-decoration: underline">
 				#qryPowerGroups.cnt#
 			</a>
 		</td>

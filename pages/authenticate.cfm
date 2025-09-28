@@ -106,7 +106,7 @@
 				<cfinclude template="#application.displays#DisplayMultiTeam.cfm">
 				<cfabort>
 			</cfif>
-		<cf_loginPage ErrorMsg="Login Failed" username="#form.username#">		
+		<cf_DisplayloginPage ErrorMsg="Login Failed" username="#form.username#">		
 <cfelseif not passwordMatch>
 	
 							<!-- Invalid password -->
@@ -123,10 +123,10 @@
 						
 					<!-- User not found -->
 				
-		<cf_loginPage ErrorMsg="" username="#form.username#">	
+		<cf_DisplayloginPage ErrorMsg="" username="#form.username#">	
 
 <cfelse>
-	<cf_loginPage ErrorMsg="#ErrorMsg#">		
+	<cf_DisplayloginPage ErrorMsg="#ErrorMsg#">		
 </cfif>
 
 <cfif isDefined("SessionExpired") and SessionExpired>

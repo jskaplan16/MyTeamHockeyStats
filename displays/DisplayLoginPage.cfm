@@ -1,16 +1,19 @@
 <cfparam name="attributes.ErrorMsg"  default="">
 <cfparam name="attributes.username"  default="">
 <CF_BaseHeader>
-
-	<form action="authenticate.cfm" method="post">
-  <div class="login-container">
+<cfoutput>
+	<form action="#application.pages#authenticate.cfm" method="post">
+ </cfoutput>
+    <div class="login-container">
     <!-- Error Message (ColdFusion) -->
     <cfoutput>
       <cfif len(attributes.ErrorMsg)>
         <div class="errorBox">#attributes.ErrorMsg#</div>
       </cfif>
     </cfoutput>
-    <form action="authenticate.cfm" method="post" autocomplete="off">
+    <cfoutput>
+    <form action="#application.pages#authenticate.cfm" method="post" autocomplete="off">
+    </cfoutput>
       <div class="form-group">
         <label for="username" class="labelFld">Username:</label>
         <cfoutput>
