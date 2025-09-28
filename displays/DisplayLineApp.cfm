@@ -1,4 +1,4 @@
-<cfinclude template="header.cfm">
+<cfinclude template="#application.includes#header.cfm">
 
 
 <cfparam name="errors" default="0">
@@ -115,22 +115,22 @@ Order by FixedLineGroupId
 	
 <cfquery dbtype="query" name="qRosterLW">
 SELECT * FROM qRoster 
- WHERE   PositionGeneral='FWD'
+ WHERE   PositionGeneral='F'
 	
 </cfquery>
 
 <cfquery dbtype="query" name="qRosterRW">
 SELECT * FROM qRoster 
-WHERE  PositionGeneral='FWD'
+WHERE  PositionGeneral='F'
 </cfquery>
 
 <cfquery dbtype="query" name="qRosterC">
 SELECT * FROM qRoster 
-WHERE  PositionGeneral='FWD'
+WHERE  PositionGeneral='F'
 </cfquery>
 	
 <cfquery dbtype="query" name="qRosterD">
-	Select * from qRoster where PositionGeneral='DEF'
+	Select * from qRoster where PositionGeneral='D'
 </cfquery>
 <cfoutput>
 <div class="content">
@@ -141,108 +141,79 @@ WHERE  PositionGeneral='FWD'
 	
 	
 				<cfif errors gt 0>
-					<table align="center" style="border: 1px solid black;">
-						<tr>
-							<th  class="errorMsgHeader">
-							Error Message
-								</th>
-						</tr>
-					
-					<tr> 
-						<td class="errorBox" style="text-align: left;">
-						<cfoutput>#ErrorMsg#</cfoutput>
-						</td>
-					</tr>
-					</table>	
+					<div class="error-box" style="margin: 20px auto; max-width: 800px;">
+						<h3 style="color: #e74c3c; margin-bottom: 10px; text-align: center;">⚠️ Error Message</h3>
+						<div style="background-color: #fff5f5; border-left: 4px solid #e74c3c; padding: 15px; border-radius: 4px;">
+							<cfoutput>#ErrorMsg#</cfoutput>
+						</div>
+					</div>
 				</cfif>
 		
 		<br>
 
-	<div style="text-align: left;">
-		<b>Build Optimal Lines</b> 
-		</div>	
 
+			<cfform action="#application.displays#DisplayLineApp.cfm" method="POST" name="LineApp">
 
-					
-
-								  
-
-			<cfform action="LineApp.cfm" method="POST" name="LineApp">
-
-	<table style="width: 70%" align="center" cellspacing="0">
-		<tr>
-		<th class="tblHeader">Line</th>
-		<th class="tblHeader">Left Wing</th>
-		<th class="tblHeader">Center</th>
-		<th class="tblHeader">Right Wing</td>
-		<th class="tblHeader">Left Defense</td>
-		<th class="tblHeader">Right Defense</td>	
-		<th class="tblHeader">&nbsp;</td>
-		</tr>
+	<table class="table-container" style="width: 100%; max-width: 1200px; margin: 0 auto;" cellspacing="0">
+		<thead>
+			<tr>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Line</th>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Left Wing</th>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Center</th>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Right Wing</th>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Left Defense</th>
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Right Defense</th>	
+				<th class="tblHeader" style="text-align: center; padding: 15px;">Action</th>
+			</tr>
+		</thead>
+		<tbody>
 		
 		<tr>
-			<td class="Row-Even" align="center">
+			<td class="Row-Even" style="text-align: center; padding: 15px; vertical-align: middle;">
 				<cfoutput>
-				#NextLine#
+				<strong style="font-size: 1.2em;">#NextLine#</strong>
 				<input type="hidden" name="FixedLineGroupId" value="#NextLine#">
 				<input type="hidden" name="AddLine" value="Add">
-			</cfoutput>
-					</td>
-			<td class="Row-Even">
-
-		<cfquery dbtype="query" name="qRWDefault">
-			Select * from qGetLines where PositionCode='LW' and FixedLineGroupId=1
-		</cfquery>
-
-				
-
-				<cfselect name="PlayerId_LW" query="qRosterLW" display="PlayerName" value="PlayerId" selected="#qRWDefault.PlayerId#" required="yes" message="Left Wind Required">
-					 <option value = "0" disabled selected>Select Left Wing</option> 
-					</cfselect>
-				
-
+				</cfoutput>
+			</td>
+			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
+				<cfquery dbtype="query" name="qRWDefault">
+					Select * from qGetLines where PositionCode='LW' and FixedLineGroupId=1
+				</cfquery>
+				<cfselect name="PlayerId_LW" query="qRosterLW" display="PlayerName" value="PlayerId" selected="#qRWDefault.PlayerId#" required="yes" message="Left Wing Required" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+					<option value = "0" disabled selected>Select Left Wing</option> 
+				</cfselect>
 			</td>	
-			<td class="Row-Even">
-				
-				
-				
-				<cfselect name="PlayerId_C" query="qRosterC" display="PlayerName" value="PlayerId" required="yes">
+			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
+				<cfselect name="PlayerId_C" query="qRosterC" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
 					<option value = "0" disabled selected>Select Center</option>
 				</cfselect>	
-
 			</td>
-			<td class="Row-Even">
-
-				<cfselect name="PlayerId_RW" query="qRosterRW" display="PlayerName" value="PlayerId" required="yes">
-				<option value = "0" disabled selected>Select Right Wing</option>
-				</cfselect>			
-					
-
-			</td>
-			<td class="Row-Even">
-
-
-
-				<cfselect name="PlayerId_LD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes">
-				<option value = "0" disabled selected>Select Left  Defense</option>
+			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
+				<cfselect name="PlayerId_RW" query="qRosterRW" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+					<option value = "0" disabled selected>Select Right Wing</option>
 				</cfselect>			
 			</td>
-
-			<td class="Row-Even">
-				<cfselect name="PlayerId_RD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes">
-				<option value = "0" disabled selected>Select Right Defense</option>
+			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
+				<cfselect name="PlayerId_LD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+					<option value = "0" disabled selected>Select Left Defense</option>
+				</cfselect>			
+			</td>
+			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
+				<cfselect name="PlayerId_RD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+					<option value = "0" disabled selected>Select Right Defense</option>
 				</cfselect>		
 			</td>
-			<td valign="middle" class="Row-Even">
-			<input type="submit" value="Add">
+			<td class="Row-Even" style="text-align: center; padding: 15px; vertical-align: middle;">
+				<input type="submit" value="Add Line" style="background-color: var(--accent-blue); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
 			</td>
 		</tr>
-	
+		</tbody>
 	</table>
 </cfform>
 	
 <div align="right">
-<a href="LineApp.cfm?Email=True" class="mainLink" style="color: white;text-decoration: underline;">Email Report</a>		
+<a href="#application.displays#DisplayLineApp.cfm?Email=True" class="mainLink" style="color: white;text-decoration: underline;">Email Report</a>		
 	<br>
 </div>
 		
@@ -251,309 +222,305 @@ WHERE  PositionGeneral='FWD'
 
 	<cfif qGetLines.recordcount gt 0> 
 <cfquery datasource="#application.datasource#" name="qPosition">
-Select * from tblPosition  
+Select * from vPosition  
 where PositionCode<> 'FF'
 and  PositionGeneral='FWD'
 	Order by LineAppOrder ASC
 </cfquery>
 	
 	
-	<table align="left" class="center" style="cell-spacing:0px;width:100%;" cellspacing=0>
-	<tr>
-	<th colspan="5"  style="text-align: left;">
-	Offense
-	</th>
-	</tr>
-	<tr>
-	<th class="tblHeader">
-	Line #	
-	</th>
+	<div style="margin: 30px 0;">
+		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🏒 Offensive Lines</h2>
+		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="tblHeader" style="text-align: center; padding: 12px;">
+						Line #
+					</th>
 		
 	<cfoutput query="qPosition">
-	
-		<th class="tblHeader">
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
 			#Position#
 		</th>
 	</cfoutput>
-  <th class="tblHeader">
-		TTL Goals
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL Goals
 		</th>
-	<th class="tblHeader">
-		TTL PTS
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL PTS
 		</th>
-		<th class="tblHeader">
-		 Plus/Minus 
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Plus/Minus 
 		</th>
-		<th class="tblHeader">
-		Minus
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Minus
 		</th>
-	</tr>
+			</tr>
+		</thead>
+		<tbody>
 <cfquery dbtype="query" name="qLinesInApp">
 Select distinct FixedLineGroupId from qGetLines	
 </cfquery>
 
 
-<cfloop query="qLinesInApp">
-	<cfif qLinesInApp.currentRow  mod 2> 
-				<cfset classValue="Row-Even">
-						<cfelse>
-				<cfset classValue="Row-Odd">
-				</cfif>	
-	<tr>
-		<cfoutput>
-	<td class="#classValue#">
-			#qLinesInApp.FixedLineGroupId#
+	<cfloop query="qLinesInApp">
+		<cfif qLinesInApp.currentRow  mod 2> 
+			<cfset classValue="Row-Even">
+		<cfelse>
+			<cfset classValue="Row-Odd">
+		</cfif>	
+		<tr>
+			<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold;">
+				#qLinesInApp.FixedLineGroupId#
 			</td>
 			</cfoutput>
 		
-<cfloop query="qPosition">
-	<cfoutput>
-		<td class="#classValue#">
-		</cfoutput>
+		<cfloop query="qPosition">
 			<cfquery dbtype="query" name="qTmp">
-			Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
-			and PositionGeneral='FWD'
+				Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
+				and PositionGeneral='FWD'
+			</cfquery>
+			<td class="#classValue#" style="padding: 10px; text-align: center;">
+				<cfoutput>#qTmp.PlayerName#</cfoutput>
+			</td>
+		</cfloop>
+		
+		<cfquery dbtype="query" name="qTTL">
+			Select FixedLineGroupId,
+				Sum(Goals) as Goals,
+				Sum(Points) as Points,
+				Sum(PlusMinusPoints) as PlusMinusPoints,
+				Sum(Minus) as Minus
+				from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
+				and PositionGeneral='FWD'
+				Group by FixedLineGroupId
 		</cfquery>
-		<cfoutput> #qTmp.PlayerName#</cfoutput>
-		</td>
-</cfloop>
-		
-	<cfquery dbtype="query" name="qTTL">
-	Select 	FixedLineGroupId,
-		Sum(Goals) as Goals,
-		Sum(Points) as Points,
-		Sum(PlusMinusPoints) as PlusMinusPoints,
-		Sum(Minus) as Minus
-		from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
-		and PositionGeneral='FWD'
-		Group by FixedLineGroupId
-	</cfquery>
-	<cfoutput>
-		
-		<td class="#classValue#" style="text-align: center;">
-			#qTTL.Goals#
-		</td>
-		
-		<td class="#classValue#" style="text-align: center;">
-			#qTTL.Points#
-		</td>
-		
-		<td class="#classValue#" style="text-align: center;">
-			#qTTL.PlusMinusPoints#
-		</td>
-		
-		<td class="#classValue#" style="text-align: center;">
-			#qTTL.Minus#
-		</td>
-</cfoutput>
-	</tr>
-</cfloop>	
-
-</table>
+		<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Goals#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Points#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.PlusMinusPoints#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Minus#
+			</td>
+		</cfoutput>
+		</tr>
+	</cfloop>	
+		</tbody>
+	</table>
+	</div>
 	
 	
 	
 	
 	
 <cfquery datasource="#application.datasource#" name="qPosition">
-Select * from tblPosition  
+Select * from vPosition  
 where PositionCode<> 'FF'
 and  PositionGeneral='DEF'
 	Order by LineAppOrder ASC
 </cfquery>	
 
 
-	<table align="left" class="center" style="cell-spacing:0px;width:100%;" cellspacing=0>
-	<tr>
-	<th colspan="5"  style="text-align: left;">
-	Defense
-	</th>
-	<tr>
-	  <th class="tblHeader">
-	Line #	
-	</th>
+	<div style="margin: 30px 0;">
+		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🛡️ Defensive Lines</h2>
+		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="tblHeader" style="text-align: center; padding: 12px;">
+						Line #
+					</th>
 		
 	<cfoutput query="qPosition">
-	
-		  <th class="tblHeader">
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
 			#Position#
 		</th>
 	</cfoutput>
-    <th class="tblHeader">
-		TTL Goals
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL Goals
 		</th>
-	  <th class="tblHeader">
-		TTL PTS
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL PTS
 		</th>
-		  <th class="tblHeader">
-		 Plus/Minus 
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Plus/Minus 
 		</th>
-		  <th class="tblHeader">
-		Minus
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Minus
 		</th>
-	</tr>
+			</tr>
+		</thead>
+		<tbody>
 		
 <cfquery dbtype="query" name="qLinesInApp">
 Select distinct FixedLineGroupId from qGetLines	
 </cfquery>
 
-<cfloop query="qLinesInApp">
-
-<cfif qLinesInApp.currentRow  mod 2> 
-				<cfset classValue="Row-Even">
-						<cfelse>
-				<cfset classValue="Row-Odd">
-				</cfif>		
-	<tr>
-		<cfoutput>
-		<td class="#classValue#">
-			#qLinesInApp.FixedLineGroupId#
-			</td></cfoutput>
+	<cfloop query="qLinesInApp">
+		<cfif qLinesInApp.currentRow  mod 2> 
+			<cfset classValue="Row-Even">
+		<cfelse>
+			<cfset classValue="Row-Odd">
+		</cfif>		
+		<tr>
+			<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold;">
+				#qLinesInApp.FixedLineGroupId#
+			</td>
+			</cfoutput>
 		
-<cfloop query="qPosition">
-	<cfoutput>
-	<td class="#classValue#">
-	</cfoutput>
-		<cfquery dbtype="query" name="qTmp">
-			Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
-			and PositionGeneral='DEF'
+		<cfloop query="qPosition">
+			<cfquery dbtype="query" name="qTmp">
+				Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
+				and PositionGeneral='DEF'
+			</cfquery>
+			<td class="#classValue#" style="padding: 10px; text-align: center;">
+				<cfoutput>#qTmp.PlayerName#</cfoutput>
+			</td>
+		</cfloop>
+
+		<cfquery dbtype="query" name="qTTL">
+			Select FixedLineGroupId,
+				Sum(Goals) as Goals,
+				Sum(Points) as Points,
+				Sum(PlusMinusPoints) as PlusMinusPoints,
+				Sum(Minus) as Minus
+				from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
+				and PositionGeneral='DEF'
+				Group by FixedLineGroupId
 		</cfquery>
-		<cfoutput> #qTmp.PlayerName#</cfoutput>
-		</td>
-</cfloop>
-
-	<cfquery dbtype="query" name="qTTL">
-	Select 	FixedLineGroupId,
-		Sum(Goals) as Goals,
-		Sum(Points) as Points,
-		Sum(PlusMinusPoints) as PlusMinusPoints,
-		Sum(Minus) as Minus
-		from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
-		and PositionGeneral='DEF'
-		Group by FixedLineGroupId
-	</cfquery>
-	<cfoutput>
-				<td class="#classValue#" style="text-align: center;">
-		#qTTL.Goals#
-		</td>
-				<td class="#classValue#" style="text-align: center;">
-		#qTTL.Points#
-		</td>
-				<td class="#classValue#" style="text-align: center;">
-		#qTTL.PlusMinusPoints#
-		</td>
-							<td class="#classValue#" style="text-align: center;">
-		#qTTL.Minus#
-		</td>
-</cfoutput>
-	</tr>
-</cfloop>	
-
-</table>		
+		<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Goals#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Points#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.PlusMinusPoints#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Minus#
+			</td>
+		</cfoutput>
+		</tr>
+	</cfloop>	
+		</tbody>
+	</table>
+	</div>		
 
 	
 <cfquery datasource="#application.datasource#" name="qPosition">
-Select * from tblPosition  
+Select * from vPosition  
 where PositionCode<> 'FF'
+
 	Order by LineAppOrder ASC
 </cfquery>	
 
 		
 
-<table align="left" class="center" style="cell-spacing:0px;width:100%;" cellspacing=0>
-	<tr>
-	<th colspan="11"  style="text-align: left;">
-	Full Line
-	</th>
-	<tr>
-	<th class="tblHeader">
-	Line #	
-	</th>
+	<div style="margin: 30px 0;">
+		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🏆 Complete Lines</h2>
+		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="tblHeader" style="text-align: center; padding: 12px;">
+						Line #
+					</th>
 		
 	<cfoutput query="qPosition">
-	
-			<th class="tblHeader">
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
 			#Position#
 		</th>
 	</cfoutput>
-   	<th class="tblHeader">
-		TTL Goals
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL Goals
 		</th>
-		<th class="tblHeader">
-		TTL PTS
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			TTL PTS
 		</th>
-			<th class="tblHeader">
-		 Plus/Minus 
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Plus/Minus 
 		</th>
-			<th class="tblHeader">
-		Minus
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Minus
 		</th>
-					<th class="tblHeader">&nbsp;
-						
+		<th class="tblHeader" style="text-align: center; padding: 12px;">
+			Action
 		</th>
-	</tr>
+			</tr>
+		</thead>
+		<tbody>
 <cfquery dbtype="query" name="qLinesInApp">
 Select distinct FixedLineGroupId from qGetLines	
 </cfquery>
-<cfloop query="qLinesInApp">
-	<cfif qLinesInApp.currentRow  mod 2> 
-				<cfset classValue="Row-Even">
-						<cfelse>
-				<cfset classValue="Row-Odd">
-				</cfif>	
-	<tr>
-		<cfoutput>
-	<td class="#classValue#">		
-			#qLinesInApp.FixedLineGroupId#
-			</td></cfoutput>
-		
-<cfloop query="qPosition">
-<cfoutput>		<td class="#classValue#"></cfoutput>
-		<cfquery dbtype="query" name="qTmp">
-			Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
-		</cfquery>
-		<cfoutput> #qTmp.PlayerName#</cfoutput>
-		</td>
-</cfloop>
-
-	<cfquery dbtype="query" name="qTTL">
-	Select 	FixedLineGroupId,
-		Sum(Goals) as Goals,
-		Sum(Points) as Points,
-		Sum(PlusMinusPoints) as PlusMinusPoints,
-		Sum(Minus) as Minus
-		from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
-		
-		Group by FixedLineGroupId
-	</cfquery>
-	<cfoutput>
-				<td class="#classValue#" align="center">
-		#qTTL.Goals#
-		</td>
-				<td class="#classValue#" align="center">
-		#qTTL.Points#
-		</td>
-				<td class="#classValue#" align="center">
-		#qTTL.PlusMinusPoints#
-		</td>
-			<td class="#classValue#">
-		#qTTL.Minus#
-		</td>
-		
-
-				<td class="#classValue#">
-<cfif not isDefined("url.Email")>
-		<cfform action="LineApp.cfm" method="POST" name="LineApp">
-			<input	type="hidden" name="FixedLineGroupId" value="#qLinesInApp.FixedLineGroupId#">
-			<input type="hidden" name="formAction" value="Delete">
-			<input	type="submit" value="Delete">
-		</cfform>
-</cfif>	
+	<cfloop query="qLinesInApp">
+		<cfif qLinesInApp.currentRow  mod 2> 
+			<cfset classValue="Row-Even">
+		<cfelse>
+			<cfset classValue="Row-Odd">
+		</cfif>	
+		<tr>
+			<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold;">		
+				#qLinesInApp.FixedLineGroupId#
 			</td>
-	</cfoutput>
-	</tr>
-</cfloop>	
-</table>			
+			</cfoutput>
+		
+		<cfloop query="qPosition">
+			<cfoutput>
+			<td class="#classValue#" style="padding: 10px; text-align: center;">
+			</cfoutput>
+			<cfquery dbtype="query" name="qTmp">
+				Select * from qGetLines where PositionCode='#qPosition.PositionCode#' and FixedLineGroupId=#qLinesInApp.FixedLineGroupId#
+			</cfquery>
+			<cfoutput>#qTmp.PlayerName#</cfoutput>
+			</td>
+		</cfloop>
+
+		<cfquery dbtype="query" name="qTTL">
+			Select FixedLineGroupId,
+				Sum(Goals) as Goals,
+				Sum(Points) as Points,
+				Sum(PlusMinusPoints) as PlusMinusPoints,
+				Sum(Minus) as Minus
+				from qGetLines where FixedLineGroupId=#qLinesInApp.FixedLineGroupId# 
+				Group by FixedLineGroupId
+		</cfquery>
+		<cfoutput>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Goals#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Points#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.PlusMinusPoints#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px; font-weight: bold; background-color: var(--gray);">
+				#qTTL.Minus#
+			</td>
+			<td class="#classValue#" style="text-align: center; padding: 10px;">
+				<cfif not isDefined("url.Email")>
+					<cfform action="#application.displays#DisplayLineApp.cfm" method="POST" name="LineApp">
+						<input type="hidden" name="FixedLineGroupId" value="#qLinesInApp.FixedLineGroupId#">
+						<input type="hidden" name="formAction" value="Delete">
+						<input type="submit" value="Delete" style="background-color: ##e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em;">
+					</cfform>
+				</cfif>	
+			</td>
+		</cfoutput>
+		</tr>
+	</cfloop>	
+		</tbody>
+	</table>
+	</div>			
 	</cfif>
 
 </cfsavecontent>
@@ -580,4 +547,4 @@ Select distinct FixedLineGroupId from qGetLines
 
 
 	
-<cfinclude template="footer.cfm">
+<cfinclude template="#application.includes#footer.cfm">
