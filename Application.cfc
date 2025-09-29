@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease11">
+    <cfset this.name = "HockeyStatsRelease12">
 
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
@@ -48,6 +48,7 @@
     <cfset application.forms = this.base & "forms/"/>
     <cfset application.pages = this.base & "pages/"/>
     <cfset application.admin = this.base & "admin/"/>
+    <cfset application.gamesheets = this.base & "assets/gameSheets/"/>
             </cflock>
         <cfreturn true>
     </cffunction>

@@ -12,7 +12,7 @@
 	
 <cfparam name="session.loggedIn" default="false">
 
-<cfif isDefined("Session.UserId")>
+<cfif isDefined("Session.UserId") and len(session.userID) is not 0 and session.userID is not "Anonymous">
 		<cftry>
 		<cfquery datasource="#application.datasource#" name="qAudit">
 	    dbo.stpInsertPageAudit 
@@ -108,8 +108,9 @@
 
           
                            
-  <div class="profile-container">
+
   <cfif session.userID  is not "Anonymous">
+    <div class="profile-container">
   <!-- Username button -->
       <cfif session.FullName is not "user">
         <button class="profile-button" tabindex="-1" onclick="toggleDropdown()">#session.FullName#</button>
@@ -127,14 +128,16 @@
 </div>
   </cfif>
 
-<cfif session.userID  is "0">
-       <div class="nav-cell">
-              <a href="#Application.display#DispplayLoginPage.cfm" tabindex="-1"  class="nav-link">Login</a>
-        </div>
+<cfif session.userID  is "0" or session.userID is "" or session.userID is "Anonymous">
+  <div class="nav-cell">
     <button class="profile-button" tabindex="-1" >
-    <a href="#Application.pages#SignUpPage.cfm">Create Account</a> 
+       <a href="#Application.displays#DisplaySignUpPage.cfm">Create Account</a> 
     </button>
-      
+  </div>
+
+    <div class="nav-cell">
+      <a href="#Application.displays#DisplayLoginPage.cfm" tabindex="-1"  class="nav-link">Login</a>
+    </div>  
 </cfif>
   
   <div class="nav-cell">

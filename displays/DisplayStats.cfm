@@ -26,7 +26,7 @@
 
 <div class="content">
 	<cfif url.gameid is not "all">
-		<div align="center" style="width: 100%;padding:10px;align-items: center;">
+		<div align="center" style="width: 99%;padding:10px;align-items: center;">
 			<cf_scorekeeper GameId="#url.GameId#">
 		</div>
 	</cfif>
