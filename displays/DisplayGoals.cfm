@@ -160,7 +160,7 @@
 					<td valign="top" class="#classValue#" align="center" style="border-bottom: 0px solid black;">
 						<div style="margin-top: 20px;margin-bottom: 20px;">
 						<cfif VideoURL is not "">
-							<iframe style="width:320px;height:180px;" width="320" height="180" src="#VideoURL#" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+							<iframe style="width:320px;height:180px;border: 3px solid black;" width="320" height="180" src="#VideoURL#" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 							</iframe>
 					<cfif find(".com",goalLink)	gt 0>	
 						<div><a href="#goalLink#" style="color:black;">More Angles</a> </div>
