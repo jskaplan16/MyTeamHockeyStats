@@ -30,7 +30,7 @@
       #session.TeamName#  -  Partner report 	
     </div>
 	<label class="labelFld">Click player and scrolldown to see results.</label>
-		<cf_DisplayGoalSummary  GameId="All" showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayRoster.cfm" DetailsPage="DisplayPlayerDetail.cfm" NameDetailsPage="WorksBestWith.cfm" 
+		<cf_DisplayGoalSummary  GameId="All" showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayRoster.cfm" DetailsPage="DisplayPlayerDetail.cfm" NameDetailsPage="DisplayWorksBestWith.cfm" 
 							   StartGameDate="#session.StartOfSeason#" EndGameDate="#session.EndofSeason#" LinksOn="false">
 							
 							
