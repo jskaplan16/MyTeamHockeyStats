@@ -141,9 +141,9 @@ WHERE  PositionGeneral='F'
 	
 	
 				<cfif errors gt 0>
-					<div class="error-box" style="margin: 20px auto; max-width: 800px;">
-						<h3 style="color: #e74c3c; margin-bottom: 10px; text-align: center;">⚠️ Error Message</h3>
-						<div style="background-color: #fff5f5; border-left: 4px solid #e74c3c; padding: 15px; border-radius: 4px;">
+					<div class="ios-error" style="margin: 20px auto; max-width: 800px;">
+						<h3 style="margin-bottom: 10px; text-align: center;">⚠️ Error Message</h3>
+						<div>
 							<cfoutput>#ErrorMsg#</cfoutput>
 						</div>
 					</div>
@@ -154,7 +154,7 @@ WHERE  PositionGeneral='F'
 
 			<cfform action="#application.displays#DisplayLineApp.cfm" method="POST" name="LineApp">
 
-	<table class="table-container" style="width: 100%; max-width: 1200px; margin: 0 auto;" cellspacing="0">
+	<table class="table-container ios-table" style="width: 100%; max-width: 1200px; margin: 0 auto;" cellspacing="0">
 		<thead>
 			<tr>
 				<th class="tblHeader" style="text-align: center; padding: 15px;">Line</th>
@@ -180,32 +180,32 @@ WHERE  PositionGeneral='F'
 				<cfquery dbtype="query" name="qRWDefault">
 					Select * from qGetLines where PositionCode='LW' and FixedLineGroupId=1
 				</cfquery>
-				<cfselect name="PlayerId_LW" query="qRosterLW" display="PlayerName" value="PlayerId" selected="#qRWDefault.PlayerId#" required="yes" message="Left Wing Required" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+				<cfselect name="PlayerId_LW" query="qRosterLW" display="PlayerName" value="PlayerId" selected="#qRWDefault.PlayerId#" required="yes" message="Left Wing Required" class="ios-input" style="width: 100%;">
 					<option value = "0" disabled selected>Select Left Wing</option> 
 				</cfselect>
 			</td>	
 			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
-				<cfselect name="PlayerId_C" query="qRosterC" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+				<cfselect name="PlayerId_C" query="qRosterC" display="PlayerName" value="PlayerId" required="yes" class="ios-input" style="width: 100%;">
 					<option value = "0" disabled selected>Select Center</option>
 				</cfselect>	
 			</td>
 			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
-				<cfselect name="PlayerId_RW" query="qRosterRW" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+				<cfselect name="PlayerId_RW" query="qRosterRW" display="PlayerName" value="PlayerId" required="yes" class="ios-input" style="width: 100%;">
 					<option value = "0" disabled selected>Select Right Wing</option>
 				</cfselect>			
 			</td>
 			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
-				<cfselect name="PlayerId_LD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+				<cfselect name="PlayerId_LD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" class="ios-input" style="width: 100%;">
 					<option value = "0" disabled selected>Select Left Defense</option>
 				</cfselect>			
 			</td>
 			<td class="Row-Even" style="padding: 15px; vertical-align: middle;">
-				<cfselect name="PlayerId_RD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" style="width: 100%; padding: 8px; border: 1px solid ##ccc; border-radius: 4px;">
+				<cfselect name="PlayerId_RD" query="qRosterD" display="PlayerName" value="PlayerId" required="yes" class="ios-input" style="width: 100%;">
 					<option value = "0" disabled selected>Select Right Defense</option>
 				</cfselect>		
 			</td>
 			<td class="Row-Even" style="text-align: center; padding: 15px; vertical-align: middle;">
-				<input type="submit" value="Add Line" style="background-color: var(--accent-blue); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+				<input type="submit" value="Add Line" class="ios-button ios-haptic">
 			</td>
 		</tr>
 		</tbody>
@@ -231,7 +231,8 @@ and  PositionGeneral='FWD'
 	
 	<div style="margin: 30px 0;">
 		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🏒 Offensive Lines</h2>
-		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+		<div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+		<table class="table-container ios-table" style="width: 100%; margin: 0 auto;" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tblHeader" style="text-align: center; padding: 12px;">
@@ -314,6 +315,7 @@ Select distinct FixedLineGroupId from qGetLines
 	</cfloop>	
 		</tbody>
 	</table>
+		</div>
 	</div>
 	
 	
@@ -330,7 +332,8 @@ and  PositionGeneral='DEF'
 
 	<div style="margin: 30px 0;">
 		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🛡️ Defensive Lines</h2>
-		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+		<div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+		<table class="table-container ios-table" style="width: 100%; margin: 0 auto;" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tblHeader" style="text-align: center; padding: 12px;">
@@ -413,6 +416,7 @@ Select distinct FixedLineGroupId from qGetLines
 	</cfloop>	
 		</tbody>
 	</table>
+		</div>
 	</div>		
 
 	
@@ -427,7 +431,8 @@ where PositionCode<> 'FF'
 
 	<div style="margin: 30px 0;">
 		<h2 style="color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.5em;">🏆 Complete Lines</h2>
-		<table class="table-container" style="width: 100%; margin: 0 auto;" cellspacing="0">
+		<div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+		<table class="table-container ios-table" style="width: 100%; margin: 0 auto;" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tblHeader" style="text-align: center; padding: 12px;">
@@ -511,7 +516,7 @@ Select distinct FixedLineGroupId from qGetLines
 					<cfform action="#application.displays#DisplayLineApp.cfm" method="POST" name="LineApp">
 						<input type="hidden" name="FixedLineGroupId" value="#qLinesInApp.FixedLineGroupId#">
 						<input type="hidden" name="formAction" value="Delete">
-						<input type="submit" value="Delete" style="background-color: ##e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em;">
+						<input type="submit" value="Delete" class="ios-button ios-haptic" style="background: linear-gradient(135deg, ##FF3B30 0%, ##D70015 100%); font-size: 0.9em;">
 					</cfform>
 				</cfif>	
 			</td>
@@ -520,6 +525,7 @@ Select distinct FixedLineGroupId from qGetLines
 	</cfloop>	
 		</tbody>
 	</table>
+		</div>
 	</div>			
 	</cfif>
 

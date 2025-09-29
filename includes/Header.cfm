@@ -31,7 +31,18 @@
 	<title>My Team Hockey Stats</title>
   <cfoutput>
 	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Hockey Stats">
+		<meta name="theme-color" content="##185abc">
+		<meta name="msapplication-TileColor" content="##185abc">
+		<meta name="msapplication-navbutton-color" content="##185abc">
 		<link rel="icon" href="#application.images#favicon.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" href="#application.images#favicon.ico">
+		<link rel="manifest" href="manifest.json">
   
     <cfif session.userID  is not "Anonymous">
   

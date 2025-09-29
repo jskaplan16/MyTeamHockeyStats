@@ -1364,3 +1364,532 @@ button:disabled .reset {
   color: #007BFF;
   text-decoration: none;
 }
+
+/* ===========================================
+   MOBILE RESPONSIVE STYLES
+   =========================================== */
+
+/* Mobile-first approach with media queries */
+
+/* Small mobile devices (phones, 320px and up) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .header-banner {
+    height: 80px;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .header-banner h1 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+  
+  .login-container {
+    min-width: 280px;
+    max-width: 320px;
+    margin: 10px;
+  }
+  
+  .tall-input {
+    height: 50px;
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+  
+  .table-container {
+    font-size: 0.8rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table-container table {
+    min-width: 600px;
+  }
+  
+  .tblHeader {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+  
+  .Row-Even, .Row-Odd {
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+  
+  /* Mobile navigation */
+  .nav-cell {
+    display: block;
+    margin: 5px 0;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  /* Mobile forms */
+  cfselect, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 8px;
+  }
+  
+  input[type="submit"], button {
+    padding: 12px 16px;
+    font-size: 1rem;
+    min-height: 44px; /* Touch-friendly */
+  }
+  
+  /* Mobile content spacing */
+  .content {
+    padding: 10px;
+  }
+  
+  .PageHeader {
+    font-size: 1.3rem;
+    margin: 15px 0;
+    text-align: center;
+  }
+}
+
+/* Medium mobile devices (large phones, 481px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header-banner {
+    height: 100px;
+  }
+  
+  .login-container {
+    max-width: 400px;
+  }
+  
+  .table-container {
+    font-size: 0.9rem;
+  }
+  
+  .tblHeader {
+    padding: 10px 6px;
+  }
+  
+  .Row-Even, .Row-Odd {
+    padding: 8px 6px;
+  }
+}
+
+/* Tablets (769px and up) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .table-container {
+    font-size: 0.95rem;
+  }
+  
+  .header-banner {
+    height: 110px;
+  }
+}
+
+/* Mobile-specific table improvements */
+@media (max-width: 768px) {
+  /* Stack table headers vertically on very small screens */
+  .table-container table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  /* Make table cells more touch-friendly */
+  .table-container td, .table-container th {
+    min-height: 44px;
+    vertical-align: middle;
+  }
+  
+  /* Improve form elements for mobile */
+  .table-container cfselect,
+  .table-container select {
+    width: 100%;
+    min-height: 44px;
+    font-size: 16px;
+    border: 2px solid var(--accent-blue);
+    border-radius: 6px;
+    background-color: white;
+  }
+  
+  /* Mobile-friendly buttons */
+  .table-container input[type="submit"] {
+    min-width: 80px;
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive video embeds */
+  .table-container iframe {
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+  }
+  
+  /* Mobile error messages */
+  .error-box {
+    margin: 10px;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile section headers */
+  h2 {
+    font-size: 1.4rem;
+    margin: 20px 0 15px 0;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .header-banner {
+    height: 60px;
+  }
+  
+  .header-banner h1 {
+    font-size: 1rem;
+  }
+  
+  .login-container {
+    max-width: 500px;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch devices */
+  a, button, input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav-cell {
+    padding: 12px;
+  }
+  
+  /* Larger touch targets for table actions */
+  .table-container input[type="submit"] {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .table-container {
+    border-width: 0.5px;
+  }
+}
+
+/* Print styles for mobile */
+@media print {
+  .header-banner,
+  .nav-cell,
+  input[type="submit"],
+  button {
+    display: none;
+  }
+  
+  .table-container {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+  
+  .table-container table {
+    font-size: 10pt;
+  }
+}
+
+/* ===========================================
+   iOS-SPECIFIC OPTIMIZATIONS
+   =========================================== */
+
+/* iOS Safari specific styles */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari only */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .table-container {
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0);
+  }
+  
+  input, select, textarea {
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+  
+  input[type="submit"], button {
+    -webkit-appearance: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-blue) 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+}
+
+/* iOS-style navigation */
+.ios-nav {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* iOS-style buttons */
+.ios-button {
+  background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,122,255,0.3);
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0,122,255,0.3);
+}
+
+/* iOS-style form elements */
+.ios-input {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  -webkit-appearance: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.ios-input:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+  outline: none;
+}
+
+/* iOS-style cards */
+.ios-card {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* iOS-style table */
+.ios-table {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.ios-table th {
+  background: linear-gradient(135deg, #F2F2F7 0%, #E5E5EA 100%);
+  color: #1C1C1E;
+  font-weight: 600;
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.ios-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: rgba(255,255,255,0.8);
+}
+
+/* iOS-style header */
+.ios-header {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* iOS-style navigation items */
+.ios-nav-item {
+  display: block;
+  padding: 16px 20px;
+  color: #007AFF;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.9);
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-nav-item:active {
+  background: rgba(0,122,255,0.1);
+}
+
+/* iOS-style status bar */
+.ios-status-bar {
+  height: 44px;
+  background: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+/* iOS-style section headers */
+.ios-section-header {
+  background: linear-gradient(135deg, #F2F2F7 0%, #E5E5EA 100%);
+  padding: 16px 20px;
+  margin: 20px 0 0 0;
+  color: #1C1C1E;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 16px 16px 0 0;
+}
+
+/* iOS-style error messages */
+.ios-error {
+  background: linear-gradient(135deg, #FF3B30 0%, #D70015 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(255,59,48,0.3);
+}
+
+/* iOS-style success messages */
+.ios-success {
+  background: linear-gradient(135deg, #34C759 0%, #28A745 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(52,199,89,0.3);
+}
+
+/* iOS-style loading spinner */
+.ios-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0,122,255,0.3);
+  border-top: 2px solid #007AFF;
+  border-radius: 50%;
+  animation: ios-spin 1s linear infinite;
+}
+
+@keyframes ios-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* iOS-style pull-to-refresh */
+.ios-pull-refresh {
+  text-align: center;
+  padding: 20px;
+  color: #8E8E93;
+  font-size: 14px;
+}
+
+/* iOS-style tab bar */
+.ios-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.ios-tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  color: #8E8E93;
+  text-decoration: none;
+  font-size: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-tab-item.active {
+  color: #007AFF;
+}
+
+/* iOS-style modal */
+.ios-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ios-modal-content {
+  background: white;
+  border-radius: 16px;
+  margin: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* iOS-style haptic feedback simulation */
+.ios-haptic {
+  transition: transform 0.1s ease;
+}
+
+.ios-haptic:active {
+  transform: scale(0.95);
+}
+
+/* iOS-style switches */
+.ios-switch {
+  width: 51px;
+  height: 31px;
+  background: #E5E5EA;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ios-switch.active {
+  background: #34C759;
+}
+
+.ios-switch::after {
+  content: '';
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.ios-switch.active::after {
+  transform: translateX(20px);
+}

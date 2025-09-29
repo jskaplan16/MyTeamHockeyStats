@@ -1,0 +1,32 @@
+{
+  "name": "My Team Hockey Stats",
+  "short_name": "Hockey Stats",
+  "description": "Track and manage your hockey team's statistics",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#185abc",
+  "theme_color": "#185abc",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/images/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "assets/images/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "utilities"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
