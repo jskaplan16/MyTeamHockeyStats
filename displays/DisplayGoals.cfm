@@ -15,6 +15,26 @@
   <!--- Session expired or user not logged in --->
   <cflocation url="loginPage.cfm" addtoken="no">
 </cfif>
+<cfsavecontent variable="qGetGoals">`
+	<cfoutput>
+exec stpGameGoalsandStats 
+	@StartDate = '#attributes.StartGameDate#',
+	@EndDate = '#attributes.EndGameDate#'
+	<cfif len(attributes.PlayerId)>
+		,@PlayerId=#attributes.PlayerId#
+	</cfif>
+
+	
+	<cfif len(attributes.filterBy) gt 0>
+	, @FilterBy='#attributes.filterBy#' 
+	</cfif>
+	
+	<cfif attributes.GameId is not "all">
+	,@GameId=#attributes.gameId# 
+	</cfif>
+	</cfoutput>
+</cfsavecontent>
+
 
 <cfquery name="qGetGoals" datasource="#application.datasource#">
 	exec stpGameGoalsandStats 
@@ -32,7 +52,7 @@
 	<cfif attributes.GameId is not "all">
 	,@GameId=#attributes.gameId# 
 	</cfif>
-	,@RankingId=#attributes.RankingId#	
+
 </cfquery> 
 
 <cfif len(attributes.filterBy) gt 0 >

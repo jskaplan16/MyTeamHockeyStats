@@ -1,4 +1,4 @@
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="#Application.includes#Header.cfm">
 <cfif session.action is "Insert">
 <cftry>
 	<cfquery name="qInsertGoal" datasource="#application.datasource#">
@@ -85,7 +85,7 @@
 	
 	</cfcatch>
 </cftry>
-<cflocation url="GoalWizard.cfm?step=3">
+<cflocation url="#Application.pages#GoalWizard.cfm?step=3">
 		</cfif>
 <cfif session.action is "edit">
 		
@@ -128,9 +128,9 @@
 ,@MainTeamSeasonId=#session.TeamSeasonId#
 
 </cfquery>
-<cflocation url="GoalWizard.cfm?step=5&GoalId=#session.SelGoalId#&GameId=#session.SelGameId#">		
+<cflocation url="#Application.pages#GoalWizard.cfm?step=5&GoalId=#session.SelGoalId#&GameId=#session.SelGameId#">		
 </cfif>
 
 
-<cfinclude template="includes/footers/Footer.cfm">
+<cfinclude template="#application.includes#Footer.cfm">
 	

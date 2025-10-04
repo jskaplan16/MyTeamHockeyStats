@@ -65,7 +65,7 @@
 									showMore="#url.showMore#" 
 									SortOrder="#url.SortOrder#" 
 									SortField="#url.SortField#" 
-									PageName="Roster.cfm" 
+									PageName="DisplayRoster.cfm" 
 									DetailsPage="DisplayPlayerDetail.cfm" 
 								    StartGameDate="#form.FilterDateStart#" 
 								    EndGameDate="#form.FilterDateEnd#" 

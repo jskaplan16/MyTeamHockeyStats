@@ -1,4 +1,4 @@
-<cfinclude template="includes/headers/Header.cfm">
+<cfinclude template="#Application.includes#Header.cfm">
 <cfparam name="ErrorMsg" default="" >
 
 
@@ -85,6 +85,6 @@ exec dbo.stpInsertGame
 	</cfcatch>
 </cftry>
 --->
-<cf_admin useHeader=false Message="#ErrorMsg#">	
-<cfinclude template="includes/footers/Footer.cfm">
+<cf_Displayadmin useHeader=false Message="#ErrorMsg#">	
+<cfinclude template="#Application.includes#Footer.cfm">
  

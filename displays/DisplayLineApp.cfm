@@ -534,7 +534,7 @@ Select distinct FixedLineGroupId from qGetLines
 	<cfoutput>
 	#varOptimalLine#
 	</cfoutput>
-<cf_DisplayGoalSummary  GameId="All" showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="LineApp.cfm" DetailsPage="PlayerDetail.cfm" StartGameDate="#Session.StartofSeason#" EndGameDate="#Session.EndofSeason#" scrollable="true">
+<cf_DisplayGoalSummary  GameId="All" showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayLineApp.cfm" DetailsPage="DisplayPlayerDetail.cfm" StartGameDate="#Session.StartofSeason#" EndGameDate="#Session.EndofSeason#" scrollable="true">
 </div>
 
 <cfif isdefined("url.Email")>

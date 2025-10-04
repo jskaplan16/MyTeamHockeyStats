@@ -86,9 +86,9 @@
 	</tr>	
 
 </cfif>
-
+<cfoutput>
 	<form action="#application.actions#ActionSaveGame.cfm" method="post" enctype="multipart/form-data">	
-		<cfoutput>
+
 	
 <tr>
 	<td class="TdCellLeftTtl">				

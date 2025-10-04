@@ -164,7 +164,9 @@ function copyGoalTime(){
 	<div class="container">
 		  	<cfif isDefined("qTeams.TeamId")>
 				<!---    <form method="post" action="SaveGoal.cfm" onsubmit="return validateCheckboxes()">  --->
-   <form method="post" action="SaveGoal.cfm">
+					<cfoutput>
+   <form method="post" action="#Application.actions#ActionSaveGoal.cfm">
+	</cfoutput>
 <div class="row-even">
 <br>
 	<div class="video-center" id="video_holder" style="visibility: hidden;">
@@ -364,11 +366,11 @@ function copyGoalTime(){
 </tr>	
 	</table>
 	<cfquery dbtype="query" name="qOffense">
-	Select * from qRoster where PositionGeneral='FWD' and TeamSeasonId=#session.TeamSeasonID# 
+	Select * from qRoster where PositionGeneral='F' and TeamSeasonId=#session.TeamSeasonID# 
 	</cfquery>
 	
 	<cfquery dbtype="query" name="qDefense">
-	Select * from qRoster where PositionGeneral='DEF' and  TeamSeasonId=#session.TeamSeasonID# 
+	Select * from qRoster where PositionGeneral='D' and  TeamSeasonId=#session.TeamSeasonID# 
 	</cfquery> 
 
 	 <table class="table-responsive">

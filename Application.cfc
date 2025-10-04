@@ -1,9 +1,10 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease12">
+    <cfset this.name = "HockeyStatsRelease18">
 
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
-    <cfset this.turnonTest = false >
+    <cfset this.turnonTest = True >
+    <cfset this.DBName = "Prod">
     <cfset this.customtagpaths = getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "includes/")>
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "displays/")>
@@ -11,32 +12,40 @@
     <cffunction name="onApplicationStart" returntype="boolean">
             <cfset application.customtagpaths = this.customtagpaths>
 
-                    <cfif cgi.SERVER_NAME is "myteamhockeystats.com" or this.turnonTest>
+                    <cfif cgi.SERVER_NAME is "myteamhockeystats.com">
                         <cflock scope="application" type="exclusive" timeout="10">
-                            <cfset application.datasource = "HockeyStats">
                             <cfif this.turnonTest> 
-                            <cfset application.environment="Test">
+                                <cfset application.environment="Test">
                             <cfelse>
-                            <cfset application.environment="Production">
-                            </cfif>               
-
-                            <cfset this.ormEnabled = true>
-
-                            </cflock>
-                    <cfelseif cgi.SERVER_NAME is "myhockeystats.com">
+                                <cfset application.environment="Production">
+                            </cfif>              
+                        </cflock>
+                    </cfif>    
+                    
+                    <cfif this.turnonTest is True>
                         <cflock scope="application" type="exclusive" timeout="10">
                             <cfset application.datasource = "TestHockeyStats">
+                            <cfif this.DBName is "Test">
+                                <cfset application.datasource = "TestHockeyStats">
+                            <cfelse>
+                                <cfset application.datasource = "HockeyStats">
+                            </cfif>
                             <cfset application.environment="Test">
                         </cflock>
                     <cfelse>
-                    <cflock scope="application" type="exclusive" timeout="10">
+                        <cflock scope="application" type="exclusive" timeout="10">
                             <cfset application.datasource = "HockeyStats">
                             <cfset application.environment="Production">
-                            </cflock>		
+                        </cflock>		
                     </cfif>	
+
         <cflock scope="application" type="exclusive" timeout="10">               
     <cfset application.datasource = application.datasource>
-    <cfset this.base = "/MyTeamHockeyStats/">
+    <cfif this.turnonTest>
+        <cfset this.base = "/MyTeamHockeyStats/">
+    <cfelse>
+        <cfset this.base = "/">
+    </cfif>
     <cfset application.base = this.base>
     <cfset application.displays = this.base & "displays/"/>
     <cfset application.css = this.base & "assets/css/"/>
@@ -58,8 +67,8 @@
  
         <cfset session.startTime = now()>
     </cffunction>
+
 <!---
-<cfif this.turnonTest>
 <cffunction name="onError" returnType="void" output="true">
 
     <cfargument name="exception" required="yes">
@@ -94,9 +103,8 @@
 
 
 </cffunction>
-</cfif>
 --->
-<!---
+
 <cffunction name="onError" returnType="void" output="true">
 
     <cfargument name="exception" required="true">
@@ -141,12 +149,12 @@
         <h1>An error has occurred</h1>
         <p>We apologize for the inconvenience. The error has been logged and we will investigate it shortly.</p>
     </cfoutput>
-    <cflocation url="/errorPage.cfm" addtoken="false">
+    <cfinclude template="#application.pages#errorPage.cfm" runonce="true">
+
     <cfreturn >
     <cfelse>
 		 <cfthrow object="#arguments.Exception#">
 	</cfif>
     <cfreturn>
 </cffunction>
---->
 </cfcomponent>
