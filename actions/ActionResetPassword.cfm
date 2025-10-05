@@ -5,10 +5,10 @@
 </cfquery>
 <cfif qResetPassword.isFailure is 1>
     <cfset Message=qResetPassword.Message>
-    <cfinclude template="resetPassword.cfm">
+    <cfinclude template="#application.pages#resetPassword.cfm">
 <cfelse>
     <cfset form.userName=qResetPassword.username>
     <cfset form.password=form.CONFIRMPASSWORD>
-    <cfinclude template="authenticate.cfm" >
+    <cfinclude template="#application.pages#authenticate.cfm" >
 </cfif>
 
