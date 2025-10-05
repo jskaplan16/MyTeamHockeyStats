@@ -66,7 +66,7 @@
     <label for="firstName" class="labelFld">First Name:</label>
     <input type="text" class="inputFld" id="firstName" name="firstname" style="width: 25%;" value="#form.firstName#">
     <input type="hidden"  id="userid" name="userId" value="#form.userId#">
-    <input type="hidden"  id="email" name="email" value="#form.email#">
+    <input type="text"  id="email" name="email" value="#form.email#">
     <input type="hidden"  id="teamUserId" name="teamUserId" value="#form.teamUserId#">
     <br>
     <label for="lastName" class="labelFld">Last Name:</label>
@@ -122,13 +122,15 @@
 </table>
  </div>
   </div>
+  <cfoutput>
 <script type="text/javascript">
   const emailInput = document.getElementById("searchEmail");
+  document.getElementById("email").value = emailInput.value;
 const dropdownList = document.getElementById("dropdownList");
 
 
 function fetchUserByEmail(email) {
-  fetch(`api_settings_users.cfm?email=${encodeURIComponent(email)}`)
+  fetch(`#application.actions#api_settings_users.cfm?email=${encodeURIComponent(email)}`)
     .then(response => response.json())
     .then(user => {
       console.log(user);
@@ -168,7 +170,7 @@ emailInput.addEventListener("change", function() {
 });
 </script>
   
-
+</cfoutput>
 
 
 <cfinclude template="#application.includes#footer.cfm" >

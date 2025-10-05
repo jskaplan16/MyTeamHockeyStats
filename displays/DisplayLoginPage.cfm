@@ -43,7 +43,9 @@
                value="Submit"
                class="submit" />
       </div>
-      <a class="forgot-link" href="DisplayResetEmail.cfm">Forgot UserName or Password?</a>
+      <cfoutput>
+      <a class="forgot-link" href="#application.displays#DisplayResetEmail.cfm">Forgot UserName or Password?</a>
+    </cfoutput>
     </form>
   </div>
   <script>
