@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease18">
+    <cfset this.name = "HockeyStatsRelease20">
 
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
@@ -8,7 +8,8 @@
     <cfset this.customtagpaths = getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "includes/")>
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "displays/")>
-    
+    <cfset this.wsChannels = [ { "name" = "scoreboard", "type" = "public" } ]>
+
     <cffunction name="onApplicationStart" returntype="boolean">
             <cfset application.customtagpaths = this.customtagpaths>
 
@@ -57,10 +58,12 @@
     <cfset application.forms = this.base & "forms/"/>
     <cfset application.pages = this.base & "pages/"/>
     <cfset application.admin = this.base & "admin/"/>
+    <cfset application.websocket = this.base & "assets/websocket/"/>
     <cfset application.gamesheets = this.base & "assets/gameSheets/"/>
             </cflock>
         <cfreturn true>
     </cffunction>
+    
     
 
     <cffunction name="onSessionStart" returntype="void">

@@ -1,6 +1,6 @@
 <!--- <cftry> --->
     <!--- Specify the upload destination directory --->
-    <cfset uploadDirectory = expandPath("assets/images/HockeyIcons/")>
+    <cfset uploadDirectory = expandPath("/#application.icons#")>
 
     <!--- Use cffile to upload the file --->
     <cfif isDefined("form.myFile") and len(form.myFile)>
@@ -83,4 +83,4 @@
     </cfcatch>
 </cftry>
 --->
-<cfinclude template="DisplayAddTeam.cfm" >
+<cfinclude template="#Application.displays#DisplayAddTeam.cfm" >

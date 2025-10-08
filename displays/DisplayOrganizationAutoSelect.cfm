@@ -175,24 +175,25 @@ exec stpGetSeason
 <input type="text" id="teamName" name="teamName" disabled  class="inputFld" style="width: 30em;" value="#attributes.TeamName#" />
  </cfoutput>
 <script>
+<cfoutput>
 $(function() {
-  $('#searchOrgText').autocomplete({
-    serviceUrl: 'ajax_searchOrganization.cfm',
+  $('##searchOrgText').autocomplete({
+    serviceUrl: '#application.actions#ajax_searchOrganization.cfm',
     onSelect: function (suggestion) {
-      $('#OrganizationId').val(suggestion.data);
+      $('##OrganizationId').val(suggestion.data);
    
       if (suggestion.data !== "0") {
-        $('#myFile').hide();
+        $('##myFile').hide();
         $('label[for="myFile"]').hide();
       } else {
-        $('#myFile').show();
+        $('##myFile').show();
        $('label[for="myFile"]').hide();
       }
    updateProposedName(); 
     }
 
   });
-    
+    </cfoutput>
   
 
   $('#searchOrgText').blur(function() {

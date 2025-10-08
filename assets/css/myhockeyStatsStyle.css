@@ -417,21 +417,56 @@ color: var(--dark)
 
 }
 
+/* Mobile table fix - removed problematic display: block rule */
 @media screen and (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  /* iPhone Chrome specific fixes */
+  table {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   
+  td, th {
+    vertical-align: middle !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
   
-  .totals-row td:before {
-    color: #fff;
-	
+  /* Force alignment for all table cells on mobile */
+  .filterTable td,
+  .filterTable th {
+    vertical-align: middle !important;
+    line-height: 1.2;
+  }
+  
+  /* Specific fixes for linked cells */
+  .filterTable td a {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  
+  /* Fix for bold text in cells */
+  .filterTable td b {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+  }
+  
+  /* Ensure all cell content aligns at same level */
+  .filterTable td {
+    vertical-align: middle !important;
+    line-height: 1.2;
+  }
+  
+  /* Force consistent alignment for all cell content */
+  .filterTable td * {
+    vertical-align: middle;
+    line-height: 1;
   }
 }
 .table-container {
@@ -892,11 +927,27 @@ a:visited {
     padding: 8px 0;
   }
 }
-table.filterTable  {
-  border: 2px solid var(--dark);
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px var(--dark);
+/* Global table cell alignment fixes */
+.filterTable td {
+  vertical-align: middle !important;
+}
+
+.filterTable td a {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+.filterTable td b {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Ensure all content in table cells aligns consistently */
+.filterTable td * {
+  vertical-align: middle;
+  line-height: 1;
 }
    
       .StatsTable {
@@ -908,14 +959,16 @@ table.filterTable  {
         border-collapse: collapse; /* Collapse borders for cleaner appearance */
       }
       .tblCellLeft {
-        text-align: left; /* Force left alignment */
-        color: #000; /* Set text color */
-        padding: 10px; /* Optional: Add padding for spacing */
+        text-align: left;
+        color: #000;
+        padding: 10px;
+        vertical-align: middle;
       }
       .tblCellCenter {
-        text-align: Center;  /* Force left alignment */
-        color: #000; /* Set text color */
-        padding: 10px; /* Optional: Add padding for spacing */
+        text-align: center;
+        color: #000;
+        padding: 10px;
+        vertical-align: middle;
       }
       tr.TRTTLRow { 
              background-color:var(--dark);
@@ -1073,10 +1126,6 @@ a.form-cell-name:active {
     text-align: center;
 }
 
-.tblCellCenter {
-    text-align: center;
-}
-
 .tblCellLeft {
     text-align: left;
 }
@@ -1129,6 +1178,19 @@ a.form-cell-name:active {
   margin: 0;
   padding: 0;
 font-size: 3em;
+
+}
+.score_color{
+  color: var(--gray);
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+font-size: 3em;
+background-color: var(--dark);
+width: 80px;
+padding: 10px;
+border-radius: 10px;
+border: 5px solid var(--accent-blue);
 
 }
 .score-team{
@@ -1841,4 +1903,32 @@ button:disabled .reset {
 
 .ios-switch.active::after {
   transform: translateX(20px);
+}.scoreboard {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.flip-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 70px;
+  width: 100px;
+  height: 80px;
+  border-radius: 13px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  transition: transform 0.5s cubic-bezier(.23,1,.32,1);
+}
+
+.flip-card.flipping {
+  transform: rotateX(90deg);
+}
+.label {
+  font-size: 1.1em;
+  color: #ccc;
+  text-align: center;
 }
