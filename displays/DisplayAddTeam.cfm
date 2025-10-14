@@ -132,19 +132,19 @@
 <cfinclude template="#application.includes#footer.cfm">
 
 <script>
-const teamname = document.getElementById('searchOrgText');
-const level = document.getElementById('TeamLevelId');
-const ageGroup = document.getElementById('AgeGroupID');
-const otherTeamLabel = document.getElementById('OtherTeam');
-const proposedname = document.getElementById('teamName');
-const birthyear = document.getElementById('birthYearId')
+const teamname2 = document.getElementById('searchOrgText');
+const level2 = document.getElementById('TeamLevelId');
+const ageGroup2 = document.getElementById('AgeGroupID');
+const otherTeamLabel2 = document.getElementById('OtherTeam');
+const proposedname2 = document.getElementById('teamName');
+const birthyear2 = document.getElementById('birthYearId')
 
 // Function to update the proposed name
 function updateProposedName() {
-  const lvl= level.options[level.selectedIndex].text;
-  let age= ageGroup.options[ageGroup.selectedIndex].text;
-  const team = teamname.value;
-  const otherTeam= otherTeamLabel.value;
+  const lvl= level2.options[level2.selectedIndex].text;
+  let age= ageGroup2.options[ageGroup2.selectedIndex].text;
+  const team = teamname2.value;
+  const otherTeam= otherTeamLabel2.value;
   
   if(age=="Select Age Group" ) {
     age= "";
@@ -152,7 +152,7 @@ function updateProposedName() {
 
 
   // Customize the concatenation as you wish
-  proposedname.value = `${team} ${otherTeam} ${age}`;
+  proposedname2.value = `${team} ${otherTeam} ${age}`;
 }
 
 // Attach event listeners

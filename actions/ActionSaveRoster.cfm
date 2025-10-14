@@ -89,4 +89,4 @@ exec stpInsertRosterPlayer
 
 </cfswitch>
 
-<cfinclude template="DisplayPlayerRoster.cfm">
+<cfinclude template="#application.displays#DisplayPlayerRoster.cfm">
