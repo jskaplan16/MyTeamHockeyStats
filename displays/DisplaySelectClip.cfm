@@ -211,8 +211,9 @@ function copyGoalTime(){
 <div style="text-align: right;">
   <button type="button" onclick="document.getElementById('webModal_#TeamSeasonId#').close()" class="profile-button" >X</button>
  </div> 
-  <iframe src="DisplayPlayerRoster.cfm?Action=Insert&TeamSeasonId=#TeamSeasonId#&showNavBar=false"  style="padding:10px;border:none;width:900px;height:550px;scrolling:no;overflow: hidden;"></iframe>
-   
+ <cfoutput>
+  <iframe src="#application.displays#DisplayPlayerRoster.cfm?Action=Insert&TeamSeasonId=#TeamSeasonId#&showNavBar=false"  style="padding:10px;border:none;width:900px;height:550px;scrolling:no;overflow: hidden;"></iframe>
+</cfoutput>
 </dialog>
     </label>
 </cfoutput> 
