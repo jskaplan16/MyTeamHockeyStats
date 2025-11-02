@@ -1,11 +1,12 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease20">
+    <cfset this.name = "HockeyStatsRelease_v1.22">
 
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
     <cfset this.turnonTest = True >
     <cfset this.DBName = "Prod">
     <cfset this.customtagpaths = getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
+    <cfset this.gamesheetsUploadDir= getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "includes/")>
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "displays/")>
     <cfset this.wsChannels = [ { "name" = "scoreboard", "type" = "public" } ]>
@@ -39,7 +40,6 @@
                             <cfset application.environment="Production">
                         </cflock>		
                     </cfif>	
-
         <cflock scope="application" type="exclusive" timeout="10">               
     <cfset application.datasource = application.datasource>
     <cfif this.turnonTest>
@@ -60,6 +60,7 @@
     <cfset application.admin = this.base & "admin/"/>
     <cfset application.websocket = this.base & "assets/websocket/"/>
     <cfset application.gamesheets = this.base & "assets/gameSheets/"/>
+    <cfset application.gamesheetsUploadDir = this.gamesheetsUploadDir>
             </cflock>
         <cfreturn true>
     </cffunction>
@@ -71,93 +72,140 @@
         <cfset session.startTime = now()>
     </cffunction>
 
-<!---
-<cffunction name="onError" returnType="void" output="true">
-
-    <cfargument name="exception" required="yes">
-    <cfargument name="eventName" required="yes">
-    <!--- Optional: log or email the error details here --->
-
-<cfsavecontent variable="errorMsg" >
-    
-  
-        <cfoutput>
-            <h2>Error Details</h2>
-            <p>Date/Time: #now()#</p>
-            <p>Script Name: #cgi.script_name#</p>
-            <p>Error Message: #arguments.exception.message#</p>
-            <p>Error Detail: #arguments.exception.detail#</p>
-            <p>Error Type: #arguments.exception.type#</p>
-            <cfif structKeyExists(arguments.exception, "tagContext") and isArray(arguments.exception.tagContext) and arrayLen(arguments.exception.tagContext)>
-                <p>Line Number: #arguments.exception.tagContext[1].line#</p>
-                <p>Template: #arguments.exception.tagContext[1].template#</p>
-            </cfif>
-            
-            <h3>Debug Information</h3>
-            <cfdump var="#arguments.exception#" label="Exception Object">
-            <cfdump var="#form#" label="Form Variables">
-            <cfdump var="#url#" label="URL Variables">
-            <cfdump var="#cgi#" label="CGI Variables">
-        </cfoutput>
-        
-</cfsavecontent>
-
-    <cfinclude template="errorPage.cfm" runonce="true">
 
 
-</cffunction>
---->
+
 
 <cffunction name="onError" returnType="void" output="true">
 
     <cfargument name="exception" required="true">
     <cfargument name="eventName" type="string" required="true">
 
-  <cfif application.environment EQ "Production">  
+  <!--- Ensure application.environment is set --->
+  <cfif NOT structKeyExists(application, "environment")>
+    <cfset application.environment = "Unknown">
+  </cfif>
+
+  <!--- Determine if this is production based on multiple checks --->
+  <cfset var isProduction = false>
+  <cfif application.environment EQ "Production" OR cgi.SERVER_NAME EQ "myteamhockeystats.com" OR cgi.SERVER_NAME EQ "www.myteamhockeystats.com">
+    <cfset isProduction = true>
+  </cfif>
+
+  <cfif isProduction>  
     <cfset var errorDetails = "">
+    <cfset var mailSent = false>
     
     <!--- Capture error details --->
     <cfsavecontent variable="errorDetails">
         <cfoutput>
             <h2>Error Details</h2>
-            <p>Date/Time: #now()#</p>
-            <p>Script Name: #cgi.script_name#</p>
-            <p>Error Message: #arguments.exception.message#</p>
-            <p>Error Detail: #arguments.exception.detail#</p>
-            <p>Error Type: #arguments.exception.type#</p>
+            <p><strong>Date/Time:</strong> #now()#</p>
+            <p><strong>Server:</strong> #cgi.SERVER_NAME#</p>
+            <p><strong>Environment:</strong> #application.environment#</p>
+            <p><strong>Script Name:</strong> #cgi.script_name#</p>
+            <p><strong>Query String:</strong> #cgi.QUERY_STRING#</p>
+            <p><strong>HTTP Method:</strong> #cgi.REQUEST_METHOD#</p>
+            <p><strong>IP Address:</strong> #cgi.REMOTE_ADDR#</p>
+            <hr>
+            <p><strong>Error Message:</strong> #arguments.exception.message#</p>
+            <p><strong>Error Detail:</strong> #arguments.exception.detail#</p>
+            <p><strong>Error Type:</strong> #arguments.exception.type#</p>
             <cfif structKeyExists(arguments.exception, "tagContext") and isArray(arguments.exception.tagContext) and arrayLen(arguments.exception.tagContext)>
-                <p>Line Number: #arguments.exception.tagContext[1].line#</p>
-                <p>Template: #arguments.exception.tagContext[1].template#</p>
+                <p><strong>Line Number:</strong> #arguments.exception.tagContext[1].line#</p>
+                <p><strong>Template:</strong> #arguments.exception.tagContext[1].template#</p>
             </cfif>
-            
-            <h3>Debug Information</h3>
+            <hr>
+            <h3>User Information</h3>
+            <cfif structKeyExists(session, "teamId")>
+                <p><strong>Team ID:</strong> #session.teamId#</p>
+            </cfif>
+            <cfif structKeyExists(session, "teamName")>
+                <p><strong>Team Name:</strong> #session.teamName#</p>
+            </cfif>
+            <cfif structKeyExists(session, "userId")>
+                <p><strong>User ID:</strong> #session.userId#</p>
+            </cfif>
+            <cfif structKeyExists(session, "username")>
+                <p><strong>Username:</strong> #session.username#</p>
+            </cfif>
+            <hr>
+            <h3>Request Variables</h3>
+            <cfif structKeyExists(form, "fieldnames") and len(form.fieldnames)>
+                <p><strong>Form Variables:</strong></p>
+                <cfdump var="#form#" label="Form Variables">
+            </cfif>
+            <cfif structKeyExists(url, "fieldnames") and len(url.fieldnames)>
+                <p><strong>URL Variables:</strong></p>
+                <cfdump var="#url#" label="URL Variables">
+            </cfif>
+            <hr>
+            <h3>Exception Details</h3>
             <cfdump var="#arguments.exception#" label="Exception Object">
-            <cfdump var="#form#" label="Form Variables">
-            <cfdump var="#url#" label="URL Variables">
-            <cfdump var="#cgi#" label="CGI Variables">
         </cfoutput>
     </cfsavecontent>
     
-   
-
-	<cfmail to="jskaplan@gmail.com" from="mailadmin@myfreehockeystats.com" subject="My Hockey Stats - ERROR " type="html">	
-		<cfoutput> #errorDetails#</cfoutput>
-     </cfmail>
+    <!--- Rate limit: Only send email once per 5 minutes for the same error --->
+    <cfset var shouldSendEmail = true>
+    <cfset var errorKey = hash(arguments.exception.message & arguments.exception.detail)>
+    <cfif structKeyExists(application, "errorLog") AND isStruct(application.errorLog) AND structKeyExists(application.errorLog, errorKey)>
+        <cfset var timeSinceLastEmail = now() - application.errorLog[errorKey]>
+        <cfif timeSinceLastEmail LT createTimeSpan(0,0,5,0)>
+            <cfset shouldSendEmail = false>
+        </cfif>
+    </cfif>
+    
+    <!--- Try to send email, but don't let email failure break error handling --->
+    <cfif shouldSendEmail>
+        <cftry>
+            <cfmail to="jskaplan@gmail.com" from="mailadmin@myfreehockeystats.com" subject="My Hockey Stats - ERROR - #cgi.SERVER_NAME# - #arguments.exception.message#" type="html">	
+                <cfoutput> #errorDetails#</cfoutput>
+            </cfmail>
+            <cfset mailSent = true>
+            <!--- Track when we sent this error --->
+            <cfif NOT structKeyExists(application, "errorLog")>
+                <cfset application.errorLog = structNew()>
+            </cfif>
+            <cfset application.errorLog[errorKey] = now()>
+            <cfcatch>
+                <!--- If email fails, continue anyway --->
+            </cfcatch>
+        </cftry>
+    </cfif>
     
     <!--- Log the error --->
-    <cflog file="myApplicationErrors" text="#arguments.exception.message# - #arguments.exception.detail#">
+    <cftry>
+        <cflog file="myApplicationErrors" text="#arguments.exception.message# - #arguments.exception.detail# - Template: #iif(structKeyExists(arguments.exception, 'tagContext') and isArray(arguments.exception.tagContext) and arrayLen(arguments.exception.tagContext), DE(arguments.exception.tagContext[1].template), DE('Unknown'))#">
+        <cfcatch>
+            <!--- If log fails, continue anyway --->
+        </cfcatch>
+    </cftry>
     
     <!--- Display a user-friendly error message --->
     <cfoutput>
         <h1>An error has occurred</h1>
         <p>We apologize for the inconvenience. The error has been logged and we will investigate it shortly.</p>
     </cfoutput>
-    <cfinclude template="#application.pages#errorPage.cfm" runonce="true">
+    
+    <!--- Include error page only if it hasn't been included yet to prevent infinite loops --->
+    <cfif NOT structKeyExists(request, "errorPageIncluded")>
+        <cfset request.errorPageIncluded = true>
+        <cftry>
+            <cfinclude template="#application.pages#ErrorPage.cfm">
+            <cfcatch>
+                <!--- If ErrorPage include fails, just show a basic message --->
+                <p>If this problem persists, please contact support.</p>
+            </cfcatch>
+        </cftry>
+    </cfif>
 
     <cfreturn >
     <cfelse>
-		 <cfthrow object="#arguments.Exception#">
-	</cfif>
+        <!--- Development/Test environment - show full error --->
+        <cfdump var="#arguments.exception#" label="Exception Object">
+        <cfdump var="#form#" label="Form Variables">
+        <cfdump var="#url#" label="URL Variables">
+    </cfif>
     <cfreturn>
 </cffunction>
 </cfcomponent>

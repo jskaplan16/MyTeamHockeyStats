@@ -36,7 +36,9 @@
 		,@REASSIGNEDASSISTPLAYERID2=#form.REASSIGNEDASSISTPLAYERID2#
 	</cfif>
 		
-	,@MainTeamSeasonId=#session.TeamSeasonId#
+	,@MainTeamSeasonId=#session.TeamSeasonId#,
+	@IsAsst1AdminAssigned=#form.IsAsst1AdminAssigned#,
+	@IsAsst2AdminAssigned=#form.IsAsst2AdminAssigned#
 	</cfquery>
 
 
@@ -122,10 +124,12 @@
 	,@REASSIGNEDASSISTPLAYERID1=#form.REASSIGNEDASSISTPLAYERID1#
 </cfif>
 <cfif isDefined("form.REASSIGNEDASSISTPLAYERID2") AND len(form.REASSIGNEDASSISTPLAYERID2)>
-	,@REASSIGNEDASSISTPLAYERID2=#form.REASSIGNEDASSISTPLAYERID2#
-</cfif>
+	,	@REASSIGNEDASSISTPLAYERID2=#form.REASSIGNEDASSISTPLAYERID2#
+	</cfif>
 	
-,@MainTeamSeasonId=#session.TeamSeasonId#
+	,@MainTeamSeasonId=#session.TeamSeasonId#,
+	@IsAsst1AdminAssigned=#form.IsAsst1AdminAssigned#,
+	@IsAsst2AdminAssigned=#form.IsAsst2AdminAssigned#
 
 </cfquery>
 <cflocation url="#Application.pages#GoalWizard.cfm?step=5&GoalId=#session.SelGoalId#&GameId=#session.SelGameId#">		

@@ -169,7 +169,7 @@
 
   <img src="#Application.images#myTeamHockeyStats.png" 
        style="max-width: 300px;" 
-       alt="Hockey Icon">
+       alt="Hockey Icon">#Application.images#myTeamHockeyStats.png"
 </cfoutput>
       </div>
 <section class="hero" style="width: 70%;">

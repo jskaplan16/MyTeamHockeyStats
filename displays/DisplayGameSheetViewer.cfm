@@ -9,8 +9,12 @@
 	</div>
 	<cfoutput>
 <cfif REFindNoCase("(https://|\.pdf$)", qGames.GamesheetURL)>
-
-			 <iframe src="#qGames.GamesheetURL#" style="width:100%;height:1000px;"></iframe>
+			<cfif qGames.GamesheetURL contains ".pdf">
+				<cfset urlLink="#Application.Assets##qGames.GamesheetURL#">	
+			<cfelse>
+				<cfset urlLink=#qGames.GamesheetURL#>	
+			</cfif>
+			 <iframe src="#urlLink#" style="width:100%;height:1000px;"></iframe>
 		<cfelse>
 			<img src="#application.gamesheets##qGames.GamesheetURL#" width="1400">
 		</cfif>	

@@ -5,14 +5,14 @@
 <cfif structKeyExists(form, "ManualGamesheet") and len(form.ManualGamesheet)>
 
 
-	<cfset uploadDirectory = expandPath("/Gamesheets/")>
+	<cfset uploadDirectory = expandPath("/assets/gamesheets/")>
     <cffile 
         action="upload"
         filefield="ManualGamesheet"
-        destination="#uploadDirectory#"
+        destination="#application.gamesheetsUploadDir#"
         nameConflict="makeunique"
-        allowedExtensions="jpg,png,gif,jpeg"
-        accept="image/jpg,image/png,image/gif,image/jpeg">
+        allowedExtensions="jpg,png,gif,jpeg,pdf"
+        accept="image/jpg,image/png,image/gif,image/jpeg,application/pdf">
 <cfset form.GamesheetURL="/Gamesheets/" & cffile.ServerFile>
 
 

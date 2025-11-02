@@ -56,7 +56,7 @@ Select Sum(MainTeamScore) as TotalMain, Sum(OpponentTeamScore) as TotalOpponent 
   </cfoutput>	
 
 <div>
-	<cf_FormFilter ActionPagName="Games.cfm" 
+	<cf_FormFilter ActionPagName="DisplayGames.cfm" 
 				   ActionQueryString="" 
 				   FilterDateStart="#form.FilterDateStart#" 
 				   FilterDateEnd="#form.FilterDateEnd#"

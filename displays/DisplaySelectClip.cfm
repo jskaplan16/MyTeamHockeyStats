@@ -18,12 +18,13 @@
 <cfparam name="form.REASSIGNEDASSISTPLAYERID1" default="">
 <cfparam name="form.REASSIGNEDASSISTPLAYERID2" default="">
 <cfparam name="PlusMinus" default="">
+<cfparam name="form.IsAsst1AdminAssigned" default="0">
+<cfparam name="form.IsAsst2AdminAssigned" default="0">
 
 <cfparam name="form.Action" default="Insert">
 <cfparam name="form.TeamID" default="#session.teamId#">
-<cfif isdefined("form.TeamId") and len(form.TeamId) eq 0>
-		<cfset form.TeamSeasonId=session.teamSeasonId>
-</cfif>
+<cfparam name="form.TeamSeasonId" default="#session.teamSeasonId#">
+<cfparam name="form.GameId" default="">
 
 
 	
@@ -334,6 +335,9 @@ function copyGoalTime(){
 		   </cfoutput>  
 </select>
 	</td>
+	<td> Override
+		<input type="checkbox" name="IsAsst1AdminAssigned" value="1" <cfif form.IsAsst1AdminAssigned is 1> checked </cfif>>
+	</td>
 	 </tr>	
 <tr class="row-odd">
 		<td nowrap>
@@ -363,6 +367,10 @@ function copyGoalTime(){
 	</option>
 		   </cfoutput> 
     </select>
+	</td>
+	<td>
+		Override
+		<input type="checkbox" name="IsAsst2AdminAssigned" value="1" <cfif form.IsAsst2AdminAssigned is 1> checked </cfif>>
 	</td>
 </tr>	
 	</table>
