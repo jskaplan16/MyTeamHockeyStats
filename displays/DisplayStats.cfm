@@ -14,7 +14,7 @@
 
 <cfif NOT structKeyExists(session, "userid")>
   <!--- Session expired or user not logged in --->
-  <cflocation url="#application.pages#loginPage.cfm" addtoken="no">
+  <cflocation url="#application.displays#DisplayLoginPage.cfm" addtoken="no">
 </cfif>
 
 <cfoutput>

@@ -1,7 +1,7 @@
 
 <cfif NOT structKeyExists(session, "teamSeasonId")>
   <!--- Session expired or user not logged in --->
-  <cflocation url="#Application.Pages#loginPage.cfm" addtoken="no">
+  <cflocation url="#Application.displays#DisplayLoginPage.cfm" addtoken="no">
 </cfif>
 
 <cfinclude template="#Application.includes#header.cfm">

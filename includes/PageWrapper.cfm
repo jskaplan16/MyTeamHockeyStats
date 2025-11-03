@@ -21,8 +21,9 @@
 <html>
 	<title>My Free Hockey Stats</title>
 	<head>
-		<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-  
+    <cfoutput>
+		<link rel="icon" href="#application.images#favicon.ico" type="image/x-icon">
+    </cfoutput>
     <cfif session.userID  is not "Anonymous">
   
   <script>

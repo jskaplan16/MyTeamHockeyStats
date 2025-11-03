@@ -8,11 +8,11 @@
 
 <cfif NOT structKeyExists(session, "userid")>
   <!--- Session expired or user not logged in --->
-  <cflocation url="#application.pages#loginPage.cfm" addtoken="no">
+  <cflocation url="#application.displays#DisplayLoginPage.cfm" addtoken="no">
 <cfelseIf listFindNoCase("Guest","Anonymous",session.userId)>
-  <cflocation url="#application.pages#loginPage.cfm" addtoken="no">
+  <cflocation url="#application.displays#DisplayLoginPage.cfm" addtoken="no">
 <cfelseif structKeyExists(session,"LoggedIn") and session.loggedIn eq false>
-    <cflocation url="#application.pages#loginPage.cfm" addtoken="no">
+    <cflocation url="#application.displays#DisplayLoginPage.cfm" addtoken="no">
 </cfif>
 <cfif not structKeyExists(session,"ShowAdminFunctions")>
     <cflocation url="#application.displays#DisplayGames.cfm" > 

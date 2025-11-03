@@ -26,6 +26,6 @@
      </cfmail>
   
 
-     <cfinclude template="loginPage.cfm" >
+     <cfinclude template="#Application.displays#DisplayLoginPage.cfm" >
 
      
