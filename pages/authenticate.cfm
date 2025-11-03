@@ -37,13 +37,6 @@
 
 <!-- Query the database for the username -->
 <cfif isDefined("form.userName") and  len(form.username)> 
-		
-		
-			
-							
-					
-
-
 			<cfif isDefined("getUser.password") >
 				<cfset storedPassword = getUser.password>
 

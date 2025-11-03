@@ -1,6 +1,22 @@
 <cfparam name="attributes.ErrorMsg"  default="">
 <cfparam name="attributes.username"  default="">
 <CF_BaseHeader>
+<style>
+  .content-wrapper {
+    padding-top: 0px !important;
+  }
+  
+  .login-container {
+    margin-top: -80px !important;
+    margin-bottom: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .login-container {
+      margin-top: -50px !important;
+    }
+  }
+</style>
 <cfoutput>
 	<form action="#application.pages#authenticate.cfm" method="post">
  </cfoutput>
