@@ -60,8 +60,10 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <link rel="stylesheet" href="#application.css#myhockeyStatsStyle.css">
+  
 	</head>
   </cfoutput>
+ 
 
   <cfif attributes.showNavBar is false>
     <body style="background-color: #185abc;">
@@ -69,9 +71,16 @@
     <body>
  </cfif>
     <cfif attributes.showNavBar>
-      
       <cfoutput>
-<header class="header-banner">
+        <!-- Top Right Actions - Login & Get Started - matching index.cfm -->
+        <cfif session.userID is "0" or session.userID is "" or session.userID is "Anonymous">
+          <div class="top-right-actions">
+            <a href="#Application.displays#DisplayLoginPage.cfm" class="login-link">Login</a>
+            <a href="#Application.displays#DisplaySignUpPage.cfm" class="top-right-cta">Get Started for Free</a>
+          </div>
+        </cfif>
+        
+        <header class="header-banner">
   <div class="nav-cell logo" style="text-align: left;">
     <a href="#application.base#index.cfm" tabindex="-1">
       <img src="#application.images#myTeamHockeyStats.png" alt="My Team Hockey Stats" width="100" tabindex="-1">
@@ -108,42 +117,28 @@
           
                            
 
-  <cfif session.userID  is not "Anonymous">
-    <div class="profile-container">
-  <!-- Username button -->
-      <cfif session.FullName is not "user">
-        <button class="profile-button" tabindex="-1" onclick="toggleDropdown()">#session.FullName#</button>
-      </cfif>
-  <!-- Dropdown menu -->
-    <cfif isDefined("session.getUser")>  
-        <div class="dropdown-menu" id="profileDropdown">
- 
-          <cfif isdefined("session.getUSer") and session.getUSer.recordCount gt 1>    
-                <a href="#Application.displays#DisplayMultiTeam.cfm" tabindex="-1">Change Teams</a>
-          </cfif>
-          <a href="#application.actions#Actionlogout.cfm" tabindex="-1">Log Out</a>
-        </div>
-      </cfif>
-</div>
-  </cfif>
-
-<cfif session.userID  is "0" or session.userID is "" or session.userID is "Anonymous">
-  <div class="nav-cell">
-    <button class="profile-button" tabindex="-1" >
-       <a href="#Application.displays#DisplaySignUpPage.cfm">Create Account</a> 
-    </button>
-  </div>
-
-    <div class="nav-cell">
-      <a href="#Application.displays#DisplayLoginPage.cfm" tabindex="-1"  class="nav-link">Login</a>
-    </div>  
-</cfif>
-  
-  <div class="nav-cell">
-  <cfif structKeyExists(session,"Season")>  Season: #session.season# </cfif>
-  </div>
-
-            </header>
+            <cfif session.userID is not "Anonymous">
+              <div class="profile-container nav-cell">
+                <!-- Username button -->
+                <cfif session.FullName is not "user">
+                  <button class="profile-button" tabindex="-1" onclick="toggleDropdown()">#session.FullName#</button>
+                </cfif>
+                <!-- Dropdown menu -->
+                <cfif isDefined("session.getUser")>  
+                  <div class="dropdown-menu" id="profileDropdown">
+                    <cfif isdefined("session.getUSer") and session.getUSer.recordCount gt 1>    
+                      <a href="#Application.displays#DisplayMultiTeam.cfm" tabindex="-1">Change Teams</a>
+                    </cfif>
+                    <a href="#application.actions#Actionlogout.cfm" tabindex="-1">Log Out</a>
+                  </div>
+                </cfif>
+              </div>
+            </cfif>
+            <div class="nav-cell">
+              <cfif structKeyExists(session,"Season")>  Season: #session.season# </cfif>
+            </div>
+          </div>
+        </header>
         </cfoutput>
   
     </cfif>

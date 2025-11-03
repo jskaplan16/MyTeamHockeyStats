@@ -18,8 +18,8 @@
 <cfparam name="form.REASSIGNEDASSISTPLAYERID1" default="">
 <cfparam name="form.REASSIGNEDASSISTPLAYERID2" default="">
 <cfparam name="PlusMinus" default="">
-<cfparam name="form.IsAsst1AdminAssigned" default="0">
-<cfparam name="form.IsAsst2AdminAssigned" default="0">
+<cfparam name="form.AdminAssigned1" default="0">
+<cfparam name="form.AdminAssigned2" default="0">
 
 <cfparam name="form.Action" default="Insert">
 <cfparam name="form.TeamID" default="#session.teamId#">
@@ -335,8 +335,8 @@ function copyGoalTime(){
 		   </cfoutput>  
 </select>
 	</td>
-	<td> Override
-		<input type="checkbox" name="IsAsst1AdminAssigned" value="1" <cfif form.IsAsst1AdminAssigned is 1> checked </cfif>>
+	<td> Admin Assigned
+		<input type="checkbox" name="AdminAssigned1" value="1" <cfif form.AdminAssigned1 is 1> checked </cfif>>
 	</td>
 	 </tr>	
 <tr class="row-odd">
@@ -355,7 +355,7 @@ function copyGoalTime(){
 
 	</td>
 		<td>
-		Reassigned Assist Player
+		Reassigned Assist 
 		</td>
 	<td>
 	   <select id="reAssignedAssistPlayerId2" name="ReAssignedAssistPlayerId2">
@@ -369,8 +369,8 @@ function copyGoalTime(){
     </select>
 	</td>
 	<td>
-		Override
-		<input type="checkbox" name="IsAsst2AdminAssigned" value="1" <cfif form.IsAsst2AdminAssigned is 1> checked </cfif>>
+		Admin Assigned
+		<input type="checkbox" name="AdminAssigned2" value="1" <cfif form.AdminAssigned2 is 1> checked </cfif>>
 	</td>
 </tr>	
 	</table>

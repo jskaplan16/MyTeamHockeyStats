@@ -4,6 +4,7 @@
   --white: #ffffff;
   --gray: #f0f3f7;
   --dark: #13223b;
+  --text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 .classHeaderBanner {
 	background: linear-gradient(90deg, var(--primary-blue) 10%, var(--accent-blue) 100%);
@@ -802,10 +803,7 @@ a:visited {
   margin-right: 100px; /* 100px gap after logo */
 }
 
-.nav-links {
-  display: flex;
-  gap: 15px; /* Adjust spacing between nav links */
-}
+/* .nav-links moved to inline auth buttons section for better organization */
 
 
  div.signupDiv {
@@ -1932,3 +1930,96 @@ button:disabled .reset {
   color: #ccc;
   text-align: center;
 }
+
+
+    /* Top Right Actions - Login & Get Started - matching index.cfm */
+    .top-right-actions {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      z-index: 100;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .login-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      text-shadow: var(--text-shadow);
+      background-color: rgba(19, 34, 59, 0.7);
+      backdrop-filter: blur(5px);
+      white-space: nowrap;
+      display: inline-block;
+    }
+    
+    .login-link:hover {
+      background-color: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .top-right-cta {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, #1e7cd8 100%);
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(36, 146, 255, 0.4);
+      white-space: nowrap;
+    }
+    
+    .top-right-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(36, 146, 255, 0.6);
+      background: linear-gradient(135deg, #2a9fff 0%, #2585e0 100%);
+    }
+    
+    /* Mobile responsive styles */
+    @media screen and (max-width: 768px) {
+      .top-right-actions {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .login-link {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+      .top-right-cta {
+        padding: 8px 16px;
+        font-size: 0.85em;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .top-right-actions {
+        top: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .login-link {
+        padding: 7px 14px;
+        font-size: 0.85em;
+      }
+      .top-right-cta {
+        padding: 7px 12px;
+        font-size: 0.8em;
+      }
+    }

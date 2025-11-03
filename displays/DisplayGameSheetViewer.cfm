@@ -10,7 +10,7 @@
 	<cfoutput>
 <cfif REFindNoCase("(https://|\.pdf$)", qGames.GamesheetURL)>
 			<cfif qGames.GamesheetURL contains ".pdf">
-				<cfset urlLink="#Application.Assets##qGames.GamesheetURL#">	
+				<cfset urlLink="#Application.gamesheets##Replace(qGames.GamesheetURL,'/Gamesheets/','')#">	
 			<cfelse>
 				<cfset urlLink=#qGames.GamesheetURL#>	
 			</cfif>

@@ -15,25 +15,7 @@
   <!--- Session expired or user not logged in --->
   <cflocation url="loginPage.cfm" addtoken="no">
 </cfif>
-<cfsavecontent variable="qGetGoals">`
-	<cfoutput>
-exec stpGameGoalsandStats 
-	@StartDate = '#attributes.StartGameDate#',
-	@EndDate = '#attributes.EndGameDate#'
-	<cfif len(attributes.PlayerId)>
-		,@PlayerId=#attributes.PlayerId#
-	</cfif>
 
-	
-	<cfif len(attributes.filterBy) gt 0>
-	, @FilterBy='#attributes.filterBy#' 
-	</cfif>
-	
-	<cfif attributes.GameId is not "all">
-	,@GameId=#attributes.gameId# 
-	</cfif>
-	</cfoutput>
-</cfsavecontent>
 
 
 <cfquery name="qGetGoals" datasource="#application.datasource#">
@@ -64,7 +46,7 @@ exec stpGameGoalsandStats
 </cfif>
 	
 <cfquery dbtype="query" name="qJustGoals">
-	Select Distinct GameId,GameDate,GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,Game,OpponentTeam,GoalLink ,OpponentTeamIcon,isReassigned,OriginalPlayerName,GoalNumber
+	Select Distinct GameId,GameDate,GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,Game,OpponentTeam,GoalLink ,OpponentTeamIcon,isReassigned,OriginalPlayerName,GoalNumber,IsAdminAssignedStat
 	from qGetGoals 
 	Where StatType='Goal'
 	Order by GameDate,GameId,Period,GoalTime desc
@@ -104,7 +86,7 @@ exec stpGameGoalsandStats
 				</td>
 
 <cfquery dbtype="query" name="qStatsAssist">
-		 Select Distinct GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,IsReassigned,OriginalPlayerName from qGetGoals 
+		 Select Distinct GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,IsReassigned,OriginalPlayerName,IsAdminAssignedStat from qGetGoals 
 			Where StatType='Assist'
 			and GoalId=#qJustGoals.GoalId#
 	Order by StatDisplayOrder
@@ -155,6 +137,9 @@ exec stpGameGoalsandStats
 								<cfif qStatsAssist.IsReassigned>
 									<img src="#application.images#InfoIcon.png" width="15px" alt="Icon" Title="Orginally credited to: #OriginalPlayerName#">								
 								   </cfif>
+								<cfif qStatsAssist.IsAdminAssignedStat>
+									<img src="#application.images#InfoIcon.png" width="15px" alt="Icon" Title="Admin Assigned. Not On Gamesheet.">
+								</cfif>
 									<br>
 						</cfloop>	
 							</cfif>
@@ -206,7 +191,7 @@ exec stpGameGoalsandStats
 </cfif>
 
 <cfif attributes.showAdd>
-	<a href="GoalWizard.cfm?step=3" class="profile-button" style="color:black">Add Goal</a>
+	<a href="#application.pages#GoalWizard.cfm?step=3" class="profile-button" style="color:black">Add Goal</a>
 </cfif>
 
 <cfif attributes.showEdit>

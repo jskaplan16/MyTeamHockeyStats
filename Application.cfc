@@ -1,100 +1,68 @@
 <cfcomponent>
-    <cfset this.name = "HockeyStatsRelease_v1.22">
-
+    <cfset this.name = "HockeyStatsRelease_v1.33">
     <cfset this.sessionManagement = true>
     <cfset this.sessionTimeout = createTimeSpan(0, 2, 0, 0)>
-    <cfset this.turnonTest = True >
-    <cfset this.DBName = "Prod">
+    <cfset this.gamesheetsUploadDir = getDirectoryFromPath(getCurrentTemplatePath()) & "assets\gameSheets\">
     <cfset this.customtagpaths = getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
-    <cfset this.gamesheetsUploadDir= getDirectoryFromPath(getCurrentTemplatePath()) & "customtags/">
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "includes/")>
     <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "displays/")>
-    <cfset this.wsChannels = [ { "name" = "scoreboard", "type" = "public" } ]>
+    <cfset this.customtagpaths = ListAppend(this.customtagpaths, getDirectoryFromPath(getCurrentTemplatePath()) &  "pages/")>
+   
 
-    <cffunction name="onApplicationStart" returntype="boolean">
-            <cfset application.customtagpaths = this.customtagpaths>
-
-                    <cfif cgi.SERVER_NAME is "myteamhockeystats.com">
-                        <cflock scope="application" type="exclusive" timeout="10">
-                            <cfif this.turnonTest> 
-                                <cfset application.environment="Test">
-                            <cfelse>
-                                <cfset application.environment="Production">
-                            </cfif>              
-                        </cflock>
-                    </cfif>    
-                    
-                    <cfif this.turnonTest is True>
-                        <cflock scope="application" type="exclusive" timeout="10">
-                            <cfset application.datasource = "TestHockeyStats">
-                            <cfif this.DBName is "Test">
-                                <cfset application.datasource = "TestHockeyStats">
-                            <cfelse>
-                                <cfset application.datasource = "HockeyStats">
-                            </cfif>
-                            <cfset application.environment="Test">
-                        </cflock>
-                    <cfelse>
-                        <cflock scope="application" type="exclusive" timeout="10">
-                            <cfset application.datasource = "HockeyStats">
-                            <cfset application.environment="Production">
-                        </cflock>		
-                    </cfif>	
-        <cflock scope="application" type="exclusive" timeout="10">               
-    <cfset application.datasource = application.datasource>
-    <cfif this.turnonTest>
-        <cfset this.base = "/MyTeamHockeyStats/">
-    <cfelse>
-        <cfset this.base = "/">
-    </cfif>
-    <cfset application.base = this.base>
-    <cfset application.displays = this.base & "displays/"/>
-    <cfset application.css = this.base & "assets/css/"/>
-    <cfset application.js = this.base & "assets/js/"/>
-    <cfset application.images = this.base & "assets/images/"/>
-    <cfset application.icons = this.base & "assets/hockeyIcons/"/>
-    <cfset application.includes = this.base & "includes/"/>
-    <cfset application.actions = this.base & "actions/"/>
-    <cfset application.forms = this.base & "forms/"/>
-    <cfset application.pages = this.base & "pages/"/>
-    <cfset application.admin = this.base & "admin/"/>
-    <cfset application.websocket = this.base & "assets/websocket/"/>
-    <cfset application.gamesheets = this.base & "assets/gameSheets/"/>
-    <cfset application.gamesheetsUploadDir = this.gamesheetsUploadDir>
-            </cflock>
+    <cffunction name="onApplicationStart" returntype="boolean">    
+        <cflock scope="application" type="exclusive" timeout="10">
+            <cfif cgi.SERVER_NAME is "myteamhockeystats.local">
+                <cfset application.environment = "Test">
+                <cfset application.datasource = "TestHockeyStats">
+                <cfset this.base = "/MyTeamHockeyStats/">
+            <cfelse>
+                <cfset application.environment = "Production">
+                <cfset application.datasource = "HockeyStats">
+                <cfset this.base = "/">
+            </cfif>              
+            
+            <cfset application.customtagpaths = this.customtagpaths>  
+            <cfset application.base = this.base>
+            <cfset application.displays = this.base & "displays/"/>
+            <cfset application.css = this.base & "assets/css/"/>
+            <cfset application.js = this.base & "assets/js/"/>
+            <cfset application.images = this.base & "assets/images/"/>
+            <cfset application.icons = this.base & "assets/hockeyIcons/"/>
+            <cfset application.includes = this.base & "includes/"/>
+            <cfset application.actions = this.base & "actions/"/>
+            <cfset application.forms = this.base & "forms/"/>
+            <cfset application.pages = this.base & "pages/"/>
+            <cfset application.admin = this.base & "admin/"/>
+        
+            <cfset application.gamesheets = this.base & "assets/gameSheets/"/>
+            <cfset application.gamesheetsUploadDir = this.gamesheetsUploadDir>
+            <cfset application.assets = this.base & "assets/"/>
+        </cflock>
         <cfreturn true>
     </cffunction>
     
-    
+
 
     <cffunction name="onSessionStart" returntype="void">
- 
         <cfset session.startTime = now()>
     </cffunction>
 
 
 
-
+<!---
 
 <cffunction name="onError" returnType="void" output="true">
 
     <cfargument name="exception" required="true">
     <cfargument name="eventName" type="string" required="true">
 
-  <!--- Ensure application.environment is set --->
-  <cfif NOT structKeyExists(application, "environment")>
-    <cfset application.environment = "Unknown">
-  </cfif>
 
   <!--- Determine if this is production based on multiple checks --->
-  <cfset var isProduction = false>
-  <cfif application.environment EQ "Production" OR cgi.SERVER_NAME EQ "myteamhockeystats.com" OR cgi.SERVER_NAME EQ "www.myteamhockeystats.com">
-    <cfset isProduction = true>
-  </cfif>
 
-  <cfif isProduction>  
+  <cfif structKeyExists(application, "environment") and application.environment is "Production">  
     <cfset var errorDetails = "">
-    <cfset var mailSent = false>
+    <cfset var errorKey = hash(arguments.exception.message & arguments.exception.type & cgi.SCRIPT_NAME)>
+
     
     <!--- Capture error details --->
     <cfsavecontent variable="errorDetails">
@@ -147,21 +115,21 @@
     
     <!--- Rate limit: Only send email once per 5 minutes for the same error --->
     <cfset var shouldSendEmail = true>
-    <cfset var errorKey = hash(arguments.exception.message & arguments.exception.detail)>
-    <cfif structKeyExists(application, "errorLog") AND isStruct(application.errorLog) AND structKeyExists(application.errorLog, errorKey)>
-        <cfset var timeSinceLastEmail = now() - application.errorLog[errorKey]>
-        <cfif timeSinceLastEmail LT createTimeSpan(0,0,5,0)>
+    <cfif structKeyExists(application, "errorLog") and structKeyExists(application.errorLog, errorKey)>
+        <cfset var timeSinceLastError = dateDiff("n", application.errorLog[errorKey], now())>
+        <cfif timeSinceLastError lt 5>
             <cfset shouldSendEmail = false>
         </cfif>
     </cfif>
-    
+
+  
     <!--- Try to send email, but don't let email failure break error handling --->
     <cfif shouldSendEmail>
         <cftry>
             <cfmail to="jskaplan@gmail.com" from="mailadmin@myfreehockeystats.com" subject="My Hockey Stats - ERROR - #cgi.SERVER_NAME# - #arguments.exception.message#" type="html">	
                 <cfoutput> #errorDetails#</cfoutput>
             </cfmail>
-            <cfset mailSent = true>
+  
             <!--- Track when we sent this error --->
             <cfif NOT structKeyExists(application, "errorLog")>
                 <cfset application.errorLog = structNew()>
@@ -173,39 +141,33 @@
         </cftry>
     </cfif>
     
-    <!--- Log the error --->
     <cftry>
-        <cflog file="myApplicationErrors" text="#arguments.exception.message# - #arguments.exception.detail# - Template: #iif(structKeyExists(arguments.exception, 'tagContext') and isArray(arguments.exception.tagContext) and arrayLen(arguments.exception.tagContext), DE(arguments.exception.tagContext[1].template), DE('Unknown'))#">
+        <cfset var templatePath = "">
+        <cfif structKeyExists(arguments.exception, "tagContext") and isArray(arguments.exception.tagContext) and arrayLen(arguments.exception.tagContext)>
+            <cfset templatePath = arguments.exception.tagContext[1].template>
+        <cfelse>
+            <cfset templatePath = "Unknown">
+        </cfif>
+        <cflog file="myApplicationErrors" text="#arguments.exception.message# - #arguments.exception.detail# - Template: #templatePath#">
         <cfcatch>
             <!--- If log fails, continue anyway --->
         </cfcatch>
     </cftry>
     
-    <!--- Display a user-friendly error message --->
-    <cfoutput>
-        <h1>An error has occurred</h1>
-        <p>We apologize for the inconvenience. The error has been logged and we will investigate it shortly.</p>
-    </cfoutput>
-    
-    <!--- Include error page only if it hasn't been included yet to prevent infinite loops --->
-    <cfif NOT structKeyExists(request, "errorPageIncluded")>
-        <cfset request.errorPageIncluded = true>
-        <cftry>
-            <cfinclude template="#application.pages#ErrorPage.cfm">
-            <cfcatch>
-                <!--- If ErrorPage include fails, just show a basic message --->
-                <p>If this problem persists, please contact support.</p>
-            </cfcatch>
-        </cftry>
-    </cfif>
+    <cftry>
+        <cfinclude template="#application.pages#ErrorPage.cfm">
+        <cfcatch>
+            <!--- If error page fails, output basic error message --->
+            <cfoutput>
+                <h1>An error has occurred</h1>
+                <p>#arguments.exception.message#</p>
+                <p>Please contact the administrator if this problem persists.</p>
+            </cfoutput>
+        </cfcatch>
+    </cftry>
+  </cfif>
+  <cfreturn>
 
-    <cfreturn >
-    <cfelse>
-        <!--- Development/Test environment - show full error --->
-        <cfdump var="#arguments.exception#" label="Exception Object">
-        <cfdump var="#form#" label="Form Variables">
-        <cfdump var="#url#" label="URL Variables">
-    </cfif>
-    <cfreturn>
 </cffunction>
+--->
 </cfcomponent>
