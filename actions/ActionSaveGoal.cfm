@@ -89,8 +89,8 @@
 	</cfcatch>
 </cftry>
 --->	
-<cf_GoalWizard step="5" goalId="#qInsertGoal.GoalId#" gameId="#session.SelGameId#">
 
+<cflocation url="#Application.pages#GoalWizard.cfm?step=5&goalId=#qInsertGoal.GoalId#&gameId=#session.SelGameId#" addtoken="no">
 
 
 </cfif>
@@ -140,7 +140,8 @@
 <cfset url.step="5">	
 <cfset url.goalId=session.SelGoalId>
 <cfset url.gameId=session.SelGameId>
-<cf_GoalWizard step="5" goalId="#session.SelGoalId#" gameId="#session.SelGameId#">
+<cflocation url="#Application.pages#GoalWizard.cfm?step=5&goalId=#session.SelGoalId#&gameId=#session.SelGameId#" addtoken="no">
+
 
 	
 

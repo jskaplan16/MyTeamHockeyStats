@@ -1,3 +1,4 @@
+
 <input type="text" id="searchTeamText" name="searchTeamText" value="" style="width: 300px;" />
 <input type="hidden" id="teamSeasonId" name="teamSeasonId" value="0" />
 

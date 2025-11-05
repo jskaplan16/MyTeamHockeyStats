@@ -11,7 +11,8 @@
 <cfparam name="form.GameVideoId" default="">
 <cfparam name="url.action" default="Insert">
 <cfparam name="url.showHeader" default="Yes">
-<cfparam name="action" default="#url.action#">			
+<cfparam name="action" default="#url.action#">
+<cfparam name="form.GamesheetAssists" default="0">			
 	
 <cfif isDefined("url.Action") and url.Action is "Edit">
 	<cfquery name="qGameInfo" datasource="#application.datasource#">
@@ -137,6 +138,8 @@
 		<td>
 	<input name="MainTeamScore" type="number" required="Yes" style="width:100px;" value="#form.MainTeamScore#">	
 	   </td>
+
+
 		</tr>
 
 		<tr>
@@ -147,6 +150,15 @@
 		<td>
 	<input name="OpponentTeamScore" type="number" required="Yes" style="width:100px;" value="#form.OpponentTeamScore#">	
 	   </td>
+		</tr>
+		<tr>
+			<td class="TdCellLeftTtl" nowrap>
+				## of Gamesheet Listed Assists For #Session.TeamName#  
+					</td>
+						<td>
+					<input name="GamesheetAssists" type="number" required="Yes" style="width:100px;" value="#form.GamesheetAssists#">	
+					   </td>
+		
 		</tr>
 </cfoutput>
 <tr>

@@ -99,6 +99,8 @@ exec stpGetRoster @TeamSeasonId=#session.TeamSeasonID#,@OpponentTeamSeasonId=#qS
 	<cfset form.REASSIGNEDASSISTPLAYERID1 = qGetGoal.REASSIGNEDASSISTPLAYERID1>
 	<cfset form.REASSIGNEDASSISTPLAYERID2 = qGetGoal.REASSIGNEDASSISTPLAYERID2>	
 	<cfset form.teamSeasonId=qGetGoal.TeamSeasonID>
+	<cfset form.AdminAssigned1=qGetGoal.isAdminAssignedStat1>
+	<cfset form.AdminAssigned2=qGetGoal.isAdminAssignedStat2>
 
 </cfif>
 				

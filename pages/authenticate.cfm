@@ -99,6 +99,7 @@
 				<cfinclude template="#application.displays#DisplayMultiTeam.cfm">
 				<cfabort>
 			</cfif>
+			
 		<cf_DisplayloginPage ErrorMsg="Login Failed" username="#form.username#">		
 <cfelseif not passwordMatch>
 	

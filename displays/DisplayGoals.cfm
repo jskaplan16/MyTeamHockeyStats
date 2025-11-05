@@ -46,7 +46,7 @@
 </cfif>
 	
 <cfquery dbtype="query" name="qJustGoals">
-	Select Distinct GameId,GameDate,GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,Game,OpponentTeam,GoalLink ,OpponentTeamIcon,isReassigned,OriginalPlayerName,GoalNumber,IsAdminAssignedStat
+	Select Distinct GameId,GameDate,GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,Game,OpponentTeam,GoalLink ,OpponentTeamIcon,isReassigned,OriginalPlayerName,GoalNumber,IsAdminAssignedStat,StatOrder
 	from qGetGoals 
 	Where StatType='Goal'
 	Order by GameDate,GameId,Period,GoalTime desc
@@ -86,17 +86,17 @@
 				</td>
 
 <cfquery dbtype="query" name="qStatsAssist">
-		 Select Distinct GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,IsReassigned,OriginalPlayerName,IsAdminAssignedStat from qGetGoals 
+		 Select Distinct GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,IsReassigned,OriginalPlayerName,IsAdminAssignedStat,StatOrder from qGetGoals 
 			Where StatType='Assist'
 			and GoalId=#qJustGoals.GoalId#
-	Order by StatDisplayOrder
+	Order by  StatOrder asc
 </cfquery>
 
 <cfquery dbtype="query" name="qStatsPlusMinus">
 		 Select Distinct GoalId,Period,TeamIcon,GoalTimeDisplay,GoalType,VideoURL,PeriodRow,GoalTime,PlayerNumber,PlayerName,StatType from qGetGoals 
 			Where StatType in('Plus','Minus')
 			and GoalId=#qJustGoals.GoalId#
-	Order by StatDisplayOrder
+	Order by StatDisplayOrder,StatOrder asc
 </cfquery>					
 				
 					<td>

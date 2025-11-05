@@ -26,7 +26,7 @@
 	
 
         <cfquery name="qTeam" datasource="#application.datasource#">
-            Select * from vTeam where TeamSeasonId=#session.TeamSeasonId#
+            Select * from vTeam where TeamSeasonId=#url.TeamSeasonId#
         </cfquery>
 
         <cfset form.TeamName=qTeam.TeamName>
@@ -38,12 +38,13 @@
         <cfset form.TeamLevelId=qTeam.TeamLevelId>
         <cfset form.seasonEnd=session.endofSeason>
         <cfset form.seasonStart=session.startofSeason>
-
-
+        <cfset form.OrganizationId=qTeam.OrganizationId>
+        <cfset form.OrganizationText=qTeam.Organization>
 
     <div class="form-container" style="width: 60%;">
-        <h2>Add Team</h2>
-         <cfoutput>
+        <cfoutput>
+        <h2>#url.action# Team</h2>
+        
         <form name="SaveTeam" method="Post" action="#Application.actions#ActionSaveTeam.cfm" enctype="multipart/form-data">
             <cfif url.Action is "Edit">
                     <input type="hidden" name="TeamSeasonId" value="#url.TeamSeasonId#">
@@ -68,6 +69,7 @@
                 TeamLevelId="#form.TeamLevelId#"
                 seasonStart="#form.seasonStart#"
                 seasonEnd="#form.seasonEnd#"
+                searchOrgText="#form.OrganizationText#"
                 >
                     </td>
                 </tr>
@@ -86,7 +88,8 @@
        Select t.TeamId, 
                 t.TeamName, 
                 t.TeamIcon,
-                t.TeamSeasonId
+                t.TeamSeasonId,
+                t.OrganizationId
             from vTeam t 
             where t.MainTeamSeasonId=#session.TeamSeasonId#
         </cfquery>
