@@ -48,6 +48,8 @@
       padding: 15px 5% 5px 5%;
       position: relative;
       z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .logo-container {
@@ -70,6 +72,7 @@
       gap: 12px;
       align-items: center;
       z-index: 100;
+      box-sizing: border-box;
     }
     
     .login-link {
@@ -118,12 +121,17 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      overflow-x: hidden;
+      width: 100%;
     }
     
     .content-wrapper {
       position: relative;
       z-index: 2;
       padding: 10px 5% 20px 5%;
+      width: 100%;
+      box-sizing: border-box;
+      overflow-x: hidden;
     }
     
     .header-banner {
@@ -136,6 +144,8 @@
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       display: block;
+      width: calc(100% - 20px);
+      box-sizing: border-box;
     }
     
     .nav-links {
@@ -178,6 +188,20 @@
       -webkit-transform: translateZ(0);
     }
     
+    /* Prevent video from causing scroll issues on mobile */
+    @media screen and (max-width: 768px) {
+      #backgroundVideo {
+        display: block;
+      }
+    }
+    
+    /* Optional: Hide video on very small devices for performance */
+    @media screen and (max-width: 480px) {
+      #backgroundVideo {
+        opacity: 30%;
+      }
+    }
+    
     @media screen and (max-width: 768px) {
       .top-right-actions {
         top: 15px;
@@ -203,6 +227,17 @@
       .nav-cell-small {
         font-size: 1em;
       }
+      .header-banner {
+        padding: 15px 15px;
+        margin: 10px 5%;
+        border-radius: 10px;
+      }
+      .content-wrapper {
+        padding: 10px 3% 20px 3%;
+      }
+      .top-header {
+        padding: 10px 3% 5px 3%;
+      }
     }
     
     @media screen and (max-width: 480px) {
@@ -210,20 +245,100 @@
         top: 12px;
         right: 12px;
         gap: 6px;
+        flex-direction: column;
+        align-items: flex-end;
+        max-width: calc(100% - 24px);
       }
       .login-link {
-        padding: 7px 14px;
-        font-size: 0.85em;
+        padding: 12px 18px;
+        font-size: 0.9em;
+        min-height: 44px;
+        width: auto;
+        min-width: 120px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
       }
       .top-right-cta {
-        padding: 7px 12px;
-        font-size: 0.8em;
+        padding: 12px 18px;
+        font-size: 0.85em;
+        min-height: 44px;
+        width: auto;
+        min-width: 140px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        white-space: normal;
+        line-height: 1.2;
       }
       .logo-container img {
         max-width: 150px;
       }
       .nav-cell-large {
-        font-size: 1.3em;
+        font-size: 1.2em;
+        line-height: 1.4;
+        padding: 10px 5px;
+      }
+      .nav-cell-small {
+        font-size: 0.9em;
+        line-height: 1.4;
+        padding: 8px 5px;
+      }
+      .header-banner {
+        padding: 12px 10px;
+        margin: 10px 2%;
+        border-radius: 8px;
+      }
+      .content-wrapper {
+        padding: 10px 2% 20px 2%;
+      }
+      .top-header {
+        padding: 8px 2% 5px 2%;
+      }
+      /* Ensure video doesn't cause issues on mobile */
+      #backgroundVideo {
+        opacity: 40%;
+      }
+             /* Improve spacing around header banner container */
+       div[style*="padding: 10px 5%"] {
+         padding: 10px 2% 20px 2% !important;
+       }
+    }
+    
+    @media screen and (max-width: 360px) {
+      .top-right-actions {
+        top: 8px;
+        right: 8px;
+        gap: 4px;
+      }
+      .login-link {
+        padding: 10px 14px;
+        font-size: 0.85em;
+        min-width: 100px;
+      }
+      .top-right-cta {
+        padding: 10px 14px;
+        font-size: 0.8em;
+        min-width: 120px;
+      }
+      .logo-container img {
+        max-width: 130px;
+      }
+      .nav-cell-large {
+        font-size: 1.1em;
+        padding: 8px 3px;
+      }
+      .nav-cell-small {
+        font-size: 0.85em;
+        padding: 6px 3px;
+      }
+      .header-banner {
+        padding: 10px 8px;
+        margin: 8px 1%;
       }
     }
   </style>
@@ -255,16 +370,18 @@
       </div>
     </header>
     
-    <!-- Header Banner - Moved Higher -->
-    <div style="padding: 10px 5% 100px 5%;">
-      <header class="header-banner">
-        <div class="nav-links">
-          <div class="nav-cell-large">
-              <i>Capture stats for every game, every player. Film, upload to YouTube and start tracking. Anyone can sign up and start tracking today!!!!</i> 
-          </div>
-        </div>
-      </header>
-    </div>
+         <!-- Header Banner - Moved Higher -->
+     
+       <header class="header-banner" style="padding: 10px 5% 30px 1%;">
+           <div class="nav-cell-large">
+               <i>
+              Capture stats for every game, every player. Film, upload to YouTube and start tracking.
+              Anyone can sign up and start tracking today!!!!
+              </i> 
+           
+         </div>
+       </header>
+    
     
     <!-- Content Wrapper -->
     <div class="content-wrapper">

@@ -2,24 +2,77 @@
 <cfparam name="attributes.username"  default="">
 <CF_BaseHeader>
 <style>
+  /* Desktop-specific fixes for DisplayLoginPage */
   .content-wrapper {
-    padding-top: 0px !important;
+    padding-top: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: auto;
+    width: 100%;
   }
   
   .login-container {
-    margin-top: -80px !important;
-    margin-bottom: 20px;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 400px !important;
+    width: 100%;
+    padding: 38px 30px !important;
   }
   
-  @media screen and (max-width: 768px) {
+  /* Reduce spacing in the header banner container */
+  div[style*="padding: 10px 5%"] {
+    padding-bottom: 20px !important;
+  }
+  
+  /* Ensure header banner doesn't have excessive margin */
+  .header-banner {
+    margin-bottom: 0 !important;
+  }
+  
+  /* Desktop-specific adjustments */
+  @media screen and (min-width: 769px) {
+    .content-wrapper {
+      padding-top: 10px !important;
+      min-height: auto;
+      align-items: flex-start;
+    }
+    
     .login-container {
-      margin-top: -50px !important;
+      margin-top: 10px !important;
+      margin-bottom: 20px !important;
+      max-width: 400px !important;
+      padding: 38px 30px !important;
+    }
+  }
+  
+  /* Tablet adjustments */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    .content-wrapper {
+      padding-top: 10px !important;
+      min-height: auto;
+    }
+    
+    .login-container {
+      margin-top: 10px !important;
+      max-width: 380px !important;
+    }
+  }
+  
+  /* Mobile adjustments */
+  @media screen and (max-width: 480px) {
+    .login-container {
+      margin-top: 10px !important;
+      margin-bottom: 20px !important;
+    }
+    .content-wrapper {
+      padding-top: 10px !important;
+      min-height: auto;
     }
   }
 </style>
-<cfoutput>
-	<form action="#application.pages#authenticate.cfm" method="post">
- </cfoutput>
     <div class="login-container">
     <!-- Error Message (ColdFusion) -->
     <cfoutput>
