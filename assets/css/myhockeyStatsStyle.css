@@ -401,6 +401,23 @@ th {
 				appearance: checkbox;
 				
 			}
+			
+			/* Ensure all radio buttons and checkboxes are visible by default */
+			input[type="radio"], input[type="checkbox"] {
+				width: 20px;
+				height: 20px;
+				min-width: 20px;
+				min-height: 20px;
+				cursor: pointer;
+				-webkit-appearance: radio;
+				appearance: radio;
+				display: inline-block;
+			}
+			
+			input[type="checkbox"] {
+				-webkit-appearance: checkbox;
+				appearance: checkbox;
+			}
 .row-even {
   background-color: var(--gray);
 color: var(--dark)
@@ -1018,6 +1035,23 @@ span{
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
+/* Base dialog styling */
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+  max-width: 500px;
+  width: auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+/* Dialog backdrop */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
 .disabled-look {
   background-color: #ccc;
   color: #666;
@@ -1445,9 +1479,12 @@ button:disabled .reset {
   }
   
   .header-banner {
-    height: 80px;
-    flex-direction: column;
-    padding: 10px;
+    height: auto;
+    min-height: 80px;
+    flex-direction: row !important; /* Keep horizontal layout on mobile */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    padding: 10px 5px; /* Reduce horizontal padding but keep vertical */
+    align-items: center;
   }
   
   .header-banner h1 {
@@ -1487,12 +1524,31 @@ button:disabled .reset {
     font-size: 0.8rem;
   }
   
-  /* Mobile navigation */
+  /* Keep nav-links horizontal on mobile */
+  .nav-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 8px; /* Reduce gap slightly for mobile */
+    align-items: center;
+  }
+  
+  /* Keep logo and nav items inline on mobile */
   .nav-cell {
-    display: block;
-    margin: 5px 0;
-    padding: 8px;
+    display: inline-block !important; /* Keep inline instead of block */
+    margin: 3px 5px !important; /* Smaller margins for mobile */
+    padding: 4px 8px !important;
     text-align: center;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  .logo {
+    margin-right: 20px !important; /* Reduce gap on mobile */
+  }
+  
+  .logo img {
+    max-width: 80px !important; /* Slightly smaller logo on mobile */
+    height: auto;
   }
   
   /* Mobile forms */
@@ -1507,6 +1563,14 @@ button:disabled .reset {
     min-height: 44px; /* Touch-friendly */
   }
   
+  /* Fix for profile-container when logged in */
+  .profile-container {
+    position: relative !important;
+    display: inline-block !important;
+    margin: 0 !important;
+    vertical-align: middle;
+  }
+  
   /* Fix for profile-button width on mobile */
   .profile-button {
     max-width: 150px !important;
@@ -1514,12 +1578,43 @@ button:disabled .reset {
     padding: 10px 15px !important;
     min-height: 44px; /* Keep touch-friendly height */
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem !important;
   }
   
   /* Ensure submit buttons don't stretch full width */
   input[type="submit"].profile-button {
     width: 150px !important;
     max-width: 150px !important;
+  }
+  
+  /* Fix dropdown menu positioning on mobile */
+  .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    min-width: 150px !important;
+    z-index: 1000 !important;
+    margin-top: 5px;
+  }
+  
+  /* Ensure profile button displays properly in nav-cell */
+  .nav-cell.profile-container {
+    display: inline-block !important;
+    margin: 3px 5px !important;
+    padding: 0 !important;
+  }
+  
+  /* Ensure Season text doesn't break layout */
+  .nav-cell:last-child {
+    font-size: 0.85rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
   }
   
   /* Fix for checkbox display on mobile */
@@ -1533,6 +1628,25 @@ button:disabled .reset {
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+  
+  /* Fix for ALL radio buttons and checkboxes on mobile Chrome */
+  input[type="radio"], input[type="checkbox"] {
+    -webkit-appearance: radio !important;
+    appearance: radio !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+  }
+  
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
   }
   
   /* Ensure checkbox containers are visible */
@@ -1565,12 +1679,171 @@ button:disabled .reset {
     margin: 15px 0;
     text-align: center;
   }
+  
+  /* Fix for top-right action buttons on mobile */
+  .top-right-actions {
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    gap: 8px !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    max-width: calc(100% - 20px) !important;
+  }
+  
+  .login-link {
+    padding: 12px 18px !important;
+    font-size: 0.9em !important;
+    min-height: 44px !important;
+    width: auto !important;
+    min-width: 120px !important;
+    text-align: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  
+  .top-right-cta {
+    padding: 12px 18px !important;
+    font-size: 0.85em !important;
+    min-height: 44px !important;
+    width: auto !important;
+    min-width: 140px !important;
+    text-align: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Fix for signup form on mobile (DisplaySignUpPage.cfm) */
+  .form-container {
+    width: 95% !important;
+    min-width: auto !important;
+    max-width: 95% !important;
+    margin: 10px auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Override inline width styles for input fields on signup form */
+  input.inputFld[style*="width"],
+  input.inputFld,
+  select.inputFld {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 12px !important;
+    min-height: 44px !important; /* Touch-friendly */
+  }
+  
+  /* Fix submit button on signup form */
+  input[type="submit"].signup,
+  button.signup,
+  input#submitBtn.signup {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+    padding: 12px 18px !important;
+    font-size: 1rem !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    margin-top: 15px !important;
+  }
+  
+  /* Ensure form.signup displays properly */
+  form.signup {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  h1.headerSignUp {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Fix for DisplayMultiTeam.cfm dialog on mobile */
+  dialog#webModal {
+    max-width: 95% !important;
+    width: 95% !important;
+    margin: 0 auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* Fix module-box on mobile for DisplayMultiTeam */
+  dialog .module-box {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 20px 15px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Override inline width for select in DisplayMultiTeam */
+  dialog select[style*="width:400px"],
+  dialog select[name="TeamSeasonId"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 10px !important;
+    min-height: 44px !important; /* Touch-friendly */
+    border: 2px solid var(--accent-blue) !important;
+    border-radius: 6px !important;
+    background-color: white !important;
+    color: var(--dark) !important;
+  }
+  
+  /* Style select options for better visibility */
+  dialog select[name="TeamSeasonId"] option {
+    padding: 10px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
 }
 
 /* Medium mobile devices (large phones, 481px and up) */
 @media (min-width: 481px) and (max-width: 768px) {
   .header-banner {
-    height: 100px;
+    height: auto;
+    min-height: 100px;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .nav-cell {
+    display: inline-block !important;
+    margin: 5px !important;
+    padding: 5px 10px !important;
+    white-space: nowrap;
+  }
+  
+  .logo {
+    margin-right: 30px !important;
+  }
+  
+  .logo img {
+    max-width: 90px !important;
+    height: auto;
   }
   
   .login-container {
@@ -1589,16 +1862,57 @@ button:disabled .reset {
     padding: 8px 6px;
   }
   
+  /* Fix for profile-container when logged in on medium mobile */
+  .profile-container {
+    position: relative !important;
+    display: inline-block !important;
+    margin: 0 !important;
+    vertical-align: middle;
+  }
+  
   /* Fix for profile-button width on medium mobile */
   .profile-button {
-    max-width: 150px !important;
+    max-width: 180px !important;
     width: auto !important;
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.95rem !important;
+    padding: 10px 18px !important;
+    min-height: 44px;
   }
   
   input[type="submit"].profile-button {
     width: 150px !important;
     max-width: 150px !important;
+  }
+  
+  /* Fix dropdown menu positioning on medium mobile */
+  .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    min-width: 160px !important;
+    z-index: 1000 !important;
+    margin-top: 5px;
+  }
+  
+  /* Ensure profile button displays properly in nav-cell */
+  .nav-cell.profile-container {
+    display: inline-block !important;
+    margin: 5px !important;
+    padding: 0 !important;
+  }
+  
+  /* Ensure Season text doesn't break layout on medium mobile */
+  .nav-cell:last-child {
+    font-size: 0.9rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
   }
   
   /* Ensure checkboxes are visible */
@@ -1612,6 +1926,25 @@ button:disabled .reset {
     display: inline-block !important;
   }
   
+  /* Fix for ALL radio buttons and checkboxes on medium mobile */
+  input[type="radio"], input[type="checkbox"] {
+    -webkit-appearance: radio !important;
+    appearance: radio !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+  }
+  
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+  }
+  
   .player-row {
     display: flex !important;
     align-items: center !important;
@@ -1620,6 +1953,85 @@ button:disabled .reset {
   
   .player-row input[type="checkbox"] {
     flex-shrink: 0;
+  }
+  
+  /* Fix for signup form on medium mobile */
+  .form-container {
+    width: 85% !important;
+    min-width: auto !important;
+    max-width: 500px !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Override inline width styles for input fields on signup form */
+  input.inputFld[style*="width"],
+  input.inputFld,
+  select.inputFld {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    min-height: 44px !important;
+  }
+  
+  /* Fix submit button on signup form */
+  input[type="submit"].signup,
+  button.signup,
+  input#submitBtn.signup {
+    width: auto !important;
+    min-width: 150px !important;
+    max-width: 200px !important;
+    padding: 12px 24px !important;
+    font-size: 1rem !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+  
+  form.signup {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Fix for DisplayMultiTeam.cfm dialog on medium mobile */
+  dialog#webModal {
+    max-width: 90% !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Fix module-box on medium mobile for DisplayMultiTeam */
+  dialog .module-box {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 24px 20px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Override inline width for select in DisplayMultiTeam on medium mobile */
+  dialog select[style*="width:400px"],
+  dialog select[name="TeamSeasonId"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    min-height: 44px !important;
+    border: 2px solid var(--accent-blue) !important;
+    border-radius: 6px !important;
+    background-color: white !important;
+    color: var(--dark) !important;
+  }
+  
+  /* Style select options for better visibility on medium mobile */
+  dialog select[name="TeamSeasonId"] option {
+    padding: 12px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
   }
 }
 
@@ -1725,9 +2137,28 @@ button:disabled .reset {
     -webkit-transform: translateZ(0);
   }
   
-  input, select, textarea {
+  /* Exclude radio buttons and checkboxes from appearance removal */
+  input:not([type="radio"]):not([type="checkbox"]), select, textarea {
     -webkit-appearance: none;
     border-radius: 8px;
+  }
+  
+  /* Ensure radio buttons and checkboxes are visible */
+  input[type="radio"], input[type="checkbox"] {
+    -webkit-appearance: radio !important;
+    appearance: radio !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
   }
   
   input[type="submit"], button {
@@ -2091,34 +2522,67 @@ button:disabled .reset {
     /* Mobile responsive styles */
     @media screen and (max-width: 768px) {
       .top-right-actions {
-        top: 15px;
-        right: 15px;
+        top: 10px;
+        right: 10px;
+        left: auto;
         gap: 8px;
         flex-wrap: wrap;
         justify-content: flex-end;
+        flex-direction: row;
+        max-width: calc(100% - 20px);
       }
       .login-link {
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-size: 0.9em;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        box-sizing: border-box;
       }
       .top-right-cta {
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-size: 0.85em;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        box-sizing: border-box;
       }
     }
     
     @media screen and (max-width: 480px) {
       .top-right-actions {
-        top: 12px;
-        right: 12px;
-        gap: 6px;
+        top: 10px;
+        right: 10px;
+        left: auto;
+        gap: 8px;
+        flex-direction: column;
+        align-items: flex-end;
+        max-width: calc(100% - 20px);
       }
       .login-link {
-        padding: 7px 14px;
-        font-size: 0.85em;
+        padding: 12px 18px;
+        font-size: 0.9em;
+        min-height: 44px;
+        width: auto;
+        min-width: 120px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
       }
       .top-right-cta {
-        padding: 7px 12px;
-        font-size: 0.8em;
+        padding: 12px 18px;
+        font-size: 0.85em;
+        min-height: 44px;
+        width: auto;
+        min-width: 140px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        white-space: normal;
+        line-height: 1.2;
       }
     }
