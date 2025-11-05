@@ -56,12 +56,50 @@ exec stpGetSeason
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-bottom: 15px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Ensure first grid aligns with parent form */
+  .org-select-form > .form-grid:first-of-type {
+    margin-top: 0;
+  }
+  
+  /* Ensure error row doesn't affect alignment */
+  .org-select-form > .form-row.full-width:first-of-type {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure consistent column alignment with parent form */
+  .org-select-form .form-grid {
+    align-items: start;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .org-select-form .form-row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Ensure first form-grid in org-select-form aligns exactly with parent form-grid */
+  .org-select-form > .form-grid:first-of-type {
+    margin-left: 0 !important;
+    clear: left;
   }
 
   .form-row {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .form-row.full-width {
@@ -74,6 +112,9 @@ exec stpGetSeason
     font-size: 0.95em;
     text-shadow: none;
     margin-bottom: 2px;
+    text-align: left;
+    width: 100%;
+    display: block;
   }
 
   .form-row label small {
@@ -96,6 +137,8 @@ exec stpGetSeason
     box-sizing: border-box;
     transition: all 0.3s ease;
     min-height: 44px;
+    text-align: left;
+    margin: 0;
   }
 
   .form-row select:focus,
@@ -111,6 +154,7 @@ exec stpGetSeason
     background: #fff;
     color: #000;
     padding: 10px;
+    text-align: left;
   }
 
   .form-row input[type="text"]::placeholder {

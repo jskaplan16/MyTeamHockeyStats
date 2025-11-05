@@ -28,18 +28,44 @@
 <br>
 
 <style>
+  /* Ensure form and container don't affect grid alignment */
+  form.signup {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .form-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure org-select-form grids align with parent form grids */
+  .org-select-form .form-grid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
   /* Match the grid layout from DisplayOrganizationAutoSelect */
   .form-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-bottom: 15px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .form-row {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .form-row label {
@@ -48,6 +74,9 @@
     font-size: 0.95em;
     text-shadow: none;
     margin-bottom: 2px;
+    text-align: left;
+    width: 100%;
+    display: block;
   }
 
   .form-row select,
@@ -64,6 +93,8 @@
     box-sizing: border-box;
     transition: all 0.3s ease;
     min-height: 44px;
+    text-align: left;
+    margin: 0;
   }
 
   .form-row select:focus,
@@ -98,7 +129,7 @@
   }
 </style>
 
-<div class="form-container" style="width: 60%;">
+<div class="form-container" style="width: 60%;padding:10px;">
     <h1 class="headerSignUp">Team Sign-Up</h1>
     <cfoutput>
     <form id="signupForm" class="signup" action="#application.actions#ActionSignup.cfm" method="post"  enctype="multipart/form-data" onsubmit="return validateAgeGroup();">
