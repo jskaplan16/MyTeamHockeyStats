@@ -99,7 +99,7 @@ where GameId=#attributes.GameId#
 					<td class="#classValue#" width="250"  style="border-bottom: 0px solid black;">
 					<b>#qPenaltyByPeriod.PenaltyUnitType# Players:</b> 
 						<cfloop query="qPenaltyDetail">
-					<br>	#qPenaltyDetail.PlayerNumber# - #qPenaltyDetail.PlayerName# <cfif len(qPenaltyDetail.PlayerNote) gt 0><img src="assets/images/HockeyIcons/InfoIcon.png" alt="icon" width="15" title="#qPenaltyDetail.PlayerNote#">
+					<br>	#qPenaltyDetail.PlayerNumber# - #qPenaltyDetail.PlayerName# <cfif len(qPenaltyDetail.PlayerNote) gt 0><img src="#Application.images#InfoIcon.png" alt="icon" width="15" title="#qPenaltyDetail.PlayerNote#">
 							</cfif>
 						</cfloop>
 					</td>
@@ -115,17 +115,11 @@ where GameId=#attributes.GameId#
 					<small>*Note: Player's are not counted as part of the power play if they get on the ice with less 20 seconds remaining in the penalty. </small> 		
 				</td>
 			</tr>
-			<cfif attributes.ShowEdit and session.showadminfunctions>
+			<cfif session.showadminfunctions>
 			<tr class="#classValue#">
 				<td align="left" colspan="5" style="text-align: left;padding: 10px;">
+					<a href="#application.pages#GoalWizard.cfm?Step=10&GameId=#attributes.GameId#" class="profile-button" style="color:black;text-decoration:underline;">Add Penalty</a>
 					<a href="#application.pages#GoalWizard.cfm?Step=13&PenaltyId=#qPenaltyByPeriod.PenaltyId#" class="profile-button" style="color:black;text-decoration:underline;">Edit Penalty</a>
-				</td>
-								
-		    </tr>
-			</cfif>
-			<cfif attributes.ShowDelete and session.showadminfunctions>
-			<tr class="#classValue#">
-				<td align="left" colspan="5" style="text-align: left;padding: 10px;">
 					<a href="#application.pages#GoalWizard.cfm?Step=15&PenaltyId=#qPenaltyByPeriod.PenaltyId#" class="profile-button" style="color:black;text-decoration:underline;">Delete Penalty</a>
 				</td>
 								

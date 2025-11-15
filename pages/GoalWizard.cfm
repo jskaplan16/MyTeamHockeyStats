@@ -1,8 +1,8 @@
 <cfparam name="attributes.step" default="">
 <cfparam name="attributes.PenaltyId" default="">
 <cfparam name="url.step">	
-<cfif session.ShowAdminFunctions is not true>		
-	<cflocation url="index.cfm">
+<cfif not structKeyexists(session,"ShowAdminFunctions") or session.ShowAdminFunctions is not true>
+	<cflocation url="#Application.base#index.cfm">
 </cfif>
 
 
@@ -145,6 +145,7 @@
 						Game: #session.SelectedGame#  - Penalties
 					</cfoutput>
 			</div>
+			<cf_FormPenalty GameId="#session.selectedGameId#">
 			<cf_DisplayPenalty  GameId="#session.selectedGameId#" showedit="true">	
 				
 		<cfset session.Action="EditPenalty">
@@ -207,7 +208,7 @@
 							PenaltyStopPoint="#qPenalty.PenaltyStopPoint#"
 							SelectedValues="#selectedList#">
 				
-		
+							<cf_DisplayPenalty  GameId="#session.selectedGameId#" showDelete="true">	
 					
 
 				</div>

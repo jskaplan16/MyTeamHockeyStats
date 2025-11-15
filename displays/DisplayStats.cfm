@@ -7,6 +7,7 @@
 <cfparam name="url.SortOrder" default="Desc">	
 <cfparam name="url.showNavBar" default="True">
 <cfparam name="url.showGoalSummary" default="True">
+<cfparam name="url.GoalTypeId" default="">
 
 <cfif not isdefined("url.GameId")>
 	<cflocation url="index.cfm">
@@ -33,7 +34,7 @@
 	 
 	<cfif url.ShowGoalSummary>
 	<div class="table-container">
-		<cf_DisplayGoalSummary gameId=#url.GameId# showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayStats.cfm" DetailsPage="DisplayStats.cfm" STARTGAMEDATE="#session.StartOfSeason#" EndGameDate="#session.EndofSeason#">
+		<cf_DisplayGoalSummary gameId=#url.GameId# showMore="#url.showMore#" SortOrder="#url.SortOrder#" SortField="#url.SortField#" PageName="DisplayStats.cfm" DetailsPage="DisplayStats.cfm" STARTGAMEDATE="#session.StartOfSeason#" EndGameDate="#session.EndofSeason#" GoalTypeId="#url.GoalTypeId#">
 	</div>
 	</cfif>	
 		

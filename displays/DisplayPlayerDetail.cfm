@@ -13,6 +13,7 @@
 <cfparam name="url.FilterDateEnd" default="#session.EndOfSeason#">
 <cfparam name="url.RankingId" default="0">
 <cfparam name="ReturnFilterPage" default="Roster.cfm">
+<cfparam name="url.GoalTypeId" default="0">
 
 
 <cfinclude template="#application.includes#header.cfm">
@@ -26,6 +27,9 @@
 		,@PlayerId=#url.PlayerId#
 	</cfif>
 
+	<cfif len(url.GoalTypeId) gt 0>
+		,@GoalTypeId=#url.GoalTypeId#
+	</cfif>
 	
 	<cfif len(url.Action) gt 0>
 	, @FilterBy='#url.Action#' 
@@ -34,6 +38,7 @@
 	<cfif url.GameId is not "all">
 	,@GameId=#url.gameId# 
 	</cfif>
+
 	,@RankingId=#url.RankingId#
 </cfquery> 
 
@@ -120,7 +125,9 @@
             ReturnFilterPage="DisplayRoster.cfm"
             StartGameDate="#url.FilterDateStart#"
             EndGameDate="#url.FilterDateEnd#"
-            RankingId="#url.RankingId#">
+            RankingId="#url.RankingId#"
+			GoalTypeId="#url.GoalTypeId#"
+			>
     </div>
 </div>
 

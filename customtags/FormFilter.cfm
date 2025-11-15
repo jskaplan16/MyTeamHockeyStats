@@ -5,16 +5,25 @@
 <cfparam name="attributes.FilterDateEnd">	
 <cfparam name="attributes.MinGoalsScored" default="100">
 <cfparam name="attributes.MinGoalScoreOn" default="True">
-<cfparam name="attributes.FilterByTournamentOn" default="False">
+<cfparam name="attributes.FilterByTournamentOn" default="True">
 <cfparam name="attributes.TournamentId" default="">
 <cfparam name="attributes.RankingId" default="0">
-	
+<cfparam name="attributes.GoalTypeId" default="">
+
 	<cfif Attributes.FilterByTournamentOn>
 		<cfquery datasource="#application.datasource#" name="qTournament">
     exec stpGetTournaments @teamSeasonId=#session.TeamSeasonId#
 		</cfquery>
 
 	</cfif>
+
+	<cfquery datasource="#application.datasource#" name="qGoalType">
+		Select GoalTypeId,GoalType from tblgoaltype 
+		where GoalTypeId in (Select distinct GoalTypeId from tblGoal where TeamSeasonId=#session.TeamSeasonId#
+		)
+		order by GoalType
+		
+	</cfquery>
 
  
 
@@ -34,7 +43,7 @@ exec stpGetRanking
 
 <cfswitch expression='#thisTag.ExecutionMode#'>
 	<cfcase value='start'>
-			<cfform method="POST" action="#attributes.ActionPagName##attributes.ActionQueryString#"> 
+			<cfform method="POST" action="#application.displays##attributes.ActionPagName##attributes.ActionQueryString#"> 
 
 	<div class="game-wrapper">
   <table cellspacing="0" cellpadding="2" class="filterTable">
@@ -59,14 +68,22 @@ exec stpGetRanking
 					</cfoutput>
 				</td>	
 				
-<!---			
+		
 			<cfif attributes.FilterByTournamentOn>					 
 					<td>
 				 <b>Tournament</b> 
 					</td>
 
-				<td>			
-				<Select name="TournamentId" onChange="submit()">
+				<td style="min-width: 180px;">		
+					<cfoutput>
+				<Select 
+					name="TournamentId" 
+					onChange="handleTournamentChange(this)" 
+					style="width: 100%; min-width: 180px; max-width: 250px;"
+					data-default-start="#DateFormat(session.StartOfSeason,"yyyy-mm-dd")#"
+					data-default-end="#DateFormat(session.EndOfSeason,"yyyy-mm-dd")#"
+				>
+				</cfoutput>
 					<option value="">Select Tournament</option>
 						<cfoutput query="qTournament">
 					<option value="#TournamentId#" <cfif attributes.TournamentId is qTournament.TournamentId> Selected </cfif> >#qTournament.TournamentName#</option>
@@ -74,6 +91,19 @@ exec stpGetRanking
 				</Select>
 				</td>
 				
+				<td style="white-space: nowrap;">
+				 <b>Goal Type</b> 
+					</td>
+
+				<td style="min-width: 180px;">			
+				<Select name="GoalTypeId" onChange="submit()" style="width: 100%; min-width: 180px; max-width: 250px; white-space: nowrap;">
+					<option value="">All Goal Types</option>
+						<cfoutput query="qGoalType">
+					<option value="#GoalTypeId#" <cfif attributes.GoalTypeId EQ qGoalType.GoalTypeId> Selected </cfif> style="white-space: nowrap;">#qGoalType.GoalType#</option>
+						</cfoutput>		
+				</Select>
+				</td>
+				<!---
 				<td>
 				<b> Opp. Ranking</b> 
 				</td>
@@ -85,9 +115,9 @@ exec stpGetRanking
 						</cfoutput>	
 					</select> 
 				</td>
-	
-			</cfif>		   
 			--->
+			</cfif>		   
+
 					
 				<cfif attributes.MinGoalScoreOn>					 
 					<td>
@@ -109,7 +139,7 @@ exec stpGetRanking
 				<td>
 <cfoutput>
 					<input type="submit" value="Submit">
-					<a href="/#attributes.ActionPagName#" class="grid-link">[Clear]</a>
+					<a href="#application.displays##attributes.ActionPagName#" class="grid-link">[Clear]</a>
 </cfoutput>			
 	</td>
 	
@@ -118,6 +148,33 @@ exec stpGetRanking
 					</table>
 			</div>
 					</cfform>
+<cfoutput>
+			<script>
+				(function(){
+					if (window.handleTournamentChange) {
+						return;
+					}
+					window.handleTournamentChange = function(selectEl){
+						if(!selectEl){return;}
+						var form = selectEl.form;
+						if(!form){return;}
+						if(selectEl.value === ""){
+							var defaultStart = selectEl.getAttribute("data-default-start");
+							var defaultEnd = selectEl.getAttribute("data-default-end");
+							if(defaultStart && form.FilterDateStart){
+								form.FilterDateStart.value = defaultStart;
+							}
+							if(defaultEnd && form.FilterDateEnd){
+								form.FilterDateEnd.value = defaultEnd;
+							}
+							form.submit();
+							return;
+						}
+						form.submit();
+					};
+				})();
+			</script>
+	</cfoutput>
 		</cfcase>
 
 

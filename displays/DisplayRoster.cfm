@@ -13,33 +13,35 @@
 <cfparam name="form.MinGoalScored" default="0">
 <cfparam name="form.TournamentId" default="">
 <cfparam name="form.RankingId" default="0">
+<cfparam name="form.GoalTypeId" default="">
 	
 	
-<cfif isDefined("url.FilterDateStart")>
-	  <cfset form.FilterDateStart=url.FilterDateStart>
-</cfif>	
-<cfif isDefined("url.FilterDateStart")>
-	  <cfset form.FilterDateEnd=url.FilterDateEnd>
-</cfif>	
+<cfset defaultFilterDateStart=session.StartOfSeason>
+<cfset defaultFilterDateEnd=session.EndOfSeason>
+
 <cfif isDefined("url.TournamentId") and len(url.TournamentId)>
-<cfset form.TournamentId=url.TournamentId>	
+	<cfset form.TournamentId=url.TournamentId>	
 </cfif>
+
 <cfif isDefined("url.RankingId")>
-<cfset form.RankingId=url.RankingId>
-</cfif>
+	<cfset form.RankingId=url.RankingId>
+</cfif>  
 	
 	<cfif IsDefined("form.TournamentId") and len(form.TournamentId)>
-		<cfquery datasource="hockeyStats" name="qTournament">
+		<cfquery datasource="#application.datasource#" name="qTournament">
 			Select TournamentId,TournamentName,StartDate,EndDate from tblTournament 
-			where TeamId=#session.TeamId#
+			where TeamSeasonId=#session.TeamSeasonId#
 			and   TournamentId=<cfqueryparam cfsqltype="CF_SQL_TINYINT" value="#form.TournamentId#">
 		</cfquery>
 			
-		<cfif qTournament.recordcount>
+		<cfif qTournament.recordcount and len(form.TournamentId) is not 0>
 			<cfset form.FilterDateStart=qTournament.StartDate>
 			<cfset form.FilterDateEnd =qTournament.EndDate>
+		<cfelse>
+			<cfset form.FilterDateStart=session.StartOfSeason>
+			<cfset form.FilterDateEnd =session.EndOfSeason>
 		</cfif>
-	
+		
 	</cfif>
 <div class="content">
 	
@@ -58,6 +60,7 @@
 				   FilterByTournamentOn="True"
 				   TournamentId="#form.TournamentId#"
 				   RankingId="#form.RankingId#"
+				   GoalTypeId="#form.GoalTypeId#"
 				>
 				  
 	
@@ -71,6 +74,7 @@
 								    EndGameDate="#form.FilterDateEnd#" 
 								   TournamentId="#form.TournamentId#"
 								   RankingId="#form.RankingId#"  
+								   GoalTypeId="#form.GoalTypeId#"
 								   >
 </div>				
 <cfinclude template="#application.includes#footer.cfm">

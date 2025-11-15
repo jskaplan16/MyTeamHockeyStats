@@ -10,6 +10,7 @@
 <cfparam name="attributes.TournamentId" default="">
 <cfparam name="attributes.RankingId" default="0">
 <cfparam name="attributes.LinksOn" default="True">
+<cfparam name="attributes.GoalTypeId" default="">
 
 
 <cfif NOT structKeyExists(session, "userid")>
@@ -25,6 +26,7 @@
 
 <cfset TotalGoals = 0> 
 <cfset TotalAssists=0> 
+<cfset showRateColumns = Len(Trim("" & attributes.GoalTypeId)) EQ 0>
 
 <cfif attributes.SortOrder is "Desc">
 	<cfset newSortOrder="ASC">	
@@ -39,6 +41,9 @@
 		@TeamSeasonId = #session.teamSeasonId#
 		<cfif len(attributes.gameId) and attributes.gameId is not "all"> 
 			,@GameId=<cfqueryparam value="#attributes.gameId#" cfsqltype="CF_SQL_INTEGER">
+		</cfif>
+		<cfif len(attributes.GoalTypeId) and attributes.GoalTypeId is not "all"> 
+			,@GoalTypeId=<cfqueryparam value="#attributes.GoalTypeId#" cfsqltype="CF_SQL_INTEGER">
 		</cfif>
 </cfquery>
 
@@ -111,28 +116,30 @@
 				</th>
 						<th  class="header-game">
 				 				<cfif attributes.SortField  is "PositionGeneral" and Attributes.SortOrder is "Desc">
-									<a href="#application.displays##attributes.PageName#?SortField=PositionGeneral&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">Position</a>
+									<a href="#application.displays##attributes.PageName#?SortField=PositionGeneral&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">Position</a>
 								<cfelse>
-										<a href="#application.displays##attributes.PageName#?SortField=PositionGeneral&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">Position</a>
+										<a href="#application.displays##attributes.PageName#?SortField=PositionGeneral&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">Position</a>
 									</cfif>
 				</th>
+				<cfif showRateColumns>
 					<th class="header-game">
-					GP
-				</th>
+						GP
+					</th>
+				</cfif>
 		
 				<th class="header-game">
 										<cfif attributes.SortField  is "Total_Goals" and Attributes.SortOrder is "Desc">
-						<a href="#application.displays##attributes.PageName#?SortField=Total_Goals&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">
+						<a href="#application.displays##attributes.PageName#?SortField=Total_Goals&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">
 					<cfelse>
-						<a href="#application.displays##attributes.PageName#?SortField=Total_Goals&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">
+						<a href="#application.displays##attributes.PageName#?SortField=Total_Goals&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">
 					</cfif>		
 					Goals  
 				</th>
 				<th class="header-game">
 										<cfif attributes.SortField  is "Total_Assists" and Attributes.SortOrder is "Desc">
-						<a href="#application.displays##attributes.PageName#?SortField=Total_Assists&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">
+						<a href="#application.displays##attributes.PageName#?SortField=Total_Assists&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">
 					<cfelse>
-						<a href="#application.displays##attributes.PageName#?SortField=Total_Assists&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#">
+						<a href="#application.displays##attributes.PageName#?SortField=Total_Assists&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#">
 					</cfif>		
 					Assists
 						</a>
@@ -170,22 +177,24 @@
 					</cfif>	
 					Plus/Minus
 				</th>
-<th class="header-game">
-					<cfif attributes.SortField  is "GPG" and Attributes.SortOrder is "Desc">
-						<a href="#attributes.PageName#?SortField=GPG&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Goals Per Game">
-					<cfelse>
-						<a href="#attributes.PageName#?SortField=GPG&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Goals Per Game">
-					</cfif>	
-					GPG 
-				</th>
-<th class="header-game">
-					<cfif attributes.SortField  is "GPG" and Attributes.SortOrder is "Desc">
-						<a href="#attributes.PageName#?SortField=PPG&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Points Per Game">
-					<cfelse>
-						<a href="#attributes.PageName#?SortField=PPG&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Points Per Game">
-					</cfif>	
-					PPG 
-				</th>
+<cfif showRateColumns>
+	<th class="header-game">
+						<cfif attributes.SortField  is "GPG" and Attributes.SortOrder is "Desc">
+							<a href="#attributes.PageName#?SortField=GPG&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Goals Per Game">
+						<cfelse>
+							<a href="#attributes.PageName#?SortField=GPG&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Goals Per Game">
+						</cfif>	
+						GPG 
+					</th>
+	<th class="header-game">
+						<cfif attributes.SortField  is "GPG" and Attributes.SortOrder is "Desc">
+							<a href="#attributes.PageName#?SortField=PPG&SortOrder=ASC&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Points Per Game">
+						<cfelse>
+							<a href="#attributes.PageName#?SortField=PPG&SortOrder=Desc&GameId=#attributes.GameId#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&TournamentId=#attributes.TournamentId#&RankingId=#attributes.RankingId#" title="Points Per Game">
+						</cfif>	
+						PPG 
+					</th>
+</cfif>
 					
 							</tr>
 											
@@ -208,7 +217,7 @@
 					</td>
 					<td class="tblCellLeft" style="vertical-align: middle;" nowrap> 
 			
-					<a href="#attributes.NameDetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#" class="mainLink">
+					<a href="#attributes.NameDetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#" class="mainLink player-name-link">
 							#qStatsSummary.PlayerName#						
 					</a>	
 					</td>
@@ -223,19 +232,21 @@
 					</a>
 				</cfif>
 					</td>
-				<td class="tblCellCenter" style="vertical-align: middle;">
-					<cfif attributes.LinksOn>
-					<a href="#attributes.NameDetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#" class="mainLink">
-					</cfif>
-						#qStatsSummary.GamesPlayed#
+				<cfif showRateColumns>
+					<td class="tblCellCenter" style="vertical-align: middle;">
 						<cfif attributes.LinksOn>
-					</a>
-					</cfif>
-					</td>
+						<a href="#attributes.NameDetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#" class="mainLink">
+						</cfif>
+							#qStatsSummary.GamesPlayed#
+							<cfif attributes.LinksOn>
+						</a>
+						</cfif>
+						</td>
+				</cfif>
 
 					<td class="tblCellCenter" style="vertical-align: middle;">
 					<cfif attributes.LinksOn>
-				<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Goals&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view Goals">
+				<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Goals&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#" class="mainLink" title="Click to view Goals">
 				
 						</cfif>
 							#qStatsSummary.totalGoals#
@@ -245,7 +256,7 @@
 					</td>
 					<td class="tblCellCenter" style="vertical-align: middle;">
 						<cfif attributes.LinksOn>
-					<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Assists&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view Assists">
+					<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Assists&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#" class="mainLink" title="Click to view Assists">
 						</cfif>
 							#qStatsSummary.totalAssists#
 		 	<cfif attributes.LinksOn>
@@ -254,7 +265,7 @@
 					</td>
 					<td class="tblCellCenter" style="vertical-align: middle;">
 					<cfif attributes.LinksOn>	
-					<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view Points">
+					<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#&GoalTypeId=#attributes.GoalTypeId#" class="mainLink" title="Click to view Points">
 					</cfif>
 							#qStatsSummary.TotalPoints#
 							<cfif attributes.LinksOn>
@@ -289,24 +300,26 @@
 							</cfif>
 						</td>
 					
-									<td class="tblCellCenter" style="vertical-align: middle;">
-	 	 <cfif attributes.LinksOn>				
-			<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Goals&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view Goals Per Game(GPG)">
-		</cfif>				
-						#NumberFormat(qStatsSummary.GPG,'_.00')#
-		<cfif attributes.LinksOn>				
-				</a>
-		</cfif>		
-				</td>
-											<td class="tblCellCenter" style="vertical-align: middle;">
-											<cfif attributes.LinksOn>
-		<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view PPG - Points Per Game(PPG)">
-			</cfif>
-						#NumberFormat(qStatsSummary.PPG,'_.00')#
-					<cfif attributes.LinksOn>
-				</a>
+					<cfif showRateColumns>
+						<td class="tblCellCenter" style="vertical-align: middle;">
+				 	 <cfif attributes.LinksOn>				
+					<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Goals&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view Goals Per Game(GPG)">
+				</cfif>				
+							#NumberFormat(qStatsSummary.GPG,'_.00')#
+				<cfif attributes.LinksOn>				
+						</a>
+				</cfif>		
+					</td>
+												<td class="tblCellCenter" style="vertical-align: middle;">
+												<cfif attributes.LinksOn>
+			<a href="#attributes.DetailsPage#?GameId=#attributes.gameId#&Action=Points&PlayerId=#qStatsSummary.PlayerId#&ShowMore=#attributes.ShowMore#&FilterDateStart=#attributes.StartGameDate#&FilterDateEnd=#attributes.EndGameDate#&rankindId=#attributes.RankingId#" class="mainLink" title="Click to view PPG - Points Per Game(PPG)">
 				</cfif>
-				</td>
+							#NumberFormat(qStatsSummary.PPG,'_.00')#
+						<cfif attributes.LinksOn>
+					</a>
+					</cfif>
+					</td>
+					</cfif>
 					</tr>
 							
 							
@@ -334,9 +347,11 @@
 			<td style="border: 0px;">  			</td>
 			<td style="border: 0px;">   			</td>
 					
-			<td  style="text-align: center;">
-		#ttlGamesPlayed#
-					</td>
+			<cfif showRateColumns>
+				<td  style="text-align: center;">
+			#ttlGamesPlayed#
+						</td>
+			</cfif>
 						
 	<td style="text-align: center;">
 		#TtlGoals#
@@ -357,18 +372,18 @@
 	<td   style="text-align: center;">
 #ttlPlusMinus#
 						</td>
+						<cfif showRateColumns>
 							<td  style="text-align: center;">
-							<!---
+					
 							<cftry>
 #NumberFormat(Evaluate(TtlGoals/ttlGamesPlayed),'_.00')#
 <cfcatch >
 0	
 </cfcatch>															
 														</cftry>
---->
-						</td>
-						<td style="text-align: center;">
-<!---
+							</td>
+							<td style="text-align: center;">
+
 <cftry>
 	
 
@@ -377,8 +392,9 @@
 	0
 </cfcatch>
 </cftry>
-	--->
-						</td>
+
+							</td>
+						</cfif>
 							</tr>
 			</cfoutput>
 	</table>

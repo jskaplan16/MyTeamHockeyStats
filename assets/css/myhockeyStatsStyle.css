@@ -233,6 +233,9 @@ button.submit:hover {
             text-align: left;
             display: inline-block; 
 			}      
+      .player-name-link {
+        font-weight: 400 !important;
+      }
             .tblCellLeft {
                 text-align: left !important; /* Force left alignment */
                 color: #000; /* Set text color */
@@ -539,6 +542,8 @@ color: var(--dark)
             color: var(--gray);
             height: 120px;
             box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
         }
         .footer-banner {
           width: 100%;
@@ -1485,6 +1490,11 @@ button:disabled .reset {
     flex-wrap: wrap; /* Allow wrapping if needed */
     padding: 10px 5px; /* Reduce horizontal padding but keep vertical */
     align-items: center;
+    justify-content: center !important; /* Center all content on mobile */
+    position: relative !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
   
   .header-banner h1 {
@@ -1531,6 +1541,11 @@ button:disabled .reset {
     flex-wrap: wrap;
     gap: 8px; /* Reduce gap slightly for mobile */
     align-items: center;
+    justify-content: center !important; /* Center nav links */
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100%;
+    text-align: center;
   }
   
   /* Keep logo and nav items inline on mobile */
@@ -1538,17 +1553,45 @@ button:disabled .reset {
     display: inline-block !important; /* Keep inline instead of block */
     margin: 3px 5px !important; /* Smaller margins for mobile */
     padding: 4px 8px !important;
-    text-align: center;
+    text-align: center !important;
     white-space: nowrap; /* Prevent text wrapping */
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Center the logo container specifically */
+  .header-banner > .nav-cell.logo {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Override inline style on logo container */
+  .header-banner > .nav-cell.logo[style*="text-align: left"] {
+    text-align: center !important;
+  }
+  
+  /* Ensure nav links don't float over content */
+  .nav-cell a,
+  .nav-link {
+    position: relative !important;
+    z-index: 1 !important;
   }
   
   .logo {
-    margin-right: 20px !important; /* Reduce gap on mobile */
+    margin-right: 0 !important; /* Remove right margin for centering */
+    margin-left: 0 !important;
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 8px;
   }
   
   .logo img {
     max-width: 80px !important; /* Slightly smaller logo on mobile */
     height: auto;
+    margin: 0 auto;
+    display: block;
   }
   
   /* Mobile forms */
@@ -1606,6 +1649,7 @@ button:disabled .reset {
     display: inline-block !important;
     margin: 3px 5px !important;
     padding: 0 !important;
+    text-align: center !important;
   }
   
   /* Ensure Season text doesn't break layout */
@@ -1615,6 +1659,28 @@ button:disabled .reset {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 120px;
+  }
+  
+  /* Ensure body content doesn't get covered by header */
+  body {
+    padding-top: 0 !important;
+  }
+  
+  /* Ensure content containers have proper spacing */
+  .content,
+  .content-wrapper,
+  .table-container,
+  .PageHeader {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 10px !important;
+  }
+  
+  /* Prevent header from overlapping page content */
+  div.content,
+  div[class*="content"] {
+    clear: both;
+    margin-top: 15px;
   }
   
   /* Fix for checkbox display on mobile */
@@ -1820,14 +1886,51 @@ button:disabled .reset {
     flex-wrap: wrap;
     padding: 10px;
     align-items: center;
+    justify-content: center !important; /* Center all content on medium mobile */
+    position: relative !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
   
   .nav-links {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap;
+    position: relative !important;
+    z-index: 1 !important;
     gap: 10px;
     align-items: center;
+    justify-content: center !important; /* Center nav links */
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Center logo on medium mobile */
+  .logo {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .logo img {
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Center logo container */
+  .header-banner > .nav-cell.logo {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Override inline style on logo container */
+  .header-banner > .nav-cell.logo[style*="text-align: left"] {
+    text-align: center !important;
   }
   
   .nav-cell {
@@ -1913,6 +2016,48 @@ button:disabled .reset {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 150px;
+  }
+  
+  /* Keep logo and nav items inline on medium mobile */
+  .nav-cell {
+    position: relative !important;
+    z-index: 1 !important;
+    text-align: center !important;
+  }
+  
+  /* Ensure nav links don't float over content */
+  .nav-cell a,
+  .nav-link {
+    position: relative !important;
+    z-index: 1 !important;
+    text-align: center;
+  }
+  
+  /* Center profile container */
+  .nav-cell.profile-container {
+    text-align: center !important;
+  }
+  
+  /* Ensure body content doesn't get covered by header */
+  body {
+    padding-top: 0 !important;
+  }
+  
+  /* Ensure content containers have proper spacing */
+  .content,
+  .content-wrapper,
+  .table-container,
+  .PageHeader {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 10px !important;
+  }
+  
+  /* Prevent header from overlapping page content */
+  div.content,
+  div[class*="content"] {
+    clear: both;
+    margin-top: 15px;
   }
   
   /* Ensure checkboxes are visible */

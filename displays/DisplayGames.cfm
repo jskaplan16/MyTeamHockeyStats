@@ -11,19 +11,27 @@
 <cfparam name="form.MinGoalScored" default="0">
 <cfparam name="form.TournamentId" default="">
 <cfparam name="form.RANKINGID" default="0">
+<cfparam name="form.GoalTypeId" default="">
 	
 <cfif IsDefined("form.TournamentId") and len(form.TournamentId)>
 		<cfquery datasource="#application.datasource#" name="qTournament">
     exec stpGetTournaments @teamSeasonId=#session.TeamSeasonId#,
-      @TournamentId=<cfqueryparam cfsqltype="CF_SQL_TINYINT" value="#form.TournamentId#">
+    @TournamentId=<cfqueryparam cfsqltype="CF_SQL_TINYINT" value="#form.TournamentId#">
+    
 		</cfquery>
 			
-		<cfif qTournament.recordcount>
+	<cfif qTournament.recordcount>
 			<cfset form.FilterDateStart=qTournament.StartDate>
 			<cfset form.FilterDateEnd =qTournament.EndDate>
-		</cfif>
+ <cfelse>
+      <cfset form.FilterDateStart=session.StartOfSeason>
+      <cfset form.FilterDateEnd =session.EndOfSeason>
+    
 	</cfif>	
-
+<cfelse>
+  <cfset form.FilterDateStart=session.StartOfSeason>
+  <cfset form.FilterDateEnd =session.EndOfSeason>
+</cfif>
 
 	<cfquery datasource="#application.datasource#" name="qGames">
 exec stpGetGames @FilterDateStart='#form.FilterDateStart#',
@@ -65,6 +73,7 @@ Select Sum(MainTeamScore) as TotalMain, Sum(OpponentTeamScore) as TotalOpponent 
 				   FilterByTournamentOn="True"
 				   TournamentId="#form.TournamentId#"
            RankingId="#form.RANKINGID#"
+				   GoalTypeId="#form.GoalTypeId#"
 				   >
   </div>	
 	<cfoutput>

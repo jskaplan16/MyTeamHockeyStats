@@ -10,7 +10,7 @@
 <cfparam name="attributes.showEdit" type="boolean" default="false">
 <cfparam name="attributes.showDelete" type="boolean" default="false">
 <cfparam name="attributes.RankingId" default="0">
-
+<cfparam name="attributes.GoalTypeId" default="">
 <cfif NOT structKeyExists(session, "userid")>
   <!--- Session expired or user not logged in --->
   <cflocation url="#Application.displays#DisplayLoginPage.cfm" addtoken="no">
@@ -30,7 +30,10 @@
 	<cfif len(attributes.filterBy) gt 0>
 	, @FilterBy='#attributes.filterBy#' 
 	</cfif>
-	
+	<cfif len(attributes.GoalTypeId) gt 0>
+		,@GoalTypeId=#attributes.GoalTypeId#
+	</cfif>
+
 	<cfif attributes.GameId is not "all">
 	,@GameId=#attributes.gameId# 
 	</cfif>
