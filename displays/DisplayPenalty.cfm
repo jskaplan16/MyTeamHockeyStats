@@ -19,12 +19,15 @@
 		     PenalizedPlayerName,
 			 IsPenaltyUnitSucessful,
 			 DENSE_RANK() OVER (PARTITION BY GameId,Period Order by Convert(time,PenaltyStart) desc) as PeriodRow,
-			 PenaltyTimeType
+			 PenaltyTimeType,
+			 TeamSeasonId,
+			 Convert(time,PenaltyStart) as PeriodStartTime
 	from vPenalty 
 	where GameID=#attributes.GameId# 
+	Order by Period asc, Convert(time,PenaltyStart) desc
 		</cfquery>
-	
-
+	<div></div>
+	<div class="game-wrapper">
 <cfif qPenaltyByPeriod.RecordCount>
 
 <table class="table-responsive">
@@ -60,26 +63,26 @@
 			
 						</div>	
 				</td>
-					<td class="#classValue#" style="border-bottom: 0px solid black;">
+				<td class="#classValue#" style="border-bottom: 0px solid black;">
 <cfset currentTime = Now()>
-
-
 					Period: #Period# <br/>
 					Time: #timeFormat(PenaltyStart,"HH:mm")#
 						<div style="border:1px solid black; padding: 3px; text-align: center;"> 
-					#PenaltyUnitType#</div>
-					<cfif IsPenaltyUnitSucessful>
+					#PenaltyUnitType# 
+						</div>
+					<cfif len(IsPenaltyUnitSucessful) is not 0  AND IsPenaltyUnitSucessful>
 						<div style="background-color:green; padding: 3px; text-align: center;"> 
 							<a href="#Application.pages#showGoals.cfm?GoalList=#PenaltyGoalId#" class="mainlink" style="color:white;">Successful</a> 
-						</div>	
-						<cfelse>
+						</div>
+					</cfif>	
+					<cfif len(IsPenaltyUnitSucessful) is not 0   AND IsPenaltyUnitSucessful IS 0>
 						<div style="background-color:red; padding: 3px; text-align: center;color:white;"> 
 							<b>Unsuccessful</b>
-						</div>	
+						</div>
+					</cfif>	
 						<div align="center">
 							<cfif PenaltyTimeType is not "Normal"><i>#PenaltyTimeType#</i></cfif>
-							</div>
-							</cfif>	
+						</div>
 				</td>
 <cfquery datasource="#application.datasource#" name="qPenaltyDetail">
 Select 
@@ -97,9 +100,13 @@ where GameId=#attributes.GameId#
 				
 				
 					<td class="#classValue#" width="250"  style="border-bottom: 0px solid black;">
-					<b>#qPenaltyByPeriod.PenaltyUnitType# Players:</b> 
+					 <cfif qPenaltyByPeriod.PenaltyUnitType is not "offsetting"> <b>#qPenaltyByPeriod.PenaltyUnitType# Players:</b> </cfif> 
 						<cfloop query="qPenaltyDetail">
-					<br>	#qPenaltyDetail.PlayerNumber# - #qPenaltyDetail.PlayerName# <cfif len(qPenaltyDetail.PlayerNote) gt 0><img src="#Application.images#InfoIcon.png" alt="icon" width="15" title="#qPenaltyDetail.PlayerNote#">
+							<cfif qPenaltyByPeriod.PenaltyUnitType is not "offsetting">
+					<br>	#qPenaltyDetail.PlayerNumber# - #qPenaltyDetail.PlayerName#
+								</cfif>
+					<cfif len(qPenaltyDetail.PlayerNote) gt 0>
+						<img src="#Application.images#InfoIcon.png" alt="icon" width="15" title="#qPenaltyDetail.PlayerNote#">
 							</cfif>
 						</cfloop>
 					</td>
@@ -115,6 +122,23 @@ where GameId=#attributes.GameId#
 					<small>*Note: Player's are not counted as part of the power play if they get on the ice with less 20 seconds remaining in the penalty. </small> 		
 				</td>
 			</tr>
+		<cfif qPenaltyByPeriod.PenaltyGoalId is not "">
+				<cfquery datasource="#application.datasource#" name="qPenaltyGoal">
+			exec dbo.stpGetPenaltyGoals 
+
+			@PenaltyGoalId=#qPenaltyByPeriod.PenaltyGoalId#
+				</cfquery>
+
+				<tr>
+					<td colspan="5" align="center">
+							<div style="border:1px solid black; padding: 3px; width: 50%; margin: 0 auto; text-align: center;"> 
+						#qPenaltyGoal.PenaltyGoalDesc# 
+							</div>
+						</td>
+				</tr>
+					
+		</cfif>
+				
 			<cfif session.showadminfunctions>
 			<tr class="#classValue#">
 				<td align="left" colspan="5" style="text-align: left;padding: 10px;">
@@ -130,3 +154,4 @@ where GameId=#attributes.GameId#
 			</cfloop>
 			</table>
 	</cfif>
+</div>

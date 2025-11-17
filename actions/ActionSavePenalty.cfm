@@ -26,6 +26,8 @@
 	 ,@PenaltyStartPoint=<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#form.STARTPOINT#" null="#form.STARTPOINT is ''#">
 	 ,@PenaltyStopPoint=<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#form.EndPOINT#" null="#form.EndPOINT is ''#">		 
      , @PenaltyUnitList=<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#form.PenaltyUnitList#" null="#form.PenaltyUnitList is ''#">		
+	,  @PenaltyEnd=<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#form.PenaltyEnd#" null="#form.PenaltyEnd is ''#">
+
 </cfquery>
 	
 		 <cfset url.Step=13>

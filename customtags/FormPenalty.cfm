@@ -5,7 +5,7 @@
 <cfparam name="attributes.Period" default="1">
 <cfparam name="attributes.TeamSeasonId" default="#session.TeamSeasonId#">
 <cfparam name="attributes.PlayerId" default="">
-<cfparam name="attributes.PenaltyLength" default="1.5">
+<cfparam name="attributes.PenaltyLength" default="2.0">
 <cfparam name="attributes.PenaltyStart" default="">
 <cfparam name="attributes.PenaltyEnd" default="">
 <cfparam name="attributes.PenaltyStartPoint" default="">
@@ -107,8 +107,7 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
 
 <div class="row-even" style="text-align: left;padding: 15px;">
 
-	<label>
-	If Penalty successful, please associate goals 
+	Associate goal.
 	</label>
 <cfset penaltyGoalSelected = attributes.PenaltyGoalId>
 <cfoutput>
@@ -191,6 +190,7 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
 </div>
 
 
+<cfoutput>
 <script>
     $(document).ready(function () {
       $("input[name='teamSeasonId']").change(function () {
@@ -204,7 +204,7 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
           dataType: 'json', // Expect JSON response
           success: function (options) {
             // Populate the dropdown
-            const dropdown = $("#playerId");
+            const dropdown = $("##playerId");
 
             dropdown.find('option:not(:first)').remove(); // Clear existing options except the first one
 
@@ -296,8 +296,8 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
         }
       }
 
-      const mainTeamSeasonId = "#qGameInfo.MainTeamSeasonId#";
-      const opponentTeamSeasonId = "#qGameInfo.OpponentTeamSeasonId#";
+      const mainTeamSeasonId = "#encodeForJavaScript(qGameInfo.MainTeamSeasonId)#";
+      const opponentTeamSeasonId = "#encodeForJavaScript(qGameInfo.OpponentTeamSeasonId)#";
 
       function getSelectedTeamSeasonId() {
         const radio = document.querySelector("input[name='teamSeasonId']:checked");
@@ -315,6 +315,7 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
       }
 
       const initialSelectedValue = penaltyGoalSelect.dataset.selected || '';
+      setBaseOptions(initialSelectedValue);
       const teamRadios = document.querySelectorAll("input[name='teamSeasonId']");
       teamRadios.forEach(function (radio) {
         radio.addEventListener('change', function () {
@@ -329,4 +330,5 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
     function resizeIframe(obj) {
       obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
     }
-  </script>
+</script>
+</cfoutput>

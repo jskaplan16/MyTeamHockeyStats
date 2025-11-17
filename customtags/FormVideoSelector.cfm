@@ -82,7 +82,7 @@ function copyCopyData(id){
 	<div style="display:inline;">
 		<label>Start Point:</label>
 	
-		<input type="text" id="startPoint" name="startPoint" readonly style="width:50px;padding:5px;height: 25px;">
+		<input type="text" id="startPoint" name="startPoint"  style="width:50px;padding:5px;height: 25px;">
 
 		<input type="button" name="set" value="Start Point" onclick="Javascript:copyCopyData('startPoint');" class="submit">
 
@@ -93,7 +93,7 @@ function copyCopyData(id){
 	</div>
 	<div style="display:inline;">
 		<label>End Point:</label>
-		<input type="text" id="endPoint" name="endPoint" readonly style="width:50px;padding:5px;height: 25px;">
+		<input type="text" id="endPoint" name="endPoint"  style="width:50px;padding:5px;height: 25px;">
 		<input type="button" name="set" value="End Point" onclick="Javascript:copyCopyData('endPoint');" class="submit">
 	</div>
 </div>

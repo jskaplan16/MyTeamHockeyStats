@@ -30,7 +30,7 @@
 	<cfif len(attributes.filterBy) gt 0>
 	, @FilterBy='#attributes.filterBy#' 
 	</cfif>
-	<cfif len(attributes.GoalTypeId) gt 0>
+	<cfif attributes.GoalTypeId gt 0>
 		,@GoalTypeId=#attributes.GoalTypeId#
 	</cfif>
 
@@ -198,11 +198,11 @@
 </cfif>
 
 <cfif attributes.showEdit>
-	<a href="#application.pages#GoalWizard.cfm?step=5&GoalId=#GoalId#&GameId=#attributes.GameId#" class="profile-button" style="color:black">Edit Goal</a>
+	<a href="#application.pages#GoalWizard.cfm?step=5&GoalId=#GoalId#&GameId=#qJustGoals.GameId#" class="profile-button" style="color:black">Edit Goal</a>
 </cfif>
 <cfif attributes.showDelete>
 
-			<a href="#application.pages#GoalWizard.cfm?step=6&GoalId=#GoalId#&GameId=#attributes.GameId#" class="profile-button" style="color:black">Delete Goal</a>	
+			<a href="#application.pages#GoalWizard.cfm?step=6&GoalId=#GoalId#&GameId=#qJustGoals.GameId#" class="profile-button" style="color:black">Delete Goal</a>	
 </cfif>	
 			</cfoutput>
 

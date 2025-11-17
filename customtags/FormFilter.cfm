@@ -9,6 +9,8 @@
 <cfparam name="attributes.TournamentId" default="">
 <cfparam name="attributes.RankingId" default="0">
 <cfparam name="attributes.GoalTypeId" default="">
+<cfparam name="attributes.FilterByGoalTypeOn" default="False">
+<cfparam name="attributes.FilterByRankingOn" default="False">
 
 	<cfif Attributes.FilterByTournamentOn>
 		<cfquery datasource="#application.datasource#" name="qTournament">
@@ -16,7 +18,7 @@
 		</cfquery>
 
 	</cfif>
-
+<cfif attributes.FilterByGoalTypeOn>
 	<cfquery datasource="#application.datasource#" name="qGoalType">
 		Select GoalTypeId,GoalType from tblgoaltype 
 		where GoalTypeId in (Select distinct GoalTypeId from tblGoal where TeamSeasonId=#session.TeamSeasonId#
@@ -24,13 +26,13 @@
 		order by GoalType
 		
 	</cfquery>
-
+</cfif>
  
-
-  	<cfquery datasource="#application.datasource#" name="qRating"> 
-exec stpGetRanking 
+<cfif attributes.FilterByRankingOn>
+	<cfquery datasource="#application.datasource#" name="qRating"> 
+	exec stpGetRanking 
 	</cfquery>
-
+</cfif>
 
 	
 
@@ -90,7 +92,7 @@ exec stpGetRanking
 						</cfoutput>		
 				</Select>
 				</td>
-				
+				<cfif attributes.FilterByGoalTypeOn>
 				<td style="white-space: nowrap;">
 				 <b>Goal Type</b> 
 					</td>
@@ -103,7 +105,8 @@ exec stpGetRanking
 						</cfoutput>		
 				</Select>
 				</td>
-				<!---
+				</cfif>
+				<cfif attributes.FilterByRankingOn>
 				<td>
 				<b> Opp. Ranking</b> 
 				</td>
@@ -115,7 +118,7 @@ exec stpGetRanking
 						</cfoutput>	
 					</select> 
 				</td>
-			--->
+				</cfif>	
 			</cfif>		   
 
 					

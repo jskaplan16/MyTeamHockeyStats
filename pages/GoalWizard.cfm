@@ -9,6 +9,18 @@
 	<cfif len(attributes.step)>
 	<cfset url.step=attributes.step>
 	</cfif>
+	<cfif isDefined("form.GameId")>
+		<cfset session.SelGameId=form.GameId>
+	<cfelseif isDefined("url.GameId")>
+		<cfset session.SelGameId=url.GameId>
+	<cfelse>
+		<cfset session.SelGameId=session.selectedGameId>
+	</cfif>
+
+		<cfquery name="qSelectedGame" datasource="#application.datasource#">
+		Select Game, Game from vGames where GameId=#session.SelGameId#
+	</cfquery>
+	<cfset session.selectedGame=qSelectedGame.Game>
 		
 <cfif len(attributes.PenaltyId)>
 	<cfset url.PenaltyId=attributes.PenaltyId>
@@ -53,7 +65,9 @@
 						#session.selectedGame#  - Edit Goals
 					</cfoutput>
 				</div>
-			<cfset session.SelGameId=session.selectedGameId>
+		
+
+
 		     <div class="table-container">	
 			<cf_Displaygoals gameID="#session.SelGameId#"  StartGameDate="#session.StartofSeason#" EndGameDate="#session.EndOfSeason#" showEdit=true showDelete="true" showAdd="true">		
 		   	</div>
@@ -61,25 +75,29 @@
 		</cfcase>
 								
 		<cfcase value="5">	
+			<cfif isDefined("url.GameId")>
+				<cfset session.SelGameId=url.GameId>	
+				<cfset form.GameId=url.GameId>
+				<cfset session.SELGOALID=url.GoalId>
+			</cfif>
+		
+			
 			<div class="content">
 				<div class="PageHeader">
+	
 					<cfoutput>
-						#session.selectedGame#  - Edit Goal
+						#qSelectedGame.Game#  - Edit Goal
 					</cfoutput>
 				</div>
 		
 			
-			<cfif isDefined("url.GameId")>
-			<cfset session.SelGameId=url.GameId>	
-			<cfset form.GameId=url.GameId>
-			</cfif>
-			<cfset form.GoalId=url.GoalId>
-			<cfset session.selGoalId=url.GoalId>
+			
+
 			<cfset form.Action="Edit">
 			<cfset session.Action="Edit">
 			<cfinclude template="#Application.displays#DisplaySelectClip.cfm">
 			<div class="table-container">		
-			<cf_Displaygoals gameID="#session.selectedGameID#"  StartGameDate="#session.StartofSeason#" EndGameDate="#session.EndOfSeason#" showEdit="true" showAdd="true" showDelete="true">		
+			<cf_Displaygoals gameID="#form.GoalId#"  StartGameDate="#session.StartofSeason#" EndGameDate="#session.EndOfSeason#" showEdit="true" showAdd="true" showDelete="true">		
 		   	</div>
 		</div>
 		</cfcase>
@@ -178,7 +196,9 @@
 						PenaltyLength,
 						PenaltyStart,
 						PenaltyStartPoint,
-						PenaltyStopPoint
+						PenaltyStopPoint,
+						PenaltyEnd,
+						PenaltyGoalId
 						from tblPenalty P 
 						LEFT OUTER JOIN dbo.tblRoster R 
 						ON P.PenalizedPlayerId=R.PlayerId
@@ -204,9 +224,12 @@
 							PlayerId="#qPenalty.PenalizedPlayerId#"
 							PenaltyLength="#qPenalty.PenaltyLength#"
 							PenaltyStart="#qPenalty.PenaltyStart#"
+							PenaltyEnd="#qPenalty.PenaltyEnd#"
 							PenaltyStartPoint="#qPenalty.PenaltyStartPoint#"
 							PenaltyStopPoint="#qPenalty.PenaltyStopPoint#"
-							SelectedValues="#selectedList#">
+							SelectedValues="#selectedList#"
+							PenaltyGoalId="#qPenalty.PenaltyGoalId#"
+							>
 				
 							<cf_DisplayPenalty  GameId="#session.selectedGameId#" showDelete="true">	
 					

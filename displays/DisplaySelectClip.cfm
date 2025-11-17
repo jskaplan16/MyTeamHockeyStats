@@ -26,8 +26,11 @@
 <cfparam name="form.TeamSeasonId" default="#session.teamSeasonId#">
 <cfparam name="form.GameId" default="">
 
-
-	
+<cfloop collection="#url#" item="key">
+	<cfif structKeyExists(url, key)>
+		<cfset form[key] = url[key]>
+	</cfif>
+</cfloop>	
 	
 	
 	
@@ -55,7 +58,7 @@
 	</cftry>		
 	<cfquery name="qTeams" datasource="#application.datasource#">
 	Select TeamId,TeamName,TeamSeasonId from vTeam where TeamSeasonId in(#session.TeamSeasonId#,#qSelectedGame.OpponentTeamSeasonId#)	
-		 Order by Case when #session.TeamId#=TeamId then 1 else 2 end asc   
+		 Order by Case when #session.TeamSeasonId#=vTeam.TeamSeasonId then 1 else 2 end asc   
 	</cfquery>	
 			
 	<cfquery name="qRoster" datasource="#application.datasource#">

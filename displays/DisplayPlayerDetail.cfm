@@ -12,7 +12,7 @@
 <cfparam name="url.FilterDateStart" default="#session.StartOfSeason#">
 <cfparam name="url.FilterDateEnd" default="#session.EndOfSeason#">
 <cfparam name="url.RankingId" default="0">
-<cfparam name="ReturnFilterPage" default="Roster.cfm">
+<cfparam name="ReturnFilterPage" default="DisplayRoster.cfm">
 <cfparam name="url.GoalTypeId" default="0">
 
 
@@ -27,7 +27,7 @@
 		,@PlayerId=#url.PlayerId#
 	</cfif>
 
-	<cfif len(url.GoalTypeId) gt 0>
+	<cfif url.GoalTypeId gt 0>
 		,@GoalTypeId=#url.GoalTypeId#
 	</cfif>
 	
@@ -38,8 +38,9 @@
 	<cfif url.GameId is not "all">
 	,@GameId=#url.gameId# 
 	</cfif>
-
+<cfif url.RankingId gt 0>
 	,@RankingId=#url.RankingId#
+</cfif>
 </cfquery> 
 
 <cfif len(url.action) gt 0 >
@@ -92,7 +93,7 @@
 
 						<td style="text-align: right;">
 	      						<b>Filter By:</b> Filter by <cfif url.action is "PlusMinus">Plus/Minus<cfelse> #url.action# </cfif> 
-							<a href="#ReturnFilterPage#?&GameId=#url.GameId#" class="mainLink" style="color: black;">[Remove Filter]</a>
+							<a href="#Application.displays##ReturnFilterPage#?&GameId=#url.GameId#" class="mainLink" style="color: black;">[Remove Filter]</a>
 						</td>
 					</tr>
 		 </table>
@@ -127,6 +128,9 @@
             EndGameDate="#url.FilterDateEnd#"
             RankingId="#url.RankingId#"
 			GoalTypeId="#url.GoalTypeId#"
+			showAdd="true"
+			showEdit="true"
+			showDelete="true"	
 			>
     </div>
 </div>

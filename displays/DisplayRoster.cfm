@@ -61,6 +61,8 @@
 				   TournamentId="#form.TournamentId#"
 				   RankingId="#form.RankingId#"
 				   GoalTypeId="#form.GoalTypeId#"
+				   FilterByGoalTypeOn="True"
+				   FilterByRankingOn="False"
 				>
 				  
 	
