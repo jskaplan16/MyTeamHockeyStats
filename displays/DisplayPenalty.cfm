@@ -129,8 +129,8 @@ where GameId=#attributes.GameId#
 			@PenaltyGoalId=#qPenaltyByPeriod.PenaltyGoalId#
 				</cfquery>
 
-				<tr>
-					<td colspan="5" align="center">
+				<tr class="#classValue#">
+					<td colspan="5" align="center" class="#classValue#">
 							<div style="border:1px solid black; padding: 3px; width: 50%; margin: 0 auto; text-align: center;"> 
 						#qPenaltyGoal.PenaltyGoalDesc# 
 							</div>
@@ -140,8 +140,8 @@ where GameId=#attributes.GameId#
 		</cfif>
 				
 			<cfif session.showadminfunctions>
-			<tr class="#classValue#">
-				<td align="left" colspan="5" style="text-align: left;padding: 10px;">
+			<tr class="#classValue#" style="border-bottom: 1px solid black;">
+				<td align="left" colspan="5" style="text-align: left;padding-bottom: 10px;">
 					<a href="#application.pages#GoalWizard.cfm?Step=10&GameId=#attributes.GameId#" class="profile-button" style="color:black;text-decoration:underline;">Add Penalty</a>
 					<a href="#application.pages#GoalWizard.cfm?Step=13&PenaltyId=#qPenaltyByPeriod.PenaltyId#" class="profile-button" style="color:black;text-decoration:underline;">Edit Penalty</a>
 					<a href="#application.pages#GoalWizard.cfm?Step=15&PenaltyId=#qPenaltyByPeriod.PenaltyId#" class="profile-button" style="color:black;text-decoration:underline;">Delete Penalty</a>

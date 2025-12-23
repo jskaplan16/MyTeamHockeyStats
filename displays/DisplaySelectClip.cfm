@@ -26,12 +26,21 @@
 <cfparam name="form.TeamSeasonId" default="#session.teamSeasonId#">
 <cfparam name="form.GameId" default="">
 
+<cfif isDefined("url.GameId") and len(url.GameId)>
+<cfset form.GameId=url.GameId>
+</cfif>
+
+<cfif isDefined("url.GoalId") and len(url.GoalId)>
+	<cfset form.GoalId=url.GoalId>
+</cfif>
+
+<!---
 <cfloop collection="#url#" item="key">
 	<cfif structKeyExists(url, key)>
 		<cfset form[key] = url[key]>
 	</cfif>
 </cfloop>	
-	
+--->
 	
 	
 	<cfif isDefined("form.GameId") and len(form.GameId)>
@@ -168,7 +177,15 @@ function copyGoalTime(){
 
 	
 	<div class="container">
-		  	<cfif isDefined("qTeams.TeamId")>
+		<cfif NOT (isDefined("form.GameId") AND len(trim(form.GameId)))>
+			<div class="error" style="padding: 20px; text-align: center;">
+				<cfoutput>
+					<h3>Please select a game first</h3>
+					<p>You must select a game from the admin page before adding goals.</p>
+					<p><a href="#application.displays#DisplayAdmin.cfm" class="profile-button">Return to Admin Page</a></p>
+				</cfoutput>
+			</div>
+		<cfelseif isDefined("qTeams") AND qTeams.recordCount GT 0>
 				<!---    <form method="post" action="SaveGoal.cfm" onsubmit="return validateCheckboxes()">  --->
 					<cfoutput>
    <form method="post" action="#Application.actions#ActionSaveGoal.cfm">
@@ -522,10 +539,17 @@ SELECT FinalPlayerId
   }
 
   </script>
-
-	</cfif>		
-		
+	
 	</form>
+	<cfelse>
+		<div class="error" style="padding: 20px; text-align: center;">
+			<cfoutput>
+				<h3>Unable to load game data</h3>
+				<p>There was an error loading the game information. Please try again.</p>
+				<p><a href="#application.displays#DisplayAdmin.cfm" class="profile-button">Return to Admin Page</a></p>
+			</cfoutput>
+		</div>
+	</cfif>
 <!---
 <cfif isdefined("qSelectedGame.GamesheetURL")> 
 <cfoutput>

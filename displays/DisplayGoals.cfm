@@ -210,7 +210,7 @@
 				</td>
 			</tr>
 			</cfif>	
-			<tr>
+			<tr style="border-bottom: 1px solid black;">
 				<td colspan="5" class="#classValue#" style="border-top:0px;text-align:left;">
 				<cf_displayQuestionStat GoalId=#GoalID# GameId="#attributes.GameId#">		
 			</td>			

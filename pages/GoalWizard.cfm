@@ -9,12 +9,15 @@
 	<cfif len(attributes.step)>
 	<cfset url.step=attributes.step>
 	</cfif>
+
 	<cfif isDefined("form.GameId")>
 		<cfset session.SelGameId=form.GameId>
 	<cfelseif isDefined("url.GameId")>
 		<cfset session.SelGameId=url.GameId>
+		<cfset form.GameId=url.GameId>
 	<cfelse>
 		<cfset session.SelGameId=session.selectedGameId>
+		<cfset form.GameId=session.selectedGameId>
 	</cfif>
 
 		<cfquery name="qSelectedGame" datasource="#application.datasource#">
@@ -58,6 +61,7 @@
 				</div>
 			</div>			
 		</cfcase>
+	
 		<cfcase value="4">
 			<div class="content">
 				<div class="PageHeader">
@@ -67,7 +71,7 @@
 				</div>
 		
 
-
+				<cfinclude template="#Application.displays#DisplaySelectClip.cfm">
 		     <div class="table-container">	
 			<cf_Displaygoals gameID="#session.SelGameId#"  StartGameDate="#session.StartofSeason#" EndGameDate="#session.EndOfSeason#" showEdit=true showDelete="true" showAdd="true">		
 		   	</div>

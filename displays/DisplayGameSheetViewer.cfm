@@ -1,13 +1,16 @@
-<!---<cfif not isDefined("url.NoHeader")>--->
+<cfif not isDefined("url.NoHeader")>
 <cfinclude template="#application.includes#Header.cfm">
 
-	<cfquery datasource="#application.datasource#" name="qGames">
-		Select Replace(GamesheetURL,'/Gamesheets/','') as GamesheetURL from tblGame where GameId=#url.GameId#
-	</cfquery>
+
 	<div style="padding: 5px;text-align: left;">
 		<button onclick="history.back()" class="Submit">Go Back</button>
 	</div>
-	<cfoutput>
+</cfif>
+<cfquery datasource="#application.datasource#" name="qGames">
+	Select Replace(GamesheetURL,'/Gamesheets/','') as GamesheetURL from tblGame where GameId=#url.GameId#
+</cfquery>
+
+<cfoutput>
 <cfif REFindNoCase("(https://|\.pdf$)", qGames.GamesheetURL)>
 			<cfif qGames.GamesheetURL contains ".pdf">
 				<cfset urlLink="#Application.gamesheets##Replace(qGames.GamesheetURL,'/Gamesheets/','')#">	
@@ -20,6 +23,7 @@
 		</cfif>	
 	</cfoutput>
 <!---		<cfif not isDefined("url.NoHeader")> --->
+	<cfif not isDefined("url.NoHeader")>
 		<cfinclude template="#application.includes#Footer.cfm">	
-		
+	</cfif>
 		<!---	</cfif> --->

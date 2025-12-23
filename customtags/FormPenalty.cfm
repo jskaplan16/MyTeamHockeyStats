@@ -42,14 +42,59 @@ exec stpGetRoster @TeamSeasonId=#qGameInfo.MainTeamSeasonId#,@OpponentTeamSeason
 		Select * from qRoster where TeamSeasonId=<cfif len(attributes.TeamSeasonId)>#attributes.TeamSeasonId#<cfelse>#qGameInfo.MainTeamSeasonId#</cfif>	   
 	</cfquery>
 	<cfoutput>
-	<div class="game-wrapper">
+	<div>
 		<div style="display: table-cell;width: 50%;text-align: left;padding-left: 25px;">
-			<a href="#application.displays#DisplayGameSheetViewer.cfm?GameId=#attributes.gameId#" target="_blank">
-				<img src="#application.images#GamesheetsIcon.png" width="100" style="padding: 5px;"></a>
+			<button type="button" id="toggleGamesheetBtn" style="background: none; border: none; cursor: pointer; padding: 5px;">
+				<img src="#application.images#GamesheetsIcon.png" width="100" style="padding: 5px;">
+			</button>
 		</div>
-	</cfoutput>
+	</div>
+	
+	<!-- Hidden Gamesheet Iframe Container -->
+	<div id="gamesheetContainer" style="position: fixed; top: 0; left: -100%; width: 100%; height: 100%; z-index: 1000; background: rgba(0,0,0,0.9); transition: left 0.4s ease-in-out; overflow: auto;">
+		<div style="position: relative; width: 100%; height: 100%; padding: 20px; box-sizing: border-box;">
+			<button type="button" id="closeGamesheetBtn" style="position: absolute; top: 20px; right: 20px; background: ##fff; border: 2px solid ##333; padding: 10px 20px; cursor: pointer; font-size: 16px; z-index: 1001; border-radius: 5px;">Close Gamesheet</button>
+			<iframe id="gamesheetIframe" src="#application.displays#DisplayGameSheetViewer.cfm?GameId=#attributes.gameId#&NoHeader=true" style="width: 100%; height: calc(100% - 40px); border: none; margin-top: 60px; background: ##fff;"></iframe>
+		</div>
+	</div>
+</cfoutput>	
+	<style>
+		#penaltyForm {
+			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+		}
+		
+		#penaltyForm.hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+	</style>
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const toggleBtn = document.getElementById('toggleGamesheetBtn');
+			const closeBtn = document.getElementById('closeGamesheetBtn');
+			const gamesheetContainer = document.getElementById('gamesheetContainer');
+			const penaltyForm = document.getElementById('penaltyForm');
+			
+			toggleBtn.addEventListener('click', function() {
+				gamesheetContainer.style.left = '0';
+				if (penaltyForm) {
+					penaltyForm.classList.add('hidden');
+				}
+			});
+			
+			closeBtn.addEventListener('click', function() {
+				gamesheetContainer.style.left = '-100%';
+				if (penaltyForm) {
+					penaltyForm.classList.remove('hidden');
+				}
+			});
+		});
+	</script>
+
 	<cfoutput>
-<form action="#Application.actions#ActionSavePenalty.cfm" method="post">
+    <div class="game-wrapper">
+<form id="penaltyForm" action="#Application.actions#ActionSavePenalty.cfm" method="post">
 	
 <input type="hidden" name="PenaltyId" value="#attributes.PenaltyId#">
 		</cfoutput>
